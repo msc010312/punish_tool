@@ -1,0 +1,235 @@
+<title>Punish Tool — 최종 보고서</title>
+<style>
+  /* ── 토큰: 불 위 단조 메탈. 솔/GGST 아케이드 HUD 세계로 의도적 단일(다크) 테마 ── */
+  :root{
+    --ground:#14100e; --ground-2:#1d1713; --panel:#241c17; --line:#3a2c22;
+    --ember:#e8482a; --molten:#f2a63d; --ash:#9b8b7d; --bone:#ece2d3;
+    --jade:#63c39a;
+    --maxw:1000px;
+    --disp:"Arial Narrow","Roboto Condensed",system-ui,sans-serif;
+    --body:system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:ui-monospace,"Cascadia Code","Consolas",monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ground);color:var(--bone);font-family:var(--body);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 50% -10%, #2a1a12 0%, var(--ground) 55%);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+  h1,h2,h3{text-wrap:balance;margin:0}
+  a{color:var(--molten)}
+
+  /* 라벨/에요브로 */
+  .eyebrow{font-family:var(--disp);text-transform:uppercase;letter-spacing:.22em;
+    font-size:.78rem;color:var(--ash);font-weight:700}
+  .num{font-family:var(--disp);color:var(--ember);font-weight:700;letter-spacing:.05em}
+
+  /* 히어로 */
+  .hero{padding:clamp(64px,12vh,140px) 0 clamp(40px,7vh,80px);border-bottom:1px solid var(--line)}
+  .hero .kicker{display:inline-block;border:1px solid var(--line);border-left:3px solid var(--ember);
+    padding:.35em .8em;font-family:var(--disp);text-transform:uppercase;letter-spacing:.2em;
+    font-size:.72rem;color:var(--molten);margin-bottom:1.4rem}
+  .hero h1{font-family:var(--disp);font-weight:800;text-transform:uppercase;
+    font-size:clamp(2.8rem,9vw,6rem);line-height:.92;letter-spacing:.01em;
+    color:var(--bone)}
+  .hero h1 em{font-style:normal;color:var(--ember);
+    text-shadow:0 0 40px rgba(232,72,42,.45)}
+  .hero .lead{max-width:60ch;margin-top:1.4rem;font-size:clamp(1.05rem,2.4vw,1.3rem);color:#d3c6b6}
+  .principle{margin-top:2.2rem;padding:1.1rem 1.3rem;background:var(--ground-2);
+    border:1px solid var(--line);border-left:4px solid var(--molten);max-width:64ch}
+  .principle b{color:var(--molten)}
+
+  /* 섹션 */
+  section{padding:clamp(52px,8vh,96px) 0;border-bottom:1px solid var(--line)}
+  .shead{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem}
+  .shead .num{font-size:1.1rem}
+  .shead h2{font-family:var(--disp);text-transform:uppercase;font-weight:800;
+    font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.02em}
+  .sub{color:var(--ash);max-width:66ch;margin:-1rem 0 2rem}
+
+  /* 스탯 타일 */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);margin:1.5rem 0}
+  .stat{background:var(--ground-2);padding:1.4rem 1.2rem}
+  .stat .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700;
+    font-size:clamp(1.9rem,5vw,2.6rem);color:var(--molten);line-height:1}
+  .stat .l{font-size:.82rem;color:var(--ash);margin-top:.5rem}
+
+  /* 파이프라인 다이어그램 */
+  .pipe{display:grid;gap:.7rem;margin:1.5rem 0}
+  .pnode{background:var(--ground-2);border:1px solid var(--line);border-left:3px solid var(--ember);
+    padding:.9rem 1.1rem}
+  .pnode .t{font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--bone)}
+  .pnode .d{color:var(--ash);font-size:.92rem;margin-top:.2rem}
+  .pnode.brain{border-left-color:var(--molten)}
+  .pnode.out{border-left-color:var(--jade)}
+  .parrow{color:var(--ember);text-align:center;font-family:var(--mono);opacity:.7}
+
+  /* 카드 그리드 */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1rem}
+  .card{background:var(--ground-2);border:1px solid var(--line);padding:1.3rem}
+  .card h3{font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;
+    color:var(--molten);margin-bottom:.5rem}
+  .card p{color:#cabeae;font-size:.95rem;margin:.3rem 0 0}
+
+  /* 오디오(HUD 플레이어) */
+  .voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.2rem}
+  .voice{background:var(--ground-2);border:1px solid var(--line);padding:1rem 1.1rem}
+  .voice .jp{font-size:1.05rem;color:var(--bone);margin-bottom:.15rem}
+  .voice .ro{font-family:var(--mono);font-size:.8rem;color:var(--ash);margin-bottom:.7rem}
+  .voice audio{width:100%;height:34px}
+  .tag{display:inline-block;font-family:var(--disp);text-transform:uppercase;letter-spacing:.12em;
+    font-size:.66rem;color:var(--ground);background:var(--molten);padding:.2em .6em;font-weight:700}
+
+  /* 상태 표 */
+  table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.94rem}
+  th,td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--line)}
+  th{font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:var(--ash)}
+  td .st{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
+  .st.done{color:var(--jade)} .st.run{color:var(--molten)} .st.plan{color:var(--ash)}
+
+  /* 코드 */
+  pre{background:#0f0b09;border:1px solid var(--line);border-left:3px solid var(--molten);
+    padding:1rem 1.1rem;overflow-x:auto;font-family:var(--mono);font-size:.85rem;color:#d8cbb8;margin:1rem 0}
+  code{font-family:var(--mono);color:var(--molten)}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  @media(max-width:640px){.two{grid-template-columns:1fr}}
+
+  footer{padding:3rem 0 4rem;color:var(--ash);font-size:.85rem}
+  footer b{color:var(--bone)}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="kicker">AI 휴먼 · 대전격투 코치</span>
+    <h1>Punish<br>Tool <em>—</em> 솔 배드가이</h1>
+    <p class="lead">길티기어 스트라이브 리플레이를 넣으면, AI 휴먼 솔 배드가이가
+      "그 순간 뭘 했어야 이겼는지"를 프레임 단위로 짚어 주는 로컬·오프라인 코치.</p>
+    <div class="principle">제1원칙 —
+      <b>사용자에게 잘못된 정보를 주지 않는다.</b> 애매하면 침묵한다. 격투 코칭에서 틀린
+      프레임 수치는 나쁜 습관을 심으므로, 시스템 전체가 "측정된 사실만 말한다"를 코드로 보증한다.</div>
+  </header>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">01</span><h2>문제</h2></div>
+    <p class="sub">"막혔을 때, 나는 무엇으로 확정 반격이 되는가?" — 이 한 가지가 격투게임 실력의 핵심이다.</p>
+    <p style="max-width:66ch;color:#cabeae">그런데 그 답은 Dustloop 같은 방대한 프레임 데이터표에 흩어져 있어,
+      초·중급자는 대전 중은커녕 리플레이를 봐도 못 찾는다. 그래서 <b style="color:var(--bone)">영상에서 그 순간을
+      자동으로 찾아 해답을 주는</b> 코치를 만들기로 했다.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">02</span><h2>접근 — 측정과 언어의 분리</h2></div>
+    <p class="sub">영상에서 뽑은 <b style="color:var(--bone)">사실</b>만 LLM에 넘긴다. LLM은 프레임 수치를 스스로
+      지어낼 수 없다. 이 분리가 "틀린 정보 금지" 원칙을 가능하게 하는 구조다.</p>
+    <div class="pipe">
+      <div class="pnode"><div class="t">① HUD 리더 · hud_reader.py</div><div class="d">60fps 영상을 체력바 색 자가보정으로 훑어 피격·카운터·펀ish 이벤트 타임라인 추출 (비전, 무브 인식 없음)</div></div>
+      <div class="parrow">▼ timeline.json</div>
+      <div class="pnode brain"><div class="t">② 펀ish 엔진 · punish_engine.py</div><div class="d">프로젝트의 두뇌 — 프레임데이터만으로 "이 기술이 막혔을 때 무엇으로 확정 반격이 되는가"를 즉답</div></div>
+      <div class="parrow">＋ ③ 무브ID (DINOv2 RAG / VLM / 입력표시 판독)</div>
+      <div class="pnode out"><div class="t">분석 리포트 → AI 코치</div><div class="d">analyze_match.py 가 사실을 자연어로 정리 → 코치가 페르소나로 코칭</div></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">03</span><h2>AI 엔진 — 근거 RAG + 숫자 가드</h2></div>
+    <p class="sub">코치는 추출된 사실과 번들 지식(RAG)에 <b style="color:var(--bone)">실제로 적힌 숫자만</b> 말한다.
+      없는 걸 물으면 지어내지 않고 "모른다"고 답한다.</p>
+    <div class="two">
+      <div>
+        <div class="cards" style="grid-template-columns:1fr">
+          <div class="card"><h3>오프라인 RAG</h3><p>coach_kb.py 가 번들 JSON(framedata·mechanics·combos·char_notes·move_names)에서 관련 항목만 근거 블록으로 추출. 데이터에 없으면 빈 블록 → 프롬프트가 "모른다"고 답하게 강제.</p></div>
+          <div class="card"><h3>결정론적 숫자 가드</h3><p>근거·질문에 없는 단위 숫자(N프레임·N뎀)를 후처리 정규식으로 잡아 경고. <b style="color:var(--bone)">코드가 제1원칙을 최종 보증하는 지점.</b></p></div>
+        </div>
+      </div>
+      <div>
+<pre>def _unverified_numbers(answer, ctx, question):
+    allowed = set(re.findall(r"\d+", ctx + question))
+    flagged = []
+    for m in re.finditer(r"(\d+)\s*(프레임|F|뎀)", answer):
+        if m.group(1) not in allowed:
+            flagged.append(m.group(0))
+    return flagged   # 있으면 "※ 근거 데이터 없음" 부착</pre>
+        <p style="color:var(--ash);font-size:.9rem">모델: qwen3:8b(llama.cpp 동봉). 파인튜닝 QLoRA v1~v4는 자유대화를
+          손상시켜, <b style="color:var(--bone)">베이스 + 숫자 가드</b>로 결론 — 학습으로 페르소나만 흉내내다 사실성을 잃지 않도록.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">04</span><h2>멀티모달 — 비전 · 음성 · 아바타</h2></div>
+    <p class="sub">코치를 "말하고 표정 짓는 AI 휴먼"으로. 아래 일본어 솔 음성은 학습을 마쳐 실제 합성된 결과다.</p>
+    <div class="cards">
+      <div class="card"><h3>비전</h3><p>HUD 색 자가보정, 배너 템플릿 매칭(감지율 95%·오검 0), DINOv2 무브ID, YOLO pose.</p></div>
+      <div class="card"><h3>음성 · SBV2 한국어 개조</h3><p>Style-Bert-VITS2를 NDC26 방식으로 한국어까지 개조. 일본어 솔 파인튜닝 완료.</p></div>
+      <div class="card"><h3>아바타 · three.js 3D</h3><p>게임 모델 추출(FModel)→Blender→GLB→실시간 툰셰이더. 립싱크·깜빡임·표정.</p></div>
+    </div>
+    <p style="margin-top:1.8rem"><span class="tag">JP 솔 음성 · 실제 합성</span></p>
+    <div class="voices">
+      <div class="voice"><div class="jp">そっちの近況が先だ。</div><div class="ro">sotchi no kinkyō ga saki da</div><div style="font-family:var(--mono);font-size:.82rem;color:var(--ash);border:1px dashed var(--line);padding:.5rem .7rem">▶ 음성 샘플은 로컬 제출본(발표본)에서 재생</div></div>
+      <div class="voice"><div class="jp">くたばりやがれ。</div><div class="ro">kutabari yagare</div><div style="font-family:var(--mono);font-size:.82rem;color:var(--ash);border:1px dashed var(--line);padding:.5rem .7rem">▶ 음성 샘플은 로컬 제출본(발표본)에서 재생</div></div>
+      <div class="voice"><div class="jp">俺の獲物に手を出すな。</div><div class="ro">ore no emono ni te o dasu na</div><div style="font-family:var(--mono);font-size:.82rem;color:var(--ash);border:1px dashed var(--line);padding:.5rem .7rem">▶ 음성 샘플은 로컬 제출본(발표본)에서 재생</div></div>
+      <div class="voice"><div class="jp">まだ終わってねえぞ。</div><div class="ro">mada owatte nee zo</div><div style="font-family:var(--mono);font-size:.82rem;color:var(--ash);border:1px dashed var(--line);padding:.5rem .7rem">▶ 음성 샘플은 로컬 제출본(발표본)에서 재생</div></div>
+    </div>
+    <p style="color:var(--ash);font-size:.82rem;margin-top:1rem">※ 게임 음성 기반 합성 (연구·교육용).</p>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">05</span><h2>한국어 TTS 개조 — 91%를 물려받다</h2></div>
+    <p class="sub">SBV2는 한국어를 지원하지 않는다. NDC26(넥슨게임즈) 발표 방식을 따라 개조했다 —
+      언어 의존부는 <b style="color:var(--bone)">G2P·BERT 두 곳뿐</b>, 나머지는 언어와 무관하다.</p>
+    <div class="stats">
+      <div class="stat"><div class="v">91%</div><div class="l">사전학습 전이<br>(66.6M / 73.2M 파라미터)</div></div>
+      <div class="stat"><div class="v">112→125</div><div class="l">음소 심볼<br>(112 전이 + 13 신규)</div></div>
+      <div class="stat"><div class="v">13.2h</div><div class="l">KO 코퍼스<br>14화자 · 7발화체</div></div>
+      <div class="stat"><div class="v">1024</div><div class="l">KLUE-RoBERTa<br>히든 차원 일치</div></div>
+    </div>
+    <p style="max-width:68ch;color:#cabeae">웜스타트: 일본어 사전학습에서 보코더·flow·duration·style(91%)을 그대로 물려받고,
+      텍스트 인코더(9%)만 한국어로 재학습. 음소 임베딩은 <b style="color:var(--bone)">심볼 '이름'으로 대응</b>시켜
+      인덱스가 밀리지 않게 전이했다. 한국어 G2P는 연음·경음화·구개음화를 처리하며 음절 수를 보존한다
+      (<code>삼일전 → 사밀전</code>).</p>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">06</span><h2>결과 · 현황</h2></div>
+    <table>
+      <thead><tr><th>구성요소</th><th>상태</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>영상 분석(HUD·펀ish 엔진)</td><td><span class="st done">동작</span></td><td>배너 감지 95%·오검 0</td></tr>
+        <tr><td>AI 코치(RAG·숫자 가드)</td><td><span class="st done">동작</span></td><td>qwen3:8b · llama.cpp 동봉</td></tr>
+        <tr><td>3D 아바타(three.js)</td><td><span class="st done">동작</span></td><td>립싱크·표정·깜빡임</td></tr>
+        <tr><td>JP 솔 음성(SBV2)</td><td><span class="st done">완료</span></td><td>100 epochs · 샘플 4종(상단 재생)</td></tr>
+        <tr><td>KO 기반모델(AI Hub)</td><td><span class="st run">학습중</span></td><td>웜스타트 91% · 체크포인트 자동저장</td></tr>
+        <tr><td>KO 솔 음성 · 코치 TTS 배선</td><td><span class="st plan">예정</span></td><td>기반모델 완료 후</td></tr>
+        <tr><td>통짜 배포(설치·터미널 없음)</td><td><span class="st done">동작</span></td><td>더블클릭 실행</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="num">07</span><h2>로드맵</h2></div>
+    <div class="cards">
+      <div class="card"><h3>KO 음성 완성</h3><p>기반모델 학습 마무리 → 한국어 솔 파인튜닝 → 코치 응답 실시간 TTS 배선.</p></div>
+      <div class="card"><h3>무브ID 정밀도</h3><p>현재 57%(DINOv2 RAG) → 히트 귀속·상황 판정 정확도 향상.</p></div>
+      <div class="card"><h3>립싱크 동기화</h3><p>TTS 음소 타이밍과 아바타 입 모양 정밀 정렬.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <b>Punish Tool</b> · 비영리 교육 목적. Guilty Gear Strive 및 솔 배드가이 관련 자산·음성은
+    Arc System Works의 지식재산이며 상업적으로 이용하지 않는다. 아바타는 게임 모델 추출, 음성은
+    게임 내 음성 기반 합성(연구·교육용).
+  </footer>
+</div>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>

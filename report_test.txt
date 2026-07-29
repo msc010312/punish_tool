@@ -1,0 +1,187 @@
+================================================================
+코칭 리포트 [P1+P2 관점] — ?
+P1(좌)=Bedman   P2(우)=Sol Badguy
+================================================================
+
+[캐릭터 이해 — Dustloop 개요]
+  ▷ Bedman: Bedman? is an unorthodox fighter whose gameplan is centered around its unique character mechanic, error 6E. A sort of reinterpretation of the Déjà Vu Guard Startup Recovery Total 30 Advantage mechanic it had in its previous iteration, using one of its three main special moves ( call 4BA Guard All Startup 16 Recovery Total 46 Advantage -11 , call 4B…
+  ▷ Sol Badguy: Sol is a character who excels up close and personal, giving up power in the neutral game for a suite of threatening options to open up your opponents and reward proper conditioning during offense. His tricky special moves help him take the risks required to make his way in, and he has a tool-kit of normal moves that allow him to stand his ground an…
+
+[요약]
+  총 피격 이벤트: 957  (P1 521 / P2 436)
+  COUNTER: 51   PUNISH: 38   JUST(직전가드): 3
+  (미상 텍스트 190건은 OCR 불가로 제외)
+
+[전투 흐름]
+  추정 라운드 수: 34
+  누적 가한 데미지(HP%합): Bedman 4106%  /  Sol Badguy 4364%
+  콤보(2히트+) 187개. 큰 콤보 Top 5:
+   6:29.80  Bedman -> 6히트 / 68% 데미지
+   6:27.93  Bedman -> 5히트 / 64% 데미지
+   3:07.07  Bedman -> 4히트 / 59% 데미지
+   4:12.67  Bedman -> 2히트 / 58% 데미지
+   5:33.00  Sol Badguy -> 4히트 / 58% 데미지
+
+[카운터 · 확정반격 순간]
+
+  0:09.07  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  0:58.40  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 61·데미지일치): 2K
+     ▶ 콤보 255뎀 [Medium] ((near) Corner) 236KK > 22FRRC~CL 41236H > c.S > 5H > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ▶ 콤보 252뎀 [Medium] (Corner) 236KK > 22FRRC~j.H (whiff) > 5H > dl CL 41236H > c.S > 6S > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ⚠ 전환 104뎀 (최적 ~255뎀) — 콤보를 더 살릴 수 있었어
+
+  1:12.20  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 56·데미지일치): 2H
+     ▶ 콤보 282뎀 [Medium] (Corner) CH 5H or 2H > 214P, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 278뎀 [Medium] (Starting) CL 623H > 22RRC, 665[D], c.S > jc, j.D > adc, j.K > j.D, c.S > CL 623H, WS 41236H
+     ⚠ 전환 96뎀 (최적 ~282뎀) — 콤보를 더 살릴 수 있었어
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  1:48.20  P2(Sol Badguy)의 PUNISH(확정반격)
+
+  2:27.20  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 39·데미지일치): 5H
+     ▶ 콤보 282뎀 [Medium] (Corner) CH 5H or 2H > 214P, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 271뎀 [Medium] (Corner) 2D > CL 623HH, 5K > 6S > delay CL 41236H, 2K > WS 214P, 41236H
+     ✓ 전환 479뎀 (최적 ~282뎀) — 잘 살림
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  2:27.20  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 39·데미지일치): 5H
+     ▶ 콤보 282뎀 [Medium] (Corner) CH 5H or 2H > 214P, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 271뎀 [Medium] (Corner) 2D > CL 623HH, 5K > 6S > delay CL 41236H, 2K > WS 214P, 41236H
+     ✓ 전환 479뎀 (최적 ~282뎀) — 잘 살림
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  2:31.73  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 88): 2S  (데미지후보: f.S / 2K / 5P / 236KK)
+     ▶ 콤보 287뎀 [Hard] (Starting) f.S or 2S > CL 623HH > 22RRC, 665[D], 66c.S > 2H > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 262뎀 [Medium] (Corner) CH f.S or 2S, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ✓ 전환 572뎀 (최적 ~287뎀) — 잘 살림
+
+  2:33.40  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 35·데미지일치): 5H
+     ▶ 콤보 282뎀 [Medium] (Corner) CH 5H or 2H > 214P, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 271뎀 [Medium] (Corner) 2D > CL 623HH, 5K > 6S > delay CL 41236H, 2K > WS 214P, 41236H
+     ⚠ 전환 112뎀 (최적 ~282뎀) — 콤보를 더 살릴 수 있었어
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  2:46.87  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 56·데미지일치): 2D
+     ▶ 콤보 278뎀 [Medium] (Starting) CL 623H > 22RRC, 665[D], c.S > jc, j.D > adc, j.K > j.D, c.S > CL 623H, WS 41236H
+     ▶ 콤보 271뎀 [Medium] (Corner) 2D > CL 623HH, 5K > 6S > delay CL 41236H, 2K > WS 214P, 41236H
+     ✓ 전환 779뎀 (최적 ~278뎀) — 잘 살림
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  2:56.07  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 28): j.H  (데미지후보: 236K / 2P / ch6D / 236KK)
+     ▶ 콤보 255뎀 [Medium] ((near) Corner) 236KK > 22FRRC~CL 41236H > c.S > 5H > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ▶ 콤보 252뎀 [Medium] (Corner) 236KK > 22FRRC~j.H (whiff) > 5H > dl CL 41236H > c.S > 6S > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ✓ 전환 164뎀 (최적 ~255뎀) — 잘 살림
+
+  3:11.47  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 48·데미지일치): 236K
+     ▶ 콤보 244뎀 [Medium] (Starting) CH (j.)214K, 66 2K/5K(1) > 6S > dl CL 41236H, 2H > dl CL 41236H, WS 41236H
+     ▶ 콤보 204뎀 [Hard] (Starting) 5K or 2K > CL 623HH > 22RRC, 665[D], 66c.S > 2H > delay CL 41236H, WS CL 41236H
+     ✓ 전환 188뎀 (최적 ~244뎀) — 잘 살림
+
+  3:31.07  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 57): 5H  (데미지후보: 5D / 623H~6H / 2H / 6S)
+     ▶ 콤보 282뎀 [Medium] (Corner) CH 5H or 2H > 214P, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 265뎀 [Medium] (Cornered) 66 CH 2H > 214K, 2K > 6S > dl CL 41236H > 66 c.S > dl CL 623H, WS 41236H
+     ⚠ 전환 71뎀 (최적 ~282뎀) — 콤보를 더 살릴 수 있었어
+
+  4:02.73  P2(Sol Badguy)의 PUNISH(확정반격)
+
+  4:07.33  P2(Sol Badguy)의 COUNTER MEDIUM  (+13F)
+     └ 빠른 기본기: 2P (발생 5F, 여유 8F), 5K (발생 5F, 여유 8F), 5P (발생 5F, 여유 8F), 2K (발생 6F, 여유 7F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 7F), 623S (발생 9F, 여유 4F), 236K (발생 12F, 여유 1F)
+
+  4:51.07  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 26): 623H_6H
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  5:04.00  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 74·데미지일치): 2D
+     ▶ 콤보 278뎀 [Medium] (Starting) CL 623H > 22RRC, 665[D], c.S > jc, j.D > adc, j.K > j.D, c.S > CL 623H, WS 41236H
+     ▶ 콤보 271뎀 [Medium] (Corner) 2D > CL 623HH, 5K > 6S > delay CL 41236H, 2K > WS 214P, 41236H
+     ⚠ 전환 61뎀 (최적 ~278뎀) — 콤보를 더 살릴 수 있었어
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  5:17.33  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  5:45.27  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(추정, 데미지 23): 2P / 236KK / 236K / ch6D
+     ▶ 콤보 255뎀 [Medium] ((near) Corner) 236KK > 22FRRC~CL 41236H > c.S > 5H > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ▶ 콤보 252뎀 [Medium] (Corner) 236KK > 22FRRC~j.H (whiff) > 5H > dl CL 41236H > c.S > 6S > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ⚠ 전환 68뎀 (최적 ~255뎀) — 콤보를 더 살릴 수 있었어
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  5:53.47  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     · 시동기(VLM 확신 32): 623H
+     ▶ 콤보 278뎀 [Medium] (Starting) CL 623H > 22RRC, 665[D], c.S > jc, j.D > adc, j.K > j.D, c.S > CL 623H, WS 41236H
+     ▶ 콤보 258뎀 [Medium] (Starting) CH CL 623H, 5H > 236K (whiff), 2K > 6S > dl CL 41236H, WS 41236H
+     ⚠ 전환 38뎀 (최적 ~278뎀) — 콤보를 더 살릴 수 있었어
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  6:13.60  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 34): 214K  (데미지후보: 5[D])
+     └ 콤보 901뎀/15히트 → 시동기 5[D]만 가능 (약한 시동기 제외)
+     ▶ 콤보 260뎀 [Medium] (Corner) (CH) (j.)214K > (66FRRC~j.H (whiff),) 66 5H, 5H > dl CL 41236H, c.S > dl CL 623H, WS 41236H
+     ▶ 콤보 244뎀 [Medium] (Starting) CH (j.)214K, 66 2K/5K(1) > 6S > dl CL 41236H, 2H > dl CL 41236H, WS 41236H
+     ✓ 전환 901뎀 (최적 ~260뎀) — 잘 살림
+
+  6:17.87  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  6:25.87  P2(Sol Badguy)의 COUNTER SMALL  (+6F)
+     · 시동기(VLM 확신 32): j.P  (데미지후보: 236K / 2P / ch6D / 236KK)
+     ▶ 콤보 255뎀 [Medium] ((near) Corner) 236KK > 22FRRC~CL 41236H > c.S > 5H > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ▶ 콤보 252뎀 [Medium] (Corner) 236KK > 22FRRC~j.H (whiff) > 5H > dl CL 41236H > c.S > 6S > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ⚠ 전환 59뎀 (최적 ~255뎀) — 콤보를 더 살릴 수 있었어
+     └ 빠른 기본기: 2P (발생 5F, 여유 1F), 5K (발생 5F, 여유 1F), 5P (발생 5F, 여유 1F), 2K (발생 6F, 칼타이밍)
+     └ 콤보 특수기: 236KK (발생 6F, 칼타이밍)
+
+  6:53.53  P2(Sol Badguy)의 PUNISH(확정반격)
+
+  7:02.73  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 100): j.K  (데미지후보: 2K / 5P / f.S / 236KK)
+     ▶ 콤보 287뎀 [Hard] (Starting) f.S or 2S > CL 623HH > 22RRC, 665[D], 66c.S > 2H > delay CL 41236H, WS CL 41236H
+     ▶ 콤보 262뎀 [Medium] (Corner) CH f.S or 2S, 66c.S > CL 623HH, 5K > 6S > delay CL 41236H, WS CL 41236H
+     ⚠ 전환 27뎀 (최적 ~287뎀) — 콤보를 더 살릴 수 있었어
+
+  7:44.93  P2(Sol Badguy)의 COUNTER LARGE  (+18F)
+     └ 빠른 기본기: 2P (발생 5F, 여유 13F), 5K (발생 5F, 여유 13F), 5P (발생 5F, 여유 13F), 2K (발생 6F, 여유 12F)
+     └ 콤보 특수기: 236KK (발생 6F, 여유 12F), 623S (발생 9F, 여유 9F), 236K (발생 12F, 여유 6F)
+
+  8:25.67  P2(Sol Badguy)의 PUNISH(확정반격)
+     · 시동기(VLM 확신 69·데미지일치): 2K
+     ▶ 콤보 255뎀 [Medium] ((near) Corner) 236KK > 22FRRC~CL 41236H > c.S > 5H > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ▶ 콤보 252뎀 [Medium] (Corner) 236KK > 22FRRC~j.H (whiff) > 5H > dl CL 41236H > c.S > 6S > dl CL 41236H > 2K > CL 623H, WS 41236H
+     ✓ 전환 194뎀 (최적 ~255뎀) — 잘 살림
+
+  9:12.87  P2(Sol Badguy)의 PUNISH(확정반격)
+
+[직전가드(JUST) — 성공 시 텐션2배·퍼니쉬 쉬움]
+  3:20.60  P1(Bedman) 직전가드 성공
+  4:04.87  P1(Bedman) 직전가드 성공
+  6:55.73  P1(Bedman) 직전가드 성공
+
+----------------------------------------------------------------
+주의: 후속기 목록은 '발생<=프레임이득'만 본 1차 추정(근접 가정).

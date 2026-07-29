@@ -1,0 +1,89 @@
+# ── Punish Tool .gitignore (공개 저장소: 소스코드 + 제출물만) ──
+
+# 모델 가중치 (전부 제외)
+*.pt
+*.pth
+*.gguf
+*.safetensors
+*.npz
+*.npy
+*.onnx
+*.pkl
+*.ckpt
+
+# 게임 추출 자산 (IP)
+sol/
+*.glb
+*.fbx
+*.uemodel
+*.ueanim
+avatar3d/*.glb
+avatar3d/*.png
+avatar/
+
+# 합성 음성 · TTS 전체 (데이터셋·venv·모델·샘플)
+tts/
+voice/
+*.wav
+*.ogg
+*.mp3
+*.flac
+
+# 합성음성 임베드된 발표본(로컬 제출용) — 공개용은 별도(_공개용.html)
+제출물/프로젝트_최종보고서.html
+
+# AI Hub 원본 데이터
+133.*/
+
+# 영상
+*.mp4
+*.mkv
+*.avi
+*.DVR.*
+
+# 배포/빌드 산출물
+dist/
+build/
+*.spec
+*.exe
+
+# 데이터셋·중간 산출물
+dataset*/
+banner_ds*/
+detector_ds/
+debug_frames/
+verify*/
+runs/
+train_data/
+timelines/
+idle/
+gif/
+reference_video/
+dustloop_images/
+llama/
+tesseract/
+lora_out/
+qwen_lora*/
+torch_hub/
+games/__pycache__/
+
+# 로그·캐시
+*.log
+__pycache__/
+*.pyc
+.cache/
+tts/logs/
+*_env/
+venv/
+.venv/
+
+# 대용량 벤더 라이브러리(참고: three.min.js 등)
+avatar3d/three.min.js
+avatar3d/GLTFLoader.js
+
+# 기타 임시
+*.bak
+*.tmp
+*.png
+*.jpg
+!app.ico

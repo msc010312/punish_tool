@@ -1,0 +1,287 @@
+{
+ "_source": "Dustloop cargo ggstCharacters + GGST/Frame Data#Guts",
+ "_formula": "damage = base * def_mult * guts_mult(guts, hp_pct); hp>70% -> guts 1.0",
+ "guts_table": {
+  "0": [
+   0.97,
+   0.92,
+   0.89,
+   0.84,
+   0.75,
+   0.66,
+   0.56
+  ],
+  "1": [
+   0.96,
+   0.91,
+   0.87,
+   0.82,
+   0.73,
+   0.63,
+   0.53
+  ],
+  "2": [
+   0.95,
+   0.9,
+   0.85,
+   0.8,
+   0.7,
+   0.6,
+   0.5
+  ],
+  "3": [
+   0.94,
+   0.89,
+   0.83,
+   0.78,
+   0.67,
+   0.57,
+   0.47
+  ],
+  "4": [
+   0.93,
+   0.88,
+   0.81,
+   0.76,
+   0.64,
+   0.53,
+   0.44
+  ],
+  "5": [
+   0.92,
+   0.87,
+   0.79,
+   0.74,
+   0.6,
+   0.5,
+   0.41
+  ]
+ },
+ "chars": {
+  "A.B.A": {
+   "defense": -26,
+   "def_mult": 0.8984,
+   "guts": 2
+  },
+  "A.B.A (Jealous Rage)": {
+   "defense": -26,
+   "def_mult": 0.8984,
+   "guts": 2
+  },
+  "Anji Mito": {
+   "defense": 0,
+   "def_mult": 1.0,
+   "guts": 5
+  },
+  "Asuka R": {
+   "defense": -64,
+   "def_mult": 0.75,
+   "guts": 0
+  },
+  "Asuka R (No Mana)": {
+   "defense": 128,
+   "def_mult": 1.5,
+   "guts": 0
+  },
+  "Axl Low": {
+   "defense": 8,
+   "def_mult": 1.0312,
+   "guts": 1
+  },
+  "Baiken": {
+   "defense": 10,
+   "def_mult": 1.0391,
+   "guts": 4
+  },
+  "Bedman": {
+   "defense": -38,
+   "def_mult": 0.8516,
+   "guts": 0
+  },
+  "Bedman (call 13C)": {
+   "defense": -58,
+   "def_mult": 0.7734,
+   "guts": 0
+  },
+  "Bridget": {
+   "defense": 20,
+   "def_mult": 1.0781,
+   "guts": 2
+  },
+  "Chipp Zanuff": {
+   "defense": 48,
+   "def_mult": 1.1875,
+   "guts": 4
+  },
+  "Elphelt Valentine": {
+   "defense": 10,
+   "def_mult": 1.0391,
+   "guts": 2
+  },
+  "Faust": {
+   "defense": -8,
+   "def_mult": 0.9688,
+   "guts": 0
+  },
+  "Giovanna": {
+   "defense": -4,
+   "def_mult": 0.9844,
+   "guts": 1
+  },
+  "Giovanna (100% Tension)": {
+   "defense": -30,
+   "def_mult": 0.8828,
+   "guts": 1
+  },
+  "Giovanna (50~99% Tension)": {
+   "defense": -16,
+   "def_mult": 0.9375,
+   "guts": 1
+  },
+  "Goldlewis Dickinson": {
+   "defense": -21,
+   "def_mult": 0.918,
+   "guts": 3
+  },
+  "Happy Chaos": {
+   "defense": 4,
+   "def_mult": 1.0156,
+   "guts": 0
+  },
+  "I-No": {
+   "defense": 4,
+   "def_mult": 1.0156,
+   "guts": 1
+  },
+  "Jack-O": {
+   "defense": 16,
+   "def_mult": 1.0625,
+   "guts": 2
+  },
+  "Jack-O (Backward Dash)": {
+   "defense": 30,
+   "def_mult": 1.1172,
+   "guts": 2
+  },
+  "Jam Kuradoberi": {
+   "defense": -14,
+   "def_mult": 0.9453,
+   "guts": 2
+  },
+  "Johnny": {
+   "defense": -18,
+   "def_mult": 0.9297,
+   "guts": 3
+  },
+  "Ky Kiske": {
+   "defense": -12,
+   "def_mult": 0.9531,
+   "guts": 2
+  },
+  "Ky Kiske (Dragon Install)": {
+   "defense": -12,
+   "def_mult": 0.9531,
+   "guts": 2
+  },
+  "Leo Whitefang": {
+   "defense": -12,
+   "def_mult": 0.9531,
+   "guts": 3
+  },
+  "Leo Whitefang (Brynhildr Stance)": {
+   "defense": -12,
+   "def_mult": 0.9531,
+   "guts": 3
+  },
+  "Lucy": {
+   "defense": 18,
+   "def_mult": 1.0703,
+   "guts": 2
+  },
+  "May": {
+   "defense": 0,
+   "def_mult": 1.0,
+   "guts": 4
+  },
+  "Millia Rage": {
+   "defense": 24,
+   "def_mult": 1.0938,
+   "guts": 2
+  },
+  "Nagoriyuki": {
+   "defense": -20,
+   "def_mult": 0.9219,
+   "guts": 3
+  },
+  "Nagoriyuki (1 bar of Blood Gauge)": {
+   "defense": -4,
+   "def_mult": 0.9844,
+   "guts": 3
+  },
+  "Nagoriyuki (2 bars of Blood Gauge)": {
+   "defense": 12,
+   "def_mult": 1.0469,
+   "guts": 3
+  },
+  "Nagoriyuki (Blood Rage)": {
+   "defense": 36,
+   "def_mult": 1.1406,
+   "guts": 3
+  },
+  "Potemkin": {
+   "defense": -22,
+   "def_mult": 0.9141,
+   "guts": 4
+  },
+  "Queen Dizzy": {
+   "defense": 24,
+   "def_mult": 1.0938,
+   "guts": 5
+  },
+  "Ramlethal Valentine": {
+   "defense": 0,
+   "def_mult": 1.0,
+   "guts": 1
+  },
+  "Robo-Ky": {
+   "defense": -20,
+   "def_mult": 0.9219,
+   "guts": 0
+  },
+  "Sin Kiske": {
+   "defense": -8,
+   "def_mult": 0.9688,
+   "guts": 3
+  },
+  "Slayer": {
+   "defense": -20,
+   "def_mult": 0.9219,
+   "guts": 1
+  },
+  "Sol Badguy": {
+   "defense": -16,
+   "def_mult": 0.9375,
+   "guts": 2
+  },
+  "Testament": {
+   "defense": -4,
+   "def_mult": 0.9844,
+   "guts": 1
+  },
+  "Unika": {
+   "defense": 0,
+   "def_mult": 1.0,
+   "guts": 2
+  },
+  "Venom": {
+   "defense": -12,
+   "def_mult": 0.9531,
+   "guts": 1
+  },
+  "Zato-1": {
+   "defense": 4,
+   "def_mult": 1.0156,
+   "guts": 0
+  }
+ }
+}

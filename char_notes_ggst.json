@@ -1,0 +1,225 @@
+{
+ "A.B.A": {
+  "lead": "A.B.A is a rushdown/brawler who is defined by her polarized stances. She spends the game switching back and forth between being a slow, read-based character, and an offensive powerhouse with absurd speed, scary damage and oppressive moves.",
+  "unique": "A.B.A is a rushdown/brawler who is defined by her polarized stances. She spends the game switching back and forth between being a slow, read-based character, and an offensive powerhouse with absurd speed, scary damage and oppressive moves.",
+  "mechanic": ": Jealous Rage A.B.A's Jealousy Gauge. A.B.A starts the round in Normal Mode or NM with 30 out of 120 Jealousy Points. Jealous Rage is an install A move, usually a super, which changes the properties of the character themself, usually for the better. state in which A.B.A is greatly powered up for a short period of time as the Gauge gradually drains over time. The benefits include: A slight damage buff to all moves. Greatly improved S and HS normals. The ability to use the extremely powerful Judgment and Sentiment (Guard Crush) ( 623H ). New properties on existing special moves (for example, Haul and Heed ( 214K ) travels a greater distance). Immensely improved movement, replacing her pseudo- step dash A dash that is a short jump or \"step\" forward with a finite distance, as opposed to a run. with a run on par with Chipp Zanuff , and the best backdash in the game. The Jealousy Gauge is fil",
+  "ko": "두 가지 자세를 오가는 근접 캐릭. 느린 기본 자세와, 속도·데미지가 크게 오르는 강화 자세를 전환하며 싸운다.",
+  "ko_mech": "질투 게이지 기반. 일반 모드(120 중 30으로 시작)와, 성능이 크게 오르는 강화 상태(질투 격발)를 오간다."
+ },
+ "Anji Mito": {
+  "lead": "Anji Mito uses his guile and wits to read the opponent's next moves and steal the spotlight when they misstep. The unique Autoguard property on his specials make them immune to normal strikes during their duration.",
+  "unique": "Anji Mito uses his guile and wits to read the opponent's next moves and steal the spotlight when they misstep. The unique Autoguard property on his specials make them immune to normal strikes during their duration.",
+  "mechanic": ": Autoguard Anji has a property on most of his special moves called Autoguard, where he will pass through an opponent's attack and will treat the attack as though it whiffed, allowing for potential punishes other characters may not be able to do. He is able to Autoguard attacks with 236K , 236[H] and 236[S] . Making good use of Autoguards to call out reckless attacks is a key part of playing Anji effectively. When successfully autoguarding, the next move Anji uses for 60 frames is subject to a 50% initial proration A method of combo damage reduction. Specific types of proration have specific names, but each type reduces the amount of damage subsequent attacks in the combo will deal by a specific amount. penalty. This severely limits the damage to be obtained from combos starting with a guardpoint. Autoguard is active while in spinning animation. A successful Autoguard. Starter Guide Need",
+  "ko": "상대의 수를 읽고 실수를 응징하는 근접 캐릭. 특수기에 오토가드가 있어 발동 중 일반기에 맞지 않는다.",
+  "ko_mech": "236K·236[H]·236[S]에 오토가드가 있어, 상대 타격을 통과시켜 헛치게 만들고 반격할 수 있음."
+ },
+ "Asuka R": {
+  "lead": "Asuka R♯ (R. Kreutz), formerly known as That Man, is a mage who wields the power of the Tome of Origin to cast a wide arsenal of Spells.",
+  "unique": "Asuka R♯ (R. Kreutz), formerly known as That Man, is a mage who wields the power of the Tome of Origin to cast a wide arsenal of Spells.",
+  "mechanic": ": Spells Asuka can store 4 Spells at a time, which cost Mana to use. A Spell must be stocked manually with Bookmark or its Overdrive version Bookmark (Full Order) before it can be used. Alternatively, the same moves can be used to sub out a Spell you don't want; Bookmark removes a Spell, then adds a new one, while Bookmark (Full Order) instantly refills all empty Spells and allows Asuka to find any Spells he needs to set up. Asuka has three Spell lists called Test Cases, each with their own specialties: Test Case 1 contains projectiles and strong pokes. Test Case 2 contains powerful pressure tools. Test Case 3 contains gimmicks, mixup tools, and support Spells. Asuka starts the round in Test Case 1 and can change between Test Cases with Change Test Case. When you are in a given Test Case, you will only be able to stock Spells from that Test Case. Bookmarking a Spell from the active Test ",
+  "ko": "다양한 마법(스펠)을 미리 세팅해두고 싸우는 마법사. 스펠 세팅·관리가 핵심.",
+  "ko_mech": "스펠을 최대 4개까지 마나로 사용. 북마크로 미리 스펠을 등록해둬야 쓸 수 있고, 원치 않는 스펠은 교체 가능."
+ },
+ "Axl Low": {
+  "lead": "Axl is a long-range specialist who uses attacks with massive reach to control the screen. He is tricky to play against and can be oppressive in the right hands, but he requires a sharp mind to be effective.",
+  "unique": "Axl is a long-range specialist who uses attacks with massive reach to control the screen. He is tricky to play against and can be oppressive in the right hands, but he requires a sharp mind to be effective.",
+  "mechanic": "",
+  "ko": "긴 리치로 화면을 지배하는 장거리 견제 캐릭. 강하지만 운영 판단이 중요."
+ },
+ "Baiken": {
+  "lead": "Baiken is a versatile, aggressive samurai wielding a deadly blade that allows her to switch seamlessly between oppressive mid-range pokes and terrifying close-range mix-ups. The Unfaltering Samurai has returned, as formidable as ever.",
+  "unique": "Baiken is a versatile, aggressive samurai wielding a deadly blade that allows her to switch seamlessly between oppressive mid-range pokes and terrifying close-range mix-ups. The Unfaltering Samurai has returned, as formidable as ever.",
+  "mechanic": ": Tether After landing a ground throw or S Kabari , the opponent is connected to Baiken via a rope. Should either character move a certain proximity away from the other, the rope will pull them back toward their respective opponent. After a certain amount of time and/or strain from use (or if either character Bursts) the rope breaks automatically. The momentum/movement of the resulting pullback depends on the movement used before the pull took effect. (i.e. simply walking back will nudge characters forward, whereas air dashing backward will swing them directly toward their opponent full speed). For more information on the tether, its properties, and how it impacts Baiken's playstyle, see the Strategy page . Starter Guide Need help getting started? Go to this page for information targeted at new players. It covers easy combos, key moves, and what to do after you knock the opponent down.",
+  "ko": "중거리 견제와 근접 심리를 오가는 공격형 캐릭.",
+  "ko_mech": "지상잡기·S 제물낚시 후 상대와 밧줄로 연결됨. 멀어지면 서로 끌려오고, 시간·사용·버스트로 끊김."
+ },
+ "Bedman": {
+  "lead": "Bedman is an unorthodox fighter whose gameplan is centered around its unique character mechanic, error 6E. This, along with its 8-way air dash, makes Bedman a tricky character to fight as and against.",
+  "unique": "Bedman is an unorthodox fighter whose gameplan is centered around its unique character mechanic, error 6E. This, along with its 8-way air dash, makes Bedman a tricky character to fight as and against.",
+  "mechanic": ": error 6E After performing call 4BA , call 4B3 , or call 4B9 (Guard Crush) , Bedman enters the \" error 6E \" state, and will perform an automatic followup attack after a 3-second delay (180 frames, or 150 frames after call 4BA ). Each of the aforementioned specials produce a different follow-up attack that closely mimics their original properities. In addition, call 0x$0.20 will bypass the delay and instantly perform the attack, while call 0x$1.00 will reset the timing to 3 seconds and provide Bedman's next error with a universal buff to their blockstun and combo potential. The error 6E state is \"stocked\" when any of Bedman's 236X specials becomes active , Letting Bedman use error 6E followups to cover the startup of slower specials, or have an error 6E followup and special move come out at the same time. The error 6E state is removed after being hit or blocking an attack. If an area tra",
+  "ko": "고유 메커닉 'error 6E'와 8방향 공중대시로 싸우는 변칙 캐릭.",
+  "ko_mech": "call 4BA/4B3/4B9 사용 후 'error 6E' 상태가 되어 3초 뒤 자동 후속 공격이 나감. 특수기마다 후속이 다름."
+ },
+ "Bridget": {
+  "lead": "Some people might call a yo-yo a poor choice of weapon, but they just don't have enough creativity! With speed, range, and dizzying mix-ups, this girl can run circles around any opponent!",
+  "unique": "Some people might call a yo-yo a poor choice of weapon, but they just don't have enough creativity! With speed, range, and dizzying mix-ups, this girl can run circles around any opponent!",
+  "mechanic": "",
+  "ko": "요요로 속도·리치·심리를 갖춘 캐릭."
+ },
+ "Chipp Zanuff": {
+  "lead": "Chipp Zanuff is the ultimate speed demon. He has an extremely fast dash speed and a triple jump that gives him above average air mobility, as well as having special movement options with Wall Run and Tightrope Run.",
+  "unique": "Chipp Zanuff is the ultimate speed demon. He has an extremely fast dash speed and a triple jump that gives him above average air mobility, as well as having special movement options with Wall Run and Tightrope Run.",
+  "mechanic": "",
+  "ko": "속도형 캐릭. 매우 빠른 대시와 삼단점프, 벽타기·줄타기 특수이동을 지님."
+ },
+ "Elphelt Valentine": {
+  "lead": "Buckle up! The bride-to-be is searching for a husband while starting her debut as an adorable rock star!",
+  "unique": "Buckle up! The bride-to-be is searching for a husband while starting her debut as an adorable rock star!",
+  "mechanic": ": Chain Lollipop Here I Go! is your entry point into the Chain Lollipop state. Using Here I Go! , Elphelt can enter her \"Chain Lollipop\" rekka A series of special attacks that are only available after the first one is performed. state. During this, pressing , , or will perform the corresponding Chain Lollipop attack. A full sequence may only use up to 3 attacks in total, including the starter. Here I Go! Starts the Chain Lollipop sequence, is safe on block, and can Dash Cancelled for additional cancel options. Up High! A multi-hitting overhead , forcing the opponent to block standing. Down Low! A far-travelling low , forcing the opponent to block crouching. Nailed It! The go-to finisher, and immediately ends the sequence. It is fast, high damage, and keeps Elphelt safe when blocked. Starter Guide Need help getting started? Go to this page for information targeted at new players. It cover",
+  "ko": "체인 롤리팝(214S)을 기반으로 중·하단 이지선다를 거는 캐릭.",
+  "ko_mech": "체인 롤리팝(214S)으로 연계 자세에 진입해 상단/하단 심리를 이어감."
+ },
+ "Faust": {
+  "lead": "With a unique blend of dominant mid-range zoning, a terrifying command grab, and his signature RNG-powered items, Faust is a hybrid zoner who thrives creating chaos on the battlefield. Faust's far reaching scalpel makes him excellent at controlling space in neutral, while his outstanding light attacks provide one of the best suites of anti-airs in the game.",
+  "unique": "With a unique blend of dominant mid-range zoning, a terrifying command grab, and his signature RNG-powered items, Faust is a hybrid zoner who thrives creating chaos on the battlefield. Faust's far reaching scalpel makes him excellent at controlling space in neutral, while his outstanding light attacks provide one of the best suites of anti-airs in the game.",
+  "mechanic": "",
+  "ko": "긴 메스로 중거리를 견제하는 유니크 캐릭. 커맨드잡기와 랜덤 아이템, 뛰어난 대공을 지님."
+ },
+ "Giovanna": {
+  "lead": "Move fast, strike fast, think fast! Giovanna is a rushdown character with outstanding speed and pressure, while also having a fair share of defensive capabilities.",
+  "unique": "Move fast, strike fast, think fast! Giovanna is a rushdown character with outstanding speed and pressure, while also having a fair share of defensive capabilities.",
+  "mechanic": ": Meter Boost When Giovanna's tension gauge is filled above 50%, she deals more damage, receives less damage, moves faster, and her normals begin dealing chip damage. These bonuses are doubled when the tension gauge is full. Specifically: She gains a +10% increase to her damage at half Tension, which is raised to +20% damage at full Tension. Her defense rating A multiplier for how much damage you take. Lower = Better improves from 0.98 to 0.93 at half Tension, and improves further to 0.88 at full Tension, similar to Potemkin's defense, the third highest in the game. Every Normal attack begins dealing 12% chip at half Tension, which strengthens to 25% at full Tension, the standard chip damage for specials but on every single attack. She also gains a +10% increase on her dash and walk speed at half tension, with a greater 20% speed increase at full tension. The extra damage and defence bon",
+  "ko": "속도·압박이 뛰어난 근접 캐릭. 방어력도 준수.",
+  "ko_mech": "텐션 게이지 50% 이상이면 데미지↑·받는 피해↓·이동속도↑·칩 데미지 발생. 게이지 가득이면 효과 2배."
+ },
+ "Goldlewis Dickinson": {
+  "lead": "Goldlewis has three defining features to his gameplay: His unique movement, his Behemoth Typhoon , and his Security Gauge. But beyond that, Goldlewis is a character of extremes.",
+  "unique": "Goldlewis has three defining features to his gameplay: His unique movement, his Behemoth Typhoon , and his Security Gauge. But beyond that, Goldlewis is a character of extremes.",
+  "mechanic": ": Security Level Security Level is a resource Goldlewis can spend to power up his special moves , cancel a Behemoth Typhoon into another Behemoth Typhoon on block or hit, and enhance Burn It Down +(84 Flash)+79 . The icon on the top of the gauge represents his current Security Level, which increases from Level 1, to 2, and then 3 (there is no Level 0). Goldlewis starts the round at Level 1. Goldlewis' Security Level increases passively over time. As Security Level increases, Goldlewis' Thunderbird and Burn It Down +(84 Flash)+79 gain three separate versions that correspond with his current Security Level. Using any of these moves causes the meter to be reset to 1, while Skyfish will drain the Security Gauge for as long as it is fired. Security Cancelling a Behemoth Typhoon also causes the meter to be reset to 1, and cannot be performed without having Level 3 Security Gauge. The gauge tak",
+  "ko": "느린 이동·베히모스 타이푼·시큐리티 게이지가 특징인 캐릭.",
+  "ko_mech": "특수기 강화·베히모스 타이푼 재캔슬·번 잇 다운 강화에 쓰는 시큐리티 자원. 레벨 1→2→3으로 오름."
+ },
+ "Happy Chaos": {
+  "lead": "The Gunslinging Broken Messiah, Happy Chaos is a versatile character who controls space through the usage of his gun and excellent normals. Chaos is able to fire his gun by entering either of his shooting stances, At the Ready or Steady Aim .",
+  "unique": "The Gunslinging Broken Messiah, Happy Chaos is a versatile character who controls space through the usage of his gun and excellent normals. Chaos is able to fire his gun by entering either of his shooting stances, At the Ready or Steady Aim .",
+  "mechanic": "",
+  "ko": "총과 일반기로 공간을 통제하는 캐릭. 사격 자세(총 겨누기·확실하게 겨냥하기)로 총을 쏘며, 탄약·집중 관리가 핵심.",
+  "ko_mech": "총과 일반기로 공간 통제. 총 겨누기·확실하게 겨냥하기 사격 자세로 발사하며, 탄약·집중 관리가 핵심."
+ },
+ "I-No": {
+  "lead": "I-No is a unique all-range character with powerful options from most places on screen and oppressive offense that utilizes her hover dash for a very strong high/low/throw game. Instead of a standard run, I-No has a unique hover dash that puts her into the air, giving her near-immediate access to all her aerial attacks at a moment’s notice.",
+  "unique": "I-No is a unique all-range character with powerful options from most places on screen and oppressive offense that utilizes her hover dash for a very strong high/low/throw game. Instead of a standard run, I-No has a unique hover dash that puts her into the air, giving her near-immediate access to all her aerial attacks at a moment’s notice.",
+  "mechanic": ": Hover Dash I-No's ground dash does not behave like a normal run. Instead, I-No's ground dash puts her airborne, which allows her to perform high/low mixups without having to actually jump. Airborne on frame 5 onward Actionable and can block on frame 10 onward The nature of I-No's dash affects every part of her gameplay. In neutral, it makes advancing much tougher for her than characters with regular runs, especially with Strive's universal dash blocking. On offense, it gives her access to quick overheads from any neutral state, while making pressure resets and throws more difficult. On defense, it prevents her from simply running under certain jump-ins. Even in punishes, being unable to dash for only a couple frames can make them tricky. Don't hover dash willy-nilly. Keep in mind its high profile, and make them scared with Stroke the Big Tree before dashing straight over their low poke",
+  "ko": "공중대시로 상단/하단/잡기 심리를 거는 전방위 캐릭. 일반 대시 대신 공중으로 뜨는 공중대시를 씀.",
+  "ko_mech": "지상 대시가 공중으로 뜨는 호버대시(5F부터 공중). 점프 없이 바로 공중기·상하단 심리를 걸 수 있음."
+ },
+ "Jack-O": {
+  "lead": "Jack-O' is a momentum-based fighter that summons Servants to fight by her side, providing her a huge variety of options to enhance both her offensive and defensive capabilities. Jack-O' starts the round without any Servants, and must fight for an opportunity to summon them in .",
+  "unique": "Jack-O' is a momentum-based fighter that summons Servants to fight by her side, providing her a huge variety of options to enhance both her offensive and defensive capabilities. Jack-O' starts the round without any Servants, and must fight for an opportunity to summon them in .",
+  "mechanic": ": Servants Images Hitboxes Jack-O' can summon Servants to fight alongside her. Jack-O' can both use servants directly by striking them to launch as projectiles, or issue them commands to perform, including attacking with a powerful strike , raising a large shield to parry incoming attacks , recalling servants to restore Servant Gauge , and setting them to explode after a short countdown . When hitting servants, the angle and speed of their trajectory depends on which attack was used, providing Jack-O' with numerous ways to zone and attack from afar. When combined, these actions allow servants to support Jack-O' greatly for zoning, pressure and neutral. Servants remain for up to 8 seconds. However, servants immediately disappear when Jack-O' is hit, blocks an attack, or the servant is attacked by the opponent. Additionally, when Jack-O' hits a servant they lose 3 seconds of their duration",
+  "ko": "서번트를 소환해 함께 싸우는 캐릭. 라운드 시작엔 서번트가 없어, 소환할 기회를 만들어야 함.",
+  "ko_mech": "서번트를 소환해 함께 싸움. 쳐서 장풍으로 날리거나 공격·방패·회수 등을 명령할 수 있음."
+ },
+ "Jam Kuradoberi": {
+  "lead": "With an indomitable spirit and a bunny by the name of Usagi at her side, Jam makes her return! Boasting high speed and an explosive offensive toolset, Jam is a shining example of what it means to rush someone down.",
+  "unique": "With an indomitable spirit and a bunny by the name of Usagi at her side, Jam makes her return! Boasting high speed and an explosive offensive toolset, Jam is a shining example of what it means to rush someone down.",
+  "mechanic": ": Cards Jam's unique mechanic revolves around using her Asanagi no Kokyuu special move or Asanagi no Kokyuu: Shinki Kaiten Overdrive to stock \"cards\" that power up her other special moves, Ryuujin , Gekirin , and Ryuutsui . Each special move has a corresponding colored card (pictured above), and they are consumed automatically the next time that special move is used. Only one of each card can be stocked at a time (i.e. multiple uses cannot be stacked). Powering these special moves up whenever possible is important for Jam due to their extremely powerful effects, ranging from the ability to instantly Wall Break from the middle of the screen, surprise the opponent with a quick and safe overhead, or gain tons of plus frames from an attack that erratically changes her jump arc. See her special move descriptions for more information on what each card level does for each move. Starter Guide Ne",
+  "ko": "속도·공격력이 뛰어난 근접 캐릭. 22K/S/H로 '아침뜸의 호흡'을 켜 각각 236K/236S/236H를 강화하며(기술 쓰면 꺼져 다시 켜야 함), 22X 꾹 누르면 3개 동시 강화되지만 발동이 길어 격추당할 수 있음.",
+  "ko_mech": "아침뜸의 호흡(22K/S/H)으로 카드를 스톡해 각각 236K/236S/236H(용인/역린/용추)를 강화. 기술 쓰면 소모돼 다시 켜야 하고, 22X 꾹 누르면 3개 동시 강화되나 발동이 길어 격추 위험."
+ },
+ "Johnny": {
+  "lead": "Johnny is a stylish swordsman who excels around the midrange with his signature Hirofumi sword style. What he lacks in defensive options, he makes up for with his ranged and often disjointed pokes that allow him to play a safe neutral game and keep opponents at a distance.",
+  "unique": "Johnny is a stylish swordsman who excels around the midrange with his signature Hirofumi sword style. What he lacks in defensive options, he makes up for with his ranged and often disjointed pokes that allow him to play a safe neutral game and keep opponents at a distance.",
+  "mechanic": ": Step Dash Unlike Giovanna or Leo , Johnny's step dash behaves irregularly. It is unable to be cancelled into a block or Faultless Defense, and does not apply momentum to moves used afterwards. To make up for this, Johnny has a unique dash-jump cancel that grants him improved aerial momentum (akin to an airdash). Step dash can be cancelled at any time into Gold Burst Dash-jump startup can be kara cancel A type of cancel where the beginning of an action is quickly canceled into another before the first action completes its startup. led into specials or supers Johnny's step dash and dash-jump have significant impact on how he is played. The momentum provided by dash-jump can be exceptionally useful as an approach option when dealing with projectiles or certain zoning options. It's important to refrain from dashing in neutral if the opponent is likely to poke with f.S or 2S , as you will b",
+  "ko": "미스트 파이너를 쓰는 중거리 검사. 방어는 약하지만 카드와 미스트 파이너로 견제한다.",
+  "ko_mech": "스텝대시가 가드·FD 캔슬 불가고 관성이 안 붙음. 대신 대시-점프 캔슬로 공중 관성을 얻어 기동."
+ },
+ "Ky Kiske": {
+  "lead": "Ky is a versatile and consistent character who possesses many great buttons for neutral. His varied move set makes him comfortable at any range.",
+  "unique": "Ky is a versatile and consistent character who possesses many great buttons for neutral. His varied move set makes him comfortable at any range.",
+  "mechanic": ": Shock State Ky's projectiles (except for j.D ) and Dire Eclat [-6] temporarily put the opponent into Shock State on contact. Hitting an opponent in Shock State with any of Ky's special moves or Overdrives automatically consumes the Shock State (or reapplies it) and triggers bonus effects such as more damage, more blockstun, and better hit effects, allowing for more damaging combos or stronger pressure. Check the Strategy page for more details . Shock State lasts for varying amounts of time based on the move, and is removed early if Ky is hit or Throw Clashes . Shock State will not end if the opponent is in hitstun, meaning if Ky starts a combo with Shock State applied he always has the option to route into a Shock State-consuming move later in the combo. Starter Guide Need help getting started? Go to this page for information targeted at new players. It covers easy combos, key moves, a",
+  "ko": "견제 좋은 기술이 많은 안정형 캐릭. 어느 거리에서도 무난.",
+  "ko_mech": "장풍과 디어 에클라(214S)가 상대를 감전 상태로 만듦. 감전 중 특수기를 맞히면 데미지·블록백 증가 등 보너스 효과 발동."
+ },
+ "Leo Whitefang": {
+  "lead": "Leo Whitefang is a versatile character who shifts back and forth between a defensive neutral and overwhelming stance pressure. His bountiful moveset is well befitting a King of Illyria.",
+  "unique": "Leo Whitefang is a versatile character who shifts back and forth between a defensive neutral and overwhelming stance pressure. His bountiful moveset is well befitting a King of Illyria.",
+  "mechanic": ": Brynhildr Stance Leo can enter a special state known as Brynhildr Stance (often referred to as just 'backturn' by the community) by using certain moves. In this stance, Leo has a different set of unique attacks and movement options, but he cannot block. Brynhildr can be thought of as an enhanced pressure that Leo is rewarded with if he gets specific hits in neutral or in his pressure. Leo's entire gameplan revolves around scoring these hits to safely get into backturn and apply devastating mix-ups. Brynhildr Stance will end if Leo is hit, and can be cancelled any time by inputting down twice . Starter Guide Need help getting started? Go to this page for information targeted at new players. It covers easy combos, key moves, and what to do after you knock the opponent down.",
+  "ko": "방어적 견제와 뒷자세 압박을 오가는 캐릭.",
+  "ko_mech": "뒷자세(브륀힐드) 진입 가능. 고유 공격·이동을 얻지만 가드는 불가. 강화된 압박 수단."
+ },
+ "Lucy": {
+  "lead": "Hailing all the way from Night City, mysterious netrunner Lucy (from Cyberpunk: Edgerunners) makes her unexpected debut in Guilty Gear -Strive- during a deep-dive gone awry! Lucy is a well-rounded and versatile character that excels at whiff punishing and closing the gap on her opponent with high mobility and strong normals.",
+  "unique": "Hailing all the way from Night City, mysterious netrunner Lucy (from Cyberpunk: Edgerunners) makes her unexpected debut in Guilty Gear -Strive- during a deep-dive gone awry! Lucy is a well-rounded and versatile character that excels at whiff punishing and closing the gap on her opponent with high mobility and strong normals.",
+  "mechanic": ": Short Nerve Circuit When an opponent is hit with 214{H} / [H] , they are afflicted with Short Nerve Circuit state for 4 seconds (240f), or until Lucy herself is hit. This state can also be applied on block. If the opponent is thrown or struck by an attack that uses Lucy's Monowire while afflicted by Short Nerve Circuit, they are briefly frozen in place. This provides Lucy with a greater window of opportunity to follow up with attacks and sometimes perform stronger combos, even from a throw. The full list of moves that may activate Short Nerve Circuit: c.S f.S f.SS 5H 2S 2SS 2H 2D 6P 6H j.S j.H 214H / [H] 214K / ~ S 623H 632146H +2 Short Nerve Circuit can also be activated by grounded throws ( 4 / 6D ) or air throws ( j.4 / 6D ). Short Nerve Circuit can be applied at any time, but only activated once per combo. Starter Guide Need help getting started? Go to this page for information tar",
+  "ko": "위프펀치·기동력·강한 일반기로 거리를 좁히는 올라운드 캐릭.",
+  "ko_mech": "214{H}/[H]로 상대에게 4초간 표식(숏 너브 서킷)을 부여. 그 상태에서 모노와이어로 잡거나 맞히면 추가 효과."
+ },
+ "May": {
+  "lead": "She has good range, strong pressure and explosive damage! Ferocious in battle and cute as a button - It’s May, everyone’s favourite Jellyfish Pirate.",
+  "unique": "She has good range, strong pressure and explosive damage! Ferocious in battle and cute as a button - It’s May, everyone’s favourite Jellyfish Pirate.",
+  "mechanic": "",
+  "ko": "리치·압박·데미지가 좋은 캐릭. 돌고래로 몰아붙인다."
+ },
+ "Millia Rage": {
+  "lead": "Millia Rage uses swift and graceful aerial movement to spy for opportunities to score a knockdown. She then transitions to deadly okizeme mix-ups to efficiently eliminate her opponent, well expected of a master assassin.",
+  "unique": "Millia Rage uses swift and graceful aerial movement to spy for opportunities to score a knockdown. She then transitions to deadly okizeme mix-ups to efficiently eliminate her opponent, well expected of a master assassin.",
+  "mechanic": "",
+  "ko": "빠른 공중 이동으로 다운 기회를 노린 뒤, 기상 심리로 마무리하는 캐릭."
+ },
+ "Nagoriyuki": {
+  "lead": "Nagoriyuki is a mid-ranged powerhouse who dynamically shifts between extended pressure strings which threaten strike/strike mix-ups (you read that right) and space control with massive normals, depending on what the Blood Rage mechanic allows. Nagoriyuki is unable to dash, double jump, or airdash, but is blessed with an array of normals like his long and rewarding 5K and 2S to control mid-ranged neutral .",
+  "unique": "Nagoriyuki is a mid-ranged powerhouse who dynamically shifts between extended pressure strings which threaten strike/strike mix-ups (you read that right) and space control with massive normals, depending on what the Blood Rage mechanic allows. Nagoriyuki is unable to dash, double jump, or airdash, but is blessed with an array of normals like his long and rewarding 5K and 2S to control mid-ranged neutral .",
+  "mechanic": "Unique Mechanic: Blood Gauge Normal state Blood Rage state The Blood Gauge shown above is slightly more than half full The Blood Gauge is Nagoriyuki's unique resource, which is divided into three \"bars\". Each bar contains 100 \"Blood Points\". Using Special moves increases the Blood Gauge His special moves increase the gauge by 90 points each, except Fukyo, which increases it by 43.2. . Every bar filled enhances Nagoriyuki’s S and HS normals but also increase the damage he takes +11% at one bar filled, +25% at two bars filled. . Hitting the opponent with sword normals lowers the Blood Gauge HS normals lower it by 57.6 points, f.SSS by 115.2 points, and other moves by 7.2. . Bloodsucking Universe Guard Ground Throw NA ( 623P ) stops all blood gain and instantly lowers the Blood Gauge by 150 points. The gauge also slowly reduces passively. Lowering the gauge is necessary, as a completely fil",
+  "ko": "피 게이지(블러드 게이지)에 따라 압박과 거대 일반기 견제를 오가는 중거리 캐릭. 대시·더블점프·공중대시가 안 되지만 긴 5K·2S로 중거리를 잡는다. 게이지 폭주 주의.",
+  "ko_mech": "블러드 게이지(3바×100). 특수기를 쓰면 차오르고, 가득 차면 블러드 레이지(폭주) 상태로 강해지지만 스스로 데미지를 입음. 게이지 관리가 핵심."
+ },
+ "Potemkin": {
+  "lead": "Long-ranged attacks, good durability and powerful throws are what makes up the hulking juggernaut, Potemkin. His signature move is Potemkin Buster , a fast command grab with long range and tremendous power.",
+  "unique": "Long-ranged attacks, good durability and powerful throws are what makes up the hulking juggernaut, Potemkin. His signature move is Potemkin Buster , a fast command grab with long range and tremendous power.",
+  "mechanic": "",
+  "ko": "장거리 공격·높은 내구·강한 잡기의 거구 캐릭. 대표기는 포템킨 버스터(장거리 커맨드잡기)."
+ },
+ "Queen Dizzy": {
+  "lead": "Returning as the illustrious queen of the new nation Vialattea, Queen Dizzy ( \"Dizzy\" for short) commands great control of the battlefield with her shapeshifting familiars, Necro and Undine! Dizzy's control of the screen begins with a combination of her ever iconic Michael Sword and her unique summoned projectiles, \"We talked a lot together\" .",
+  "unique": "Returning as the illustrious queen of the new nation Vialattea, Queen Dizzy ( \"Dizzy\" for short) commands great control of the battlefield with her shapeshifting familiars, Necro and Undine! Dizzy's control of the screen begins with a combination of her ever iconic Michael Sword and her unique summoned projectiles, \"We talked a lot together\" .",
+  "mechanic": "and more damaging combos can halt her own meter generation while providing her opponent with more than she gained. Unique Mechanic: Frozen State A unique effect that is applied when the opponent is hit by either 236S / H or the final hit of 5H . It locks the opponent in place for one full second, or until the opponent is hit, whichever occurs first. If Frozen State's timer expires on an opponent, a hit is dealt to them. This hit deals 0 damage but otherwise functions normally, applying hitstop When a character is hit, both characters are stopped in place to visualize the hit and give feeling of impact. Hitstop describes this phenomenon. Typically hitstop affects both players equally, but this is not always true. For example an attack may cause the opponent to be in hitstop longer than the player, or in cases of most projectiles, the attacker does not experience hitstop at all. , knockbac",
+  "ko": "사역마 네크로·운디네로 화면을 통제하는 캐릭. 미카엘 소드와 소환 장풍으로 화면을 장악.",
+  "ko_mech": "236S/H 또는 5H 막타로 상대를 1초간 얼리는 빙결 상태 부여. 사역마 세팅과 연계해 압박."
+ },
+ "Ramlethal Valentine": {
+  "lead": "Ramlethal is a mid-ranged brigadier who controls neutral with her massive swords. She can also expend her swords in order to shoot them as projectiles to dominate the corner.",
+  "unique": "Ramlethal is a mid-ranged brigadier who controls neutral with her massive swords. She can also expend her swords in order to shoot them as projectiles to dominate the corner.",
+  "mechanic": ": Brigadier Swords Used Swords Returning Sword Ramlethal's kit is built around her two familiars and the large swords they carry for her. Her S and H button moves are mapped to one of her two swords, and using Bajoneto will launch them, with the S sword launching diagonally , mildly tracking the opponent, and the H sword horizontally . Launched swords act as a powerful guard crushing projectile that beats most other non-super projectiles, whose plus frames enable her powerful RPS Rock Paper Scissors A situation wherein an attacker and a defender have options that only beat certain responses from their opponent. For example, on wakeup a defending opponent may use a reversal to stop an attacker from using an attack, but the attacker can also block to defeat the reversal. If the attacker blocks, the defender can use the opportunity to take the offensive. and strong launches enable her infam",
+  "ko": "거대한 검으로 중거리를 견제하는 캐릭. 검을 장풍으로 쏴 코너를 지배.",
+  "ko_mech": "S/H 버튼이 두 자루 검에 연결됨. 바요네토(236S/H)로 검을 날려 장풍으로 쓰며(S는 대각·약추적), 코너 압박에 강함."
+ },
+ "Sin Kiske": {
+  "lead": "Rushing forward with unmatched flair, keep your opponent on their toes with relentless offense! ...just make sure they're dead before you get too tired.",
+  "unique": "Rushing forward with unmatched flair, keep your opponent on their toes with relentless offense! ...just make sure they're dead before you get too tired.",
+  "mechanic": ": Stamina Stamina is a unique resource that allows Sin to use Follow-ups after any of his special moves (other than Still Growing Guard - ) on hit or block. The Follow-ups for each special move are unique moves themselves, and have a variety of uses ranging from combo extenders to Guard Crushing pressure extenders. He also has access to a command dash follow-up in Gazelle Step Guard - , which is usable either on its own or after any special move or it's follow-up (other than Still Growing ), opening up the way for mix-ups, pressure resets, and far-carrying combo routes. The stamina gauge is comprised of 3 Bars, and 1 bar is used up every time Sin uses a special move follow-up, uses Gazelle Step, or kara cancels A type of cancel where the beginning of an action is quickly canceled into another before the first action completes its startup. a special move into an Overdrive. A few seconds a",
+  "ko": "쉼 없이 몰아붙이는 근접 캐릭. 스태미나 관리 주의.",
+  "ko_mech": "스태미나 자원으로 특수기 후 후속기를 사용(콤보 연장·가드크러시 압박 등). 스태미나 관리가 필요."
+ },
+ "Slayer": {
+  "lead": "Slayer is a close ranged brawler who slides around the opponents attacks before obliterating their life gauge with explosive damage output and incredible conversion ability. Slayer takes an unorthodox approach to neutral due to a having an uncancellable step-dash in place of a traditional run.",
+  "unique": "Slayer is a close ranged brawler who slides around the opponents attacks before obliterating their life gauge with explosive damage output and incredible conversion ability. Slayer takes an unorthodox approach to neutral due to a having an uncancellable step-dash in place of a traditional run.",
+  "mechanic": ": UNIVERSE! Upon successfully landing Bloodsucking Universe, Slayer temporarily gains a dandy aura. Landing any strike attack will force a Large counter-hit, allowing Slayer to perform devastating combos off of light starters. The buff lasts for 360F, and will go away if Slayer is hit (note getting hit by Yellow Roman Cancel and teching a throw also counts as being 'hit'). The counter effect even occurs mid combo if you Roman Cancel to combo off Bloodsucking Universe, and does +20% damage on the hit that causes the UNIVERSE counter-hit. Displays \"UNIVERSE!\" instead of \"COUNTER!\" text Unique Mechanic: Teleport Dash Passes through opponents Slayer has a unique teleport dash instead of a traditional run. Despite sharing a similar animation to his backdash, his forwards dash does not have any invulnerability and shares the universal wide hurtbox of dashing upon startup. It functions similarl",
+  "ko": "상대 공격을 피한 뒤 큰 데미지를 넣는 근접 캐릭. 일반 대시 대신 캔슬 불가 스텝대시를 씀.",
+  "ko_mech": "피를 빠는 우주(63214H) 성공 시 댄디 오라 획득. 이후 첫 타격이 강제 Large 카운터가 되어 약한 시동기로도 큰 콤보 가능."
+ },
+ "Sol Badguy": {
+  "lead": "Sol is a character who excels up close and personal, giving up power in the neutral game for a suite of threatening options to open up your opponents and reward proper conditioning during offense. His tricky special moves help him take the risks required to make his way in, and he has a tool-kit of normal moves that allow him to stand his ground and set-up frame traps and strike throw/mix-ups.",
+  "unique": "Sol is a character who excels up close and personal, giving up power in the neutral game for a suite of threatening options to open up your opponents and reward proper conditioning during offense. His tricky special moves help him take the risks required to make his way in, and he has a tool-kit of normal moves that allow him to stand his ground and set-up frame traps and strike throw/mix-ups.",
+  "mechanic": "",
+  "ko": "근접에서 강한 캐릭. 상대를 여는 위협적 기술이 많고, 프레임트랩·타격/잡기 심리를 건다."
+ },
+ "Testament": {
+  "lead": "Boasting long range, crafty tricks and elegance in spades, Testament, the reawakened Gear, finally returns! Equipped with a massive crimson scythe, Testament controls the battlefield like no other.",
+  "unique": "Boasting long range, crafty tricks and elegance in spades, Testament, the reawakened Gear, finally returns! Equipped with a massive crimson scythe, Testament controls the battlefield like no other.",
+  "mechanic": ": Stain State Testament's Unholy Diver projectile and Nostrovia +19 Overdrive put the opponent into Stain State on contact. Stain State lasts for up to 480 frames at maximum, and ends when either triggered by Testament or when Testament gets hit. Hitting an opponent in Stain State with any of Testament's normals, a ground or air throw, Arbiter Sign , or the scythe slash of Grave Reaper causes an automatic follow-up Stain +24 attack that can be used to extend combos on hit or maintain pressure on block. A full list of Stain State frame data is available to read here . Stain effect Stain activation Starter Guide Need help getting started? Go to this page for information targeted at new players. It covers easy combos, key moves, and what to do after you knock the opponent down.",
+  "ko": "긴 리치의 캐릭. 거대한 낫으로 전장을 통제.",
+  "ko_mech": "언홀리 다이버(214P)·노스트로비아(236236P)로 상대에게 스테인 표식(최대 480F) 부여. 표식 중 공격을 맞히면 추가 효과가 터짐."
+ },
+ "Unika": {
+  "lead": "Unika is a well-rounded character who overpowers the opponent with her heavy weaponry and versatile toolkit. While she has relatively poor mobility, her wide range of unique normal attacks, follow-ups, and specials allow her to play a tricky neutral game and respond well to different situations in creative ways.",
+  "unique": "Unika is a well-rounded character who overpowers the opponent with her heavy weaponry and versatile toolkit. While she has relatively poor mobility, her wide range of unique normal attacks, follow-ups, and specials allow her to play a tricky neutral game and respond well to different situations in creative ways.",
+  "mechanic": ": Mode: Arbalest Unika has unique follow-ups to her S and H attacks, which can be either dash canceled or followed up with alternate versions of Unika's special moves. The follow-up versions of her special moves can be performed with a simplified input, and have unique enhanced properties (except Blaze a Trail ). These enhanced specials have her weapon unleash a powerful blue energy, as opposed to its usual red. 6H and j.D can also lead to these follow-ups. There are multiple common elements to the moves that interact with the Arbalest system, but none of them are universal. As such, for more information on how Mode: Arbalest modifies move properties, see the overviews on each special move. Starter Guide Need help getting started? Go to this page for information targeted at new players. It covers easy combos, key moves, and what to do after you knock the opponent down.",
+  "ko": "중화기와 다양한 기술로 압박하는 올라운드 캐릭. 기동력은 낮지만 일반기·후속기·특수기가 다양.",
+  "ko_mech": "S/H에 고유 후속기가 있어 대시캔슬하거나 강화된 특수기로 이을 수 있음(간편 입력)."
+ },
+ "Venom": {
+  "lead": "Turning the entire screen into his pool table, Venom reigns over his opponent with smothering cue hits and stylish trick shots. Venom's pool balls are core to his functionality.",
+  "unique": "Turning the entire screen into his pool table, Venom reigns over his opponent with smothering cue hits and stylish trick shots. Venom's pool balls are core to his functionality.",
+  "mechanic": ": Pool Balls Each of Venom's special moves place one or more Pool balls on screen. Ball Set and QV will place a ball on screen according to his ball formation, depending on the attack button used, while Ball Set (Multiple) will place one of each ball at once. They will remain inactive in place until Venom launches them using one of his strike attacks, or they're hit by another moving ball, following a set trajectory based on the attack that connected with them. They will remain in motion until they strike the opponent, are launched again by another attack, or reach the end of their trajectory and disappear. Venom can use his Navaratna Runout +5 super to draw balls in from any point on the screen to gain additional damage. In addition, an opponent transformed into a ball by Venom's Tryambaka Guard Ground Throw command grab can be launched and ricocheted in the same way as his other balls.",
+  "ko": "당구공을 세팅해 큐 타격으로 압박하는 캐릭. 당구공 세팅이 핵심.",
+  "ko_mech": "특수기로 당구공을 화면에 세팅해두고, 나중에 발사해 압박·연계. 공 세팅 운영이 핵심."
+ },
+ "Zato-1": {
+  "lead": "Zato-1 is a puppet master who controls his alter-ego: Eddie. Zato and Eddie’s attacks can be used independently of each other, allowing the duo to launch deadly, coordinated attacks.",
+  "unique": "Zato-1 is a puppet master who controls his alter-ego: Eddie. Zato and Eddie’s attacks can be used independently of each other, allowing the duo to launch deadly, coordinated attacks.",
+  "mechanic": ": Eddie Gauge Zato has a gauge above his tension gauge for Eddie. The gauge signifies Eddie's health (3000 HP). When Eddie is summoned, it will gradually decrease by 3 HP every frame when idle, and each of Eddie's attacks use up a certain amount of the gauge. If Eddie is unsummoned before the gauge runs out from Zato blocking a hit, manually unsummoning or an area shift, the gauge will turn white, and quickly recover (55 HP recovered each frame until full). Eddie can be summoned again at any time during this. If Eddie or Zato is hit by an attack, Zato throw clashes while Eddie is summoned, or the shadow gauge is depleted fully, the gauge will turn red and will recover at a slower rate ( 11 HP recovered every frame until full, 273f duration ). During this time, Zato cannot summon Eddie until the gauge is full again or Zato uses Sun Void +14 . Avoiding this as much as possible is important",
+  "ko": "분신 에디를 조종하는 퍼펫 캐릭. 자토와 에디가 따로 공격해 협공. 에디 게이지 관리.",
+  "ko_mech": "에디 게이지(체력 3000). 소환 중 매 프레임 감소하고 에디 공격 시 추가 소모, 회수하면 회복. 게이지 관리가 핵심."
+ }
+}

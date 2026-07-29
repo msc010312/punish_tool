@@ -1,0 +1,377 @@
+{
+  "source": "https://www.dustloop.com/w/GGST/Mechanics",
+  "sections": [
+    {
+      "name": "Guard",
+      "level": 2,
+      "text": "Guarding against attacks, commonly known as blocking, is to keep yourself alive.\n\nThere are many different types of guard, and each is useful for different situations. Correctly picking the right one for each situation is critical for survivability.\n\nWhen a player blocks an attack using any kind of guard, they are put into a state called blockstun during which their ability to act is mostly taken away. Yellow Roman Cancel, Blue Burst, and Deflect Shield can still be used during blockstun.\n\n;Pushback\nBlocking an attack also pushes the defender back. This phenomenon is called pushback. The amount of pushback varies by attack, though generally the higher the Attack Level, the more pushback. Some attacks even pull in the defender instead of pushing them back! When the defender blocks a strike in the corner, pushback is applied to the attacker instead, making sure that the net pushback both characters experience is the same regardless of screen positioning. This corner effect does not apply to projectiles nor partner characters like  Eddie.\n\n;Block Carryover\nDuring blockstun the defender will automatically block other attacks regardless of what direction the defender holds until blockst"
+    },
+    {
+      "name": "Grounded Guard",
+      "level": 3,
+      "text": "thumb|\n\n:A basic grounded guard is the most common defensive option. Also known as blocking.\n\nThere are 2 types of grounded guard: standing guard and crouching guard. Standing guard will block high and mid attacks, crouching guard will block mid and low attacks.\n\n;Standing vs. Crouching Guard\nStanding guard experiences more pushback than crouching guard. This means that strategically using standing guard during an attacker's blockstring can push the defender out of range sooner and potentially enabling a punish, especially if the additional pushback makes an attack whiff unexpectedly.\n\nOn the other hand, crouching guard can be used to stay closer to the attacker and let the defender use their faster, shorter range buttons at an opportune time."
+    },
+    {
+      "name": "Airborne Guard",
+      "level": 3,
+      "text": "There is no high-low guard in the air, making it a common place for defenders to go to avoid blocking ground-based high/low/throw mix-up. \n\nThat's not to say that being airborne is a fail-safe defensive posture; getting airborne is a risk since jumps have a bit of vulnerable start-up, it raises the defender's R.I.S.C. 50% more than ground blocking, and blocking a strike will force the defender into blockstun until landing, plus 19 frames of additional grounded blockstun. Landing blockstun is reduced to 5 frames on air Instant Block or air Instant Faultless Defense. Air blocking certain attacks such as  push the defender higher into the air, effectively giving the attacker more frame advantage.\n\nAir blocking projectiles or getting Guard Crushed will not force defenders into blockstun until landing, but if they do land, they will be forced into 5 frames of grounded blockstun. If the defender recovers in the air, then air options are restored."
+    },
+    {
+      "name": "Cross-up Protection",
+      "level": 3,
+      "text": "For 3 frames after the opponent changes sides, both directions are considered valid blocking directions. This is rarely important while playing, and exists to prevent some very ambiguous crossup setups.\n\nIt is easy to confuse cross-up protection with Block Carryover (see above), aka Absolute Guard: during blockstun the defender will automatically block other attacks regardless of what direction the defender holds until blockstun ends. This means that crossups are not useful as mixups unless they let the defender leave blockstun momentarily.\nGuard Crush does not remove or interact with grounded cross-up protection in any way, however it does not have Block Carryover and so allows for gapless crossups to occur during it.\n\nIf a jumping player is crossed up (most likely by the other player running under them), both directions are considered valid blocking directions until they land. This applies only to jump, not being airborne generally nor High Jump, and is removed if the player double jumps or airdashes. It is not removed by attacking or using Faultless Defense.\nNote that this protection does not start when the player jumps, but when they are crossed up while jumping i.e. they can b"
+    },
+    {
+      "name": "Instant Block",
+      "level": 3,
+      "text": "thumb|The defender will flash white and the HUD will show \"JUST!\"\n\nInstant Blocking is a more powerful, advanced form of blocking. On successful Instant Block, the defender will flash white. Mistiming an Instant Block locks out IBing subsequent attempts until neutral, up, or any forward direction is input for a cumulative 5 frames. While holding down will not progress the lockout timer, inputting any backward direction before the timer is complete will reset the lockout timer.\n\n;Instant Blocking has the benefit of:\n* Prevents chip damage\n* Pushback for the defender is reduced to zero\n* Gain twice the amount of Tension on block and increase Tension Balance\n** Does not grant bonus Tension if blocking an attack that causes Guard Crush\n* Instant blocking a strike in the air reduces the 19 frame landing recovery to 5 frames\nIB does not allow you to make \"illegal\" blocks: you still must guard high/low correctly.\n\nWhile blocking, players can attempt an Instant Block at any point. Think of it as a minigame: time your guard to the rhythm of the opponent's hits.\n\nSince faster attacks generally have shorter range, Instant Blocking an opponent's attack often creates new punish opportunities. I"
+    },
+    {
+      "name": "Faultless Defense",
+      "level": 3,
+      "text": "or \nright|thumb|Powerful defensive option, but drains Tension as you use it!\n\nFaultless Defense (FD) is an interesting and highly useful technique. It's often used to negate chip damage, but it has other important uses.\n\nFaultless Defense is often used to end an attacker's blockstring sooner by pushing them out of attack range. An advanced strategy is to make the attack miss by pushing them away with FD, then punish while the attacker is still recovering from the whiffed attack!\n\n;Notable aspects of Faultless Defense:\n* Consumes Tension while used and on block\n** Can not Faultless Defense when Tension Gauge is empty\n* Prevents chip damage\n* Prevents R.I.S.C. Level from increasing\n* Increased pushback for the defender compared to normal blocking\n** Extra pushback increases with Attack Level\n** Projectile pushback is unaffected\n* Blocking a hit with air FD reduces the vertical launch speed applied to the defender by 20%, letting them land sooner and thus improving their frame advantage.\n\nJust like with Instant Blocking, you still must guard high/low attacks correctly when using Faultless Defense. Furthermore, you cannot jump or tech throws while using Faultless Defense!\n\nKeep in mind"
+    },
+    {
+      "name": "Instant Faultless Defense",
+      "level": 3,
+      "text": "thumb|right\n\nInstant Faultless Defense (usually acronymized as IBFD, although some material may refer to it as IFD) is like a combination of both Instant Block and Faultless Defense, minimizing threats from the opponent and pushing them away without giving up any space yourself.\n\n* Consumes Tension while used and on block\n** Can not Instant Faultless Defense when you have no Tension\n* Prevents chip damage\n* Prevents R.I.S.C. Level from increasing\n* Pushback for the defender is reduced to zero\n* Pushback for the attacker is greatly increased, even more so than defender pushback from Faultless Defense\n* Air IBFD increases gravity compared to normal blocking, letting the defender land sooner\n* Air IBFD against a strike reduces the standard 19 frame landing recovery to 5 frames\n\nDefenders can start holding the attack buttons/Faultless Defense button any amount of time before an Instant Faultless Defense attempt, but they must input the directional input with the correct timing (and sufficient Tension)."
+    },
+    {
+      "name": "Deflect Shield",
+      "level": 3,
+      "text": "thumb|right|Can be used while in neutral, blockstun or Guard Crush state\n\nDeflect Shield is extremely powerful defensive option that works against all blockable attacks (high, low, cross-ups, and Guard Crush). If an attacker hits the shield, even with a projectile, then they are pushed a large distance away. Since Deflect Shield can be used even during blockstun or Guard Crush state, it's very useful for two things: escaping any high/low mix-ups, even mid-blockstring; pushing the opponent away in a blockstring and enabling a punish.\n\n* Deflects all blockable attacks for 29 frames\n* Prevents chip damage\n* Prevents R.I.S.C. Level from increasing\n* Pushback for the defender is reduced to zero\n* Pushback for the attacker is greatly increased, even more so than Instant Faultless Defense\n* 19 frame  recovery, Counter Hit state during recovery\n\nLanding after a successful Deflect Shield does not alter the landing recovery from the blockstun of the move that was deflected, but landing after a whiffed Deflect Shield is treated as performing an action in the air, overwriting any previous landing recovery."
+    },
+    {
+      "name": "Guard Crush",
+      "level": 3,
+      "text": "right|thumb|250px|Technically not blockstun. You still have to hold back to block during this state, but can still guard and YRC.\n\nGuard Crush is a pseudo-blockstun state with some major differences. During Guard Crush, defenders can only guard, Yellow Roman Cancel, Deflect Shield, or Psych Burst, but it is not a guard animation in and of itself, so you can be hit during it if you release the guard input or guard the wrong way (high/low or left/right).\n\nUnlike blockstun, there is no throw invulnerability after recovering from a Guard Crush. The defender is still throw invincible during the Guard Crush, but is vulnerable from the first frame after. \n\nAlso unlike blockstun, being forced into Guard Crush state in the air does not extend its duration until landing, so it may be possible to recover in the air depending on your trajectory. Similarly, landing after an air Guard Crush does not apply the 19 frame landing recovery that landing after air blocking a strike does, instead applying a 5 frame landing recovery.\n\nGetting hit during Guard Crush state results in an invalid combo."
+    },
+    {
+      "name": "Armored Attacks & Guardpoint",
+      "level": 3,
+      "text": "Rare attacks specific to certain characters can have one of two attributes that act similarly, but with distinct differences. Armor and guardpoint allow a character to absorb an attack and continue uninterrupted.\n\nArmor is only found on  ,  and  . When an opponent hits a character in their armor frames, they are still able to cancel the attack as they would on hit or block into their gatling options, special moves, or through jump canceling. A character being hit while in armor takes 50% of the damage the attack would've incurred if it hit raw (affected by Guts and defense modifiers), and Overdrives ignore armor completely, causing the opponent to be hit with full damage and standard hit effects as normal.\n\nGuardpoint is a blanket term referring to moves that have frames where they automatically block incoming attacks, and the specifics can work differently from instance to instance.\n\nThe full list of attacks with guardpoint attributes are:\n\n  \n \n \n  and held versions of  or \n  and  \n\nOf these, Anji's acts more similarly to a parry like those found on ,  experiences separate hit/blockstop due to being originated from a puppet.  and  guardpoints take reduced damage from moves that t"
+    },
+    {
+      "name": "Grounded Movement",
+      "level": 2,
+      "text": ""
+    },
+    {
+      "name": "Walking",
+      "level": 3,
+      "text": "Walking is the most basic form of movement by holding  or .\n\nCharacters will continue to walk so long as their player holds down the directional input. 1 and 3 are not valid walk inputs. Each character has a unique walk speed for both forwards and backwards.\n\nOne of the main advantages to walking is that it provides fine grain control over one's positioning. By contrast, jumps lock the player into a fixed arc, and runs maintain momentum for a time after the player releases their input. \n\nWalks are usually silent. Without an associated audio cue, walks can be hard to react to."
+    },
+    {
+      "name": "Running",
+      "level": 3,
+      "text": "or \n\nRunning is conceptually similar to walking, but faster and with some negative trade-offs.\n\nIt is Highly Recommended that players Bind the Dash Button and use that as their primary method of dashing instead of 66. It can be inputted in a single frame and is much easier on the fingers.\n\nAkin to walking, each character has their own running speed and acceleration. Some characters cannot run at all, such as . Other characters have special alternatives to running. A list of these special cases can be found below.\n\nAlthough running requires two consecutive  inputs, the player can shift their forwards input into a  input so long as they maintain a constant forward input. The player character will continue to run so long as a valid run input is held. If the player releases the run input and does not cancel the run into another action, they will perform a run skid animation.\n\n{| class=\"wikitable\" style=\"margin: 0 auto;\"\n|+ Special Runs\n|-\n! Character !! Run Type\n|-\n| , , || Step Dash\n|-\n|  (Normal Mode) || Pseudo-Step Dash\n|-\n|  || Step Dash with no Collision\n|-\n|  || Hover Dash\n|-\n| ,  || Cannot Run\n|}\n\n;Run Skid\nthumb|\nWhen ending a run, there is a skidding animation that gives any a"
+    },
+    {
+      "name": "Backdash",
+      "level": 3,
+      "text": "or \nthumb|Some invulnerability on startup\n\nBackdashes are movement options which provide a quick burst of backwards movement with some invulnerability.\n\nThe exact duration of backdashes and invincibility varies between character and will be listed in each character's frame data. The invulnerability for backdashes begins on the first frame of their animation, but does not last long, making them useful to avoid attacks with good timing.\n\nBackdashes travel a fixed distance at a set speed, are not cancelable, and are completely vulnerable for some period in the latter portion of their animation. For these reasons, they are not always preferable to backwards walking."
+    },
+    {
+      "name": "Aerial Movement",
+      "level": 2,
+      "text": ""
+    },
+    {
+      "name": "Jumping",
+      "level": 3,
+      "text": "Jumping is the most basic way to put one's player character into the air.\nPlayers can jump while on the ground, or while in the air. When a character jumps, they are locked into a fixed arc which is determined by the direction of the jump input combined with any momentum they have at the time of the jump. Each character has their own jump physics. These determine the speed, height, and duration of their jumps. Before the character becomes airborne, there is a short Prejump Animation with some limitations, explained in its respective section. After a player jumps, they take on the airborne property, which affects what moves they can use, as well as how they receive incoming hit effects. During the first airborne frame, characters can only guard and not attack. This is only a factor when calculating the fastest input for Instant Air Specials.\nMost characters can jump two times before returning to the ground unless they regain their air options."
+    },
+    {
+      "name": "High Jump",
+      "level": 3,
+      "text": "High Jump (aka Super Jump) travels higher vertically than a standard jump, but in exchange characters cannot perform an additional jump while in the air.\n\nHigh jumping can be done by going from neutral (), then tapping any downward direction (//), then tapping any upward direction (//). Pressing // will change which direction you high jump, just like normal jumping. During a high jump, characters will automatically turn to face the opponent if you jump over them.\n\nIt is always best to mix up the two types of jumps to keep your opponent on their toes depending on the situation."
+    },
+    {
+      "name": "Prejump",
+      "level": 3,
+      "text": "Jumps and high jumps are not instantaneous - before going airborne, characters will enter a standing state called prejump, where they can not block, but are invincible to throws. If hit during prejump, characters enter standing hitstun.\n\nCharacters have different amount of prejump frames, but the rule of thumb is that the heavier/slower the character is, the longer the prejump. Most characters have 4 frames of prejump, but exact values can be found in each character's frame data.  high jump has a significantly longer prejump duration than his regular jump, at 10 frames.\n\nIt is actually possible to cancel prejump into specials, Overdrives, Psych Burst, Deflect Shield, and Counter Blitz. The reason for this is that attacks that involve an Up input, such as  ) can be used without going through hoops to hide the jump input (such as whiffing moves beforehand). It also allows players to be slightly sloppy with their inputs and still get specials (ex  instead of )."
+    },
+    {
+      "name": "Air Dash",
+      "level": 3,
+      "text": "or \nthumb|\n\nAir dashes are the near universal burst movement option while airborne. Most characters can air dash once before landing, while others cannot air dash at all. For a breakdown of these rules, see the air options explanation. Each character has a unique air dash with different speeds, durations, unactionable startup, etc. Each character's Frame Data page has these values, and there is also a comparison table. \n\nTo air dash as soon as possible from a grounded state, players use a technique known as Instant Air Dash."
+    },
+    {
+      "name": "Air Options",
+      "level": 3,
+      "text": "Air Options conceptually represent the amount of times a character can jump or dash while in the air without returning to the ground. Most characters have 1 air option; exceptions are listed below.\n\n{| class=\"wikitable\" style=\"margin: 0 auto;\"\n|+ Non-Standard Air Options\n|-\n! Character !! Air Options\n|-\n|  || Can air jump 2 times (3 jumps total)\n|-\n|  || Can air dash 2 times\n|-\n|  || Flight instead of air jump or air dash\n|-\n|  || 8-way air dash instead of air jump or air dash\n|-\n|  || Cannot air jump\n|-\n|  || Cannot air dash\n|-\n|  || Cannot air jump or air dash\n|-\n|}\n\n;Regaining Air Options\nCharacters regain all their air options after:\n* Touching the ground\n* Air blocking an attack and exiting blockstun while airborne\n** This is only relevant to air blocking projectiles and Guard Crush attacks\n* Air Throw Escape\n* Wall Recovery while airborne"
+    },
+    {
+      "name": "Landing Recovery",
+      "level": 3,
+      "text": "Some airborne moves have a set amount of landing recovery like  .\n:This is straightforward; upon landing the character will enter a completely vulnerable landing animation.\n\nWhat's unique is that even for moves that don't have a specified landing recovery - like most air normals, or just jumping, there is still a unique landing recovery that disables certain actions for limited amounts of time. \n\n* After landing from an empty jump:\n:1~6F cannot do any movement options except backdash\n:7F onwards all actions possible\n\n* After performing an action in the air (air jumping, air dashing, any air attack without specified landing recovery):\n:1~3F after landing is normal recovery (cannot do any action such as blocking, attacking, moving etc...)\n:4F onwards all actions possible\n\nAnother quirk about landing in this game is that characters regain their grounded collision box and are considered grounded the frame before landing, meaning that they can be ground thrown the frame before landing and getting hit the frame before landing will result in grounded hitstun. If a character is in a state where they can freely act in the air but will enter a punishable recovery state upon landing, blocking"
+    },
+    {
+      "name": "Ground and Air Recovery",
+      "level": 2,
+      "text": ""
+    },
+    {
+      "name": "Knockdown Recovery",
+      "level": 3,
+      "text": "Getting knocked down by most attacks causes a soft knockdown, where the character will instantly roll backwards and quickly recover. A soft knockdown lasts for 30 frames and is fully invincible.\n\nCertain attacks cause a hard knockdown, where the character will lie on the ground briefly before getting up in a fully invincible state. As the character lies on the ground, they are considered in an Off The Ground state and if hit will be knocked backwards into a soft knockdown. Thus most players tend to use this time to set up okizeme rather than continuing the combo. A hard knockdown lasts for 55 frames."
+    },
+    {
+      "name": "Wall Recovery",
+      "level": 3,
+      "text": "thumb||300x300px|You can tech off the wall after a certain amount of time.\n\nA character in the Wall Stick state will automatically recover after 59 frames if not hit by an attack. This recovery is fully invincible while also allowing the player to perform an attack during this invincibility.\n\n:When stuck to the wall, hold a direction to choose what direction to recover:\n:// recovers straight upwards a significant distance\n:// recovers in place\n:// recovers straight forwards a significant distance"
+    },
+    {
+      "name": "Normal Attacks",
+      "level": 2,
+      "text": "Press //// to perform normal attacks. Depending on the current state of your character (standing, crouching, jumping, close to opponent), your character will do different attacks. As a general rule, / attacks are weak and fast, / attacks are strong and slow, and  attacks are overhead and low attacks.\n\n;Command Normals\nthumb|Everybody gets a workable anti-air.\nCommand normals are performed by pressing a specific direction with a specific button. Every character has at least two command normals.  is a universal one, and most also have . Many have a command normal with  or  as well."
+    },
+    {
+      "name": "{{clr|P|6P}}",
+      "level": 3,
+      "text": "Thanks to its frame 1 upper body invulnerability,  is useful as an anti-air and as a counter poke. Diagrams of this in action are here. \n\nMany forward-lunging, plus on block special moves, such as   and  , are vulnerable to . In addition, many  attacks extends the character's hurtbox further out than the animation implies, due to the weapon itself having a hurtbox. Experiment with  - you might be surprised at how many attacks can be beaten with it!\n\nOther command normals do not have the homogeneity of . Take , for example.   is a risky punishment tool with good speed and range.   is a tricky overhead with huge range.   is a unique, rekka-style normal used for juggle combos and Roman Cancel mix-ups. You will have to study each of your character’s command normals to figure out how to use them."
+    },
+    {
+      "name": "Gatling Combination",
+      "level": 3,
+      "text": "Most normals can cancel into other normals, this is known as a Gatling Combination, or Gatling for short.\n\nThere can be character-specific variations, but the general rule is:\n\n;On the ground:\n*  and  gatling into themselves, each other, and command normals\n*  and  gatling into  normals, and command normals\n* Close  gatlings into  normals,  normals,  normals, and command normals \n* Far  and  gatling into  normals\n\n;In the air:\n* Jumping  gatlings into itself\n* Jumping  gatlings into jumping \n* Jumping  gatlings into jumping  and jumping \n* Jumping  gatlings into jumping \n\nIt takes some getting used to, but it should feel natural after some practice. Gatlings do not need to be done immediately, players often delay their gatlings to act as a frame trap - baiting overeager opponents to retaliate then hitting them out of the start-up of their attacks. Note that while most normals can gatling even during recovery frames,  ,  and jumping  can only gatling during active frames."
+    },
+    {
+      "name": "Dust Attack",
+      "level": 3,
+      "text": "thumb|It may not look like it, but it's an overhead. Every Dust has a red glow on startup\n\nEach character's standing  is an overhead attack.\n\n* Dust Attack starts up in 20~28 frames, depending on how long the button is held. On ground hit, it puts the opponent in a floating crumple state that generally cannot be combo'd from without a Roman Cancel, but is even on hit. On block, the attacker is -15.\n* Dust Attack (Hold) (a fully charged Dust Attack) starts up in 28 frames, but is more rewarding. On hit, it launches the opponent into the air. On a raw hit, it causes spinning blowback and can be canceled into a Homing Jump. On block, the attacker is -10.\n\nNote: A canceled Dust Attack cannot normally trade with enemy strikes. If a character's Dust Attack and their opponent's strike are both active on the same frame, the opponent's strike will win and Counter Hit."
+    },
+    {
+      "name": "Homing Jump",
+      "level": 4,
+      "text": "Leap into the air and chase after the opponent following a raw, fully charged Dust Attack.\n\nDuring a Homing Jump:\n* All air normals can gatling into any air normal\n** Canceling an air normal into itself while the opponent is in hitstop performs a unique Finish Blow attack that spikes the opponent down for a hard knockdown and grants Positive Bonus\n* The attacker gets an extra air jump or air dash\n** This includes  and  - they gain an air dash, and Nagoriyuki gains a double jump\n**  does not gain an air jump, but gains an extra use of its 8-way air dash\n* All air normals become jump cancelable and air dash cancelable if they weren't already (except command normals)\n* Homing Jump duration will be shorter the closer the opponent is to the corner\n\nAfter the Homing Jump, the characters Area Shift and land in the middle of the stage like after a Wall Break.\n* If Finish Blow is used, the opponent will crash down and the attacker will land on the opposite side with a frame advantage of +23.\n* If the opponent leaves the screen without being hit by a Finish Blow, both characters float to the ground, the opponent rolls and both characters recover at the same time\n\nTypically a Homing Jump comb"
+    },
+    {
+      "name": "Sweep",
+      "level": 3,
+      "text": "Not to be confused with  special move \"\".\n\nthumb|\n\nSweeps are attacks that must be blocked low and cause a hard knockdown on hit.\n\nA hard knockdown gives the attacker lots of time to set up okizeme. Comboing into a sweep is usually trading damage for okizeme since there are very few ways to combo from it without spending Tension on a Roman Cancel."
+    },
+    {
+      "name": "Throws",
+      "level": 2,
+      "text": "Throws are proximity based attacks which the opponent cannot guard against. In order to throw an opponent, a few conditions must be met:\n* The players must be in a similar grounded or airborne state.\n** To throw a grounded opponent, the attacker must also be grounded.\n** To throw an airborne opponent, the attacker must also be airborne.\n* The defender must not have throw invulnerability.\n** The defender can be ground thrown while in Stagger.\n* The defender must be within the throw's range (see below).\nIf all of the conditions are met, then the attacker can hit the opponent with a throw."
+    },
+    {
+      "name": "Normal Throws",
+      "level": 3,
+      "text": "thumb|Comes in ground and air flavors\n\nNormal throws start up in 2 frames, inflict a hard knockdown, and are in Counter Hit state on whiff. Normal Throws cannot be performed with diagonal inputs (, , etc.).\n\nGround throws used offensively to break though a blocking opponent, while they are used defensively to challenge the opponent's pressure thanks to their fast start-up.\n\nAir throws often give people trouble because they are not quite as easy to position as ground throws. The ideal way to air throw someone is to be slightly below them and rising up to meet them. Typically if you are above the opponent, you will not be able to throw before they can. Thus air throws are often used as an anti-air as well as an air-to-air tool when slightly below the opponent.\n\nOn top of the usual whiff recovery, air throws also have 10 frames of punishable landing recovery on whiff, although the user is not in Counter Hit state."
+    },
+    {
+      "name": "Command Throws",
+      "level": 3,
+      "text": "thumb|You aren't teching these.\nSome special moves have the throw property.   and   are two examples of such throws. \n\nThese throws cannot be throw escaped and they typically have other unique properties, such as higher damage, more start-up, and more range.\n\n;Hit Grabs\nTechnically not throws but are often mistaken for them, these are strikes that go into a cinematic animation on hit, such as  . Deflect Shield will work against these attacks since they are strikes."
+    },
+    {
+      "name": "Throw Invulnerability",
+      "level": 3,
+      "text": "Characters cannot always be thrown. Below is a list of situations when a character cannot be thrown:\n\n*During prejump\n*During blockstun plus 5F after\n*During hitstun plus 5F after\n*During knockdown plus 5F after\n*When they have throw invulnerability or full invulnerability\n**Common moves with throw/full invulnerability include most overdrives and Burst\n**Some ground attacks also discretely count as being in the air, such as  . These moves can't be ground thrown, but CAN be air thrown."
+    },
+    {
+      "name": "Priority of Strike vs Throw vs Command Throw",
+      "level": 3,
+      "text": "When two strikes hit each other on the same frame, either a clash happens or both characters get hit, but what happens when throws are added to the mix?\n*Throw vs Strike: The throw will always win. \n*Normal Throw vs. Normal Throw: A Throw Clash occurs.\n*Normal Throw vs. Command Throw: The winner is determined based on Dust Priority.\n*Command Throw vs. Command Throw: The winner is determined based on Dust Priority."
+    },
+    {
+      "name": "Throw Clash",
+      "level": 2,
+      "text": "right|thumb|Works for ground and air normal throws.\n\nInputting a normal throw at the same time as an opponent will cancel out the throw and make both characters back off and recover at the same time. This is known as a Throw Clash or Throw Break.\n\n*Only normal throws can be broken; command throws cannot be broken.\n* Throw clashes CANNOT be performed if thrown during Faultless Defense.\n*Throw clashes CANNOT be performed while in Counter Hit state or while recovering from a move, so unsafe attacks are still unsafe.\n*Throw clashes also cannot be performed if a different action is input first during the throw clash window.\n*The throw clash animation is 41F and fully invincible.\n*Air throw clash will restore air options for both characters."
+    },
+    {
+      "name": "Cancels",
+      "level": 2,
+      "text": "There are many types of cancels. A cancel is the act of interrupting the current action and starting a different one.\n\nWhile most cancels are available on hit/block, some are available on whiff, and a rare few are even only available on block!\n\n;Gatling\n:See Gatling Combination for more details.\n;Special Cancel\n:Most normal attacks can cancel into specials, Overdrive, and Counter Blitz. This is generally used to create combos and blockstrings, but can have other applications as well.\n:Note that while most normals can be special canceled even during recovery frames, , , jumping , ,  and jumping  can only be special canceled during active frames ( normals can still gatling into other normals during recovery frames).\n;Jump Cancel\n:Some normal attacks can cancel into jump and super jump. This is used in combos as well as pressure.\n:Air attacks can only be jump canceled when the character has the air option available\n:Projectile normals ( and  jumping ) can be jump canceled once the projectile touches the opponent.\n;Prejump Cancel\n:See Prejump for more details.\n;Dash Cancel\n:Some attacks can cancel into a unique ground dash with a fixed duration that varies by character (see character's"
+    },
+    {
+      "name": "Roman Cancel",
+      "level": 2,
+      "text": "Roman Cancel is a mechanic that allows you to cancel actions that are not normally cancelable at the cost of Tension. The Roman Cancel system in Guilty Gear -Strive- is designed to be multifaceted and comes in various colors. Each color of Roman Cancel releases a shockwave in a circle around your character with different properties and uses.\n\n{| class=\"wikitable stripe\" style=\"margin: 1em auto 1em auto;\"\n|+Roman Cancel Values\n! Color !! Tension !! Startup !! Recovery !! On-Block !! Slowdown !! Cancel !! Situation\n|-\n! 140pxBlue\n|50%\n|6(+39)(effect starts super freeze 20F)\n|-\n|-\n|59F\n|During super freeze 5~11F\n|\n* Performed while in neutral or during standard movement.\n* Shockwave slows down the opponent but doesn't actually hit them. Used to catch opponents doing something, then punish them while they are slowed.\n* Has the longest slowdown timer of all the Roman Cancels.\n** Slowdown ends after being hit or blocking.\n** Slowdown does not end on opponent's hit or block. This allows for links that aren't normally possible, like  into .\n\n|-\n! 140pxRed\n|50%\n|1(+44)(effect starts super freeze 25F)\n|-\n|+24\n|39F\n|During super freeze 7~13F\n|\n* Performed during the hitstop of a strike or rig"
+    },
+    {
+      "name": "Dash Input Roman Cancel",
+      "level": 3,
+      "text": "thumb|right|Sike, I wasn't actually there!\n\nAlso referred to as \"Drift Roman Cancel\". Moves the character up/down/left/right during Roman Cancel's super freeze.\n\n* Available for any Roman Cancel except Yellow.\n* Can only drift up, down, left or right. Diagonal inputs are ignored.\n** Direction + Dash macro or Direction ×2 both work. Neutral + Dash macro is a forwards drift.\n* Red Roman Cancel shockwave will launch the opponent differently on hit depending on the dash input chosen.\n** The opponent launches up and away if you don't drift, lower and much farther away if you drift forward, higher and much closer if you drift backwards, much lower and closer if you drift downward, and much higher and closer if you drift upward.\n** Launch duration on a standing opponent: Up (68F) > Back (62F) > Neutral (55F) > Forward (48F) > Down (42F)."
+    },
+    {
+      "name": "Cancel the Roman Cancel",
+      "level": 3,
+      "text": "thumb|right|Go straight into the next attack of your choice!\n\nAlso referred to as \"Fast Roman Cancel\" or \"Quick Roman Cancel\". It is referred to as \"Roman Cancel Cancel\" in the game tutorials.\n\n* Available for any Roman Cancel except Yellow.\n* Inputting a move during a specific window of the Roman Cancel's super freeze (when the initial effects from a Roman Cancel disappear but before the shockwave occurs) cancels the super freeze directly into the inputted move.\n** Tension rapidly drains during super freeze at a rate of 2% per frame. By canceling the Roman Cancel, players can retain retain some Tension. The Roman Cancel will spend between 36% and 48% Tension depending on how soon it is canceled.\n** Input buffer does not apply to this window.\n* Still applies a reduced amount of slowdown at close range, even without the shockwave.\n* Can perform charge inputs without charging, as long as the charge direction is input before the Roman Cancel begins (or before hitstop ends). For example,  can  instead of .\n* Preserves momentum from before the Roman Cancel, including from Dash Input Roman Cancel.\n* Combined with Dash Input Roman Cancel to move slightly in a direction before canceling."
+    },
+    {
+      "name": "Yellow Roman Cancel",
+      "level": 2,
+      "text": "thumb|right|Turn the tables with this powerful defensive option!\n\nYellow Roman Cancel is used to stop an attacker and reset the momentum of the match. Upon activation, the defender creates a shockwave that forces the attacker into a Guard Crush state and pushes them back significantly, leaving the defender at frame advantage (+10 on ground hit). Yellow Roman Cancel is a useful tool for challenging an opponent’s pressure, especially for characters that are lacking in character-specific tools.  \n\nHowever, since YRC is -16 on block and leaves the defender in Counter Hit state, astute attackers can block YRC on prediction and punish it heavily. Practice utilizing all of defensive options available so as to not end up over relying on Yellow Roman Cancel and burning Tension too quickly.\n\n* On hit, Yellow Roman Cancel slows down the opponent for 10 frames and puts them in Guard Crush state for 43 frames including slowdown, granting the user a frame advantage of +10 on ground hit.\n* Pushes opponent back to about roundstart distance from the user. If the opponent is in the corner and cannot be pushed back, the user remains stationary, similarly to Deflect Shield\n** In the extremely rare cas"
+    },
+    {
+      "name": "Special Attack",
+      "level": 2,
+      "text": "thumb|\n\nSpecial attacks are fancier attacks that have often special properties such as invincibility or unique movement.\n\nEach character's special attacks are unique and are explained in more detail in each character's page.\n\nThere are two main categories of special move inputs:\n*Motion-type inputs: Requires the player to input directions in a specific order, then input a specific attack button.\n*Charge-type inputs: Requires the player to hold  or  for 25 frames, then input the opposite direction ( and  respectively) plus a specific attack button.\n\nThere are a few common qualities that special moves share:\n*They do 25% of their base damage as chip damage on block unless the defender uses Faultless Defense or Instant Block.\n*They build a little bit of Tension immediately when inputted. \n*They can be kara canceled into Overdrives during the first 3 frames of the animation"
+    },
+    {
+      "name": "Psych Burst",
+      "level": 2,
+      "text": "While at first glance, Bursts merely look like a \"combo breaker\", there is actually much more to them. There are two different types of Bursts: Blue and Gold. Both have different effects, and understanding how each can be used is crucial to high-level play.\n\nThe Burst will be blue or gold depending on the character's current state. The differences between each are described below."
+    },
+    {
+      "name": "Gold Burst",
+      "level": 3,
+      "text": "right|thumb|Give me buffs!\n\nHitting the opponent with Gold Burst will instantly put the user in Positive Bonus. Gold Bursts are great to use as a wakeup option since they are only -2 on block.\n\n* Can not be combo'd into\n* Grants Positive Bonus on hit\n* Resets R.I.S.C Level\n* Unlike Blue Bursts, fully invincible until landing recovery\n* Performing a burst 5 frames before wakeup will perform a Gold Burst instead of a Blue Burst."
+    },
+    {
+      "name": "Blue Burst",
+      "level": 3,
+      "text": "right|thumb|Get off me!\n\nUsing a Blue Burst can often save a player from taking massive damage, or ultimately receiving the round-ending blow. However, a Blue Burst can be baited by canceling attacks with jump cancels or Roman Cancels, then blocking the Burst and punishing the recovery.\n\nIf the opponent is in a completely invulnerable state, the shockwave can still hit the opponent's collision box instead of their hurtbox and ignore any type of shield or armor, which results in some invulnerable skills, such as Overdrives, still being hit during their invincibility frames.\n\n* Shockwave extends the full length of the screen\n* Resets R.I.S.C Level\n* Fully vulnerable after recovery, while falling, and during landing recovery"
+    },
+    {
+      "name": "Disabling Blue Burst",
+      "level": 4,
+      "text": "right|thumb|Heaven or Hell\nBursts can be temporarily disabled even with a full Burst Gauge. A red X will cover the Burst Gauge during this time.\n\nBursts will be disabled while:\n* Being thrown\n* Being hit by a hitgrab\n* Being hit by an Overdrive\n* Being hit by Counter Blitz\n* Being hit by attacks that force the opponent into non-standard hitstun, such as a Wall Stick state"
+    },
+    {
+      "name": "Counter Blitz",
+      "level": 2,
+      "text": "right|thumb|COUNTER! Now get out of my sight!\n\nCounter Blitz is a lunging attack that can only be performed during the slowdown of a Counter Hit. It can only be cancelled into from grounded normals that inflict Mid or Large Counter Hits.\n\nCounter Blitz inflicts a Hard Knockdown on hit (+65), and locks out the opponent's Burst Gauge on hit. It will also break the wall when done close to the corner. It has good corner carry, and serves as a useful way to break the wall or finish a round without the opponent being able to burst. However, as most characters will gain more damage by executing a standard combo, Counter Blitz is best used sparingly.\n\nNormals that are not cancellable or do not inflict counter hits cannot be cancelled into Counter Blitz. However, R.I.S.C. Counter Hits, 's Universe Counter Hit, or 's ALGORITHM MALFUNCTION allow for any cancellable normal to be cancelled into Counter Blitz, even when done in the middle of a combo."
+    },
+    {
+      "name": "Overdrives",
+      "level": 2,
+      "text": "thumb|Sol getting ready to Tyrant Rave\n\nOverdrives (commonly referred to as supers) are attacks that are even more powerful than special attacks.\n\nSome Overdrives are useful as reversals like 's , while others power up the character like 's . On start-up, Overdrives freeze the game temporarily to show the character doing a fancy pose or an animated cut-in before attacking. This is commonly referred to as \"super flash\" or \"super freeze\". Super freeze also has a special input buffer making these attacks not a good \"surpise\" attack since they easily reactable during neutral.\n\nOverdrives that hit the opponent will Wall Break on the last hit if the opponent collides with the wall regardless of Wall Stick (with the opponent in a hard knockdown state after the Area Shift), although it's worth noting that not all hitstun states collide with the wall for their entire duration, even if the character in question physically touches the wall. Distinct from the last hit, any other hit is fixed to not Wall Break, even if they hit an opponent in Wall Stick state."
+    },
+    {
+      "name": "Tension Gauge",
+      "level": 2,
+      "text": "thumb|\n\nTension is a highly important resource in Guilty Gear. Knowing each of the features and subtleties of the Tension Gauge system is a definite requirement for high-level play since it directly affects many of your attack options. The Tension Gauge starts every round empty, so don't be afraid to use it all each round.\n\nThe Tension Gauge ranges from 0 to 10000 and is divided into two sections, each representing 50% (5000) Tension. The gauge displays one gear for each metered action you can take, for a maximum of two.\n\n;Gaining Tension\nPerform some type of offensive action to gain Tension. This includes attacking the opponent, or simply advancing towards them. As a general rule: the more aggressive the action against the opponent, the faster the Tension Gauge will fill up. Performing these kinds of actions increase Tension Balance, which in turn dictates the amount of Tension gained.\n\n* Moving towards the opponent slowly builds Tension\n** The rate of gaining Tension varies by character\n* Clashes or being taunted by an opponent builds 10% Tension\n* Normal moves build Tension on hit or block\n* Special moves build Tension on startup in addition to on hit or block\n** The amount of T"
+    },
+    {
+      "name": "Tension Penalty",
+      "level": 3,
+      "text": "After using any Roman Cancel or Overdrive, the amount of Tension any action builds is reduced by 90%. The duration of the cooldown varies based on what is used, and begins once the move has fully recovered or is interrupted. Using another cooldown-causing action during cooldown will set cooldown timer to whichever duration is longer.\n\n※: Most Overdrives use a standard 180F duration, but a few exceptions exist that use a much larger 460F duration, including:\n*  \n*  \n*  \n*  \n*  \n*  \n* \nWhile almost all moves only begin Tension Gain Penalty from after recovery,   is unique and begins it immediately after super freeze, giving it a functionally much lower duration."
+    },
+    {
+      "name": "Positive Bonus",
+      "level": 2,
+      "text": "thumb|Temporarily build extra Tension and Burst. Make good use of it!\nBy breaking the wall, hitting the opponent with a Finish Blow or Gold Burst, or maxing out Tension Balance, characters enter Positive Bonus state. The HUD will show \"POSITIVE\" in the corner of the screen next to your character's portrait, and the character will have the following buffs:\n\n* Lasts for 5 seconds (300 frames)\n* Automatically gain Tension over time, at 8.4% Tension per second\n** Increases even during move hitstop\n* Tension Gain Rate increased by 50%\n* Damage for all attacks increased by 10%\n* Damage taken from all attacks decreased by 10%\n* Automatically gain Burst over time, at 4.8% Burst per second\n\nNeedless to say, this is an extremely powerful state, allowing the player to build a huge amount of Tension. This creates situations where players can conceivably pressure the opponent and then build up enough Tension to Roman Cancel or Overdrive to extend that pressure, or open the opponent up and still have Tension to spare on converting the hit into a full combo. Even if you are put on defense, the enormous Tension Gain and reduced damage taken makes it much easier to escape pressure and avoid defeat."
+    },
+    {
+      "name": "Negative Penalty",
+      "level": 2,
+      "text": "thumb|Uh oh...\nBy continually performing actions that lower your Tension Balance, you enter Negative Penalty state.\n\nActions that lower Tension Balance include consistently attempts to walk back, backdash, or air dash backward at range from the opponent (or sits in one place and does nothing). When near Negative Penalty state, \"DANGER\" will appear in the corner of the screen next to the character's portrait. If they keep avoiding all contact, the HUD will show \"NEGATIVE\", and the character will enter Negative Penalty state:\n\n* Immediately lose all stored Tension and Burst\n* Enter Tension Cooldown for 10 seconds (600 frames)\n\nKeep-away or run-away tactics will not incur Negative Penalty if the player is actively using some form of offense. Even if it's passive, it's more than enough to not get penalized. For example, if an Axl player remains full screen and tries to keep the opponent away from him using long-range attacks, he will not get penalized."
+    },
+    {
+      "name": "Burst Gauge",
+      "level": 2,
+      "text": "thumb|Top: Half-Full Burst GaugeBottom: Full Burst Gauge\n\nThis gauge is used to perform a Counter Blitz (consuming 50% of the Burst Gauge), a Deflect Shield (consuming 50% of the Burst Gauge) or a Psych Burst (consuming 100% of the Burst Gauge).\n\nThe Burst Gauge starts the match 100% filled and is carried over between rounds; using Burst at the end of one round, will leave the Burst Gauge empty at the beginning of the next round!\n\nThe Burst Gauge is 15000 units. There are two ways for the Burst gauge to increase: over time, and when taking damage. Expanded explanations for each are below:\n\n;Building Burst Over Time\nThe Burst Gauge will passively fill over time. The rate at which the gauge fills depends on how much life the character has. Additionally, during Positive Bonus, the Burst Gauge also rapidly fills.\n\n{| class=\"wikitable\"\n! Current health !! Burst Gauge per second\n|-\n| > 50% || 80\n|-\n| ≤ 50% || 160\n|-\n| ≤ 25% || 200\n|-\n| colspan=3| Notes: You gain an additional 720 Burst Gauge per second during Positive Bonus.Burst is increased incrementally every 15 frames (including from Positive Bonus).\n|}\n\nThe less health you have, the faster the Burst Gauge will increase. Keep this in"
+    },
+    {
+      "name": "R.I.S.C. Level",
+      "level": 2,
+      "text": "thumb|Characters have lower defense when they have R.I.S.C., meaning combos do much more damage. Risky indeed!\nR.I.S.C. Level is displayed underneath your character's Burst Gauge. R.I.S.C Level increases when blocking attacks and depletes when getting hit. The defender's defense is reduced by 1% for each 2% of the R.I.S.C bar that is filled. This results in a 33% damage increase at half filled, and 100% increase when completely filled. When the gauge is full, you also run the risk of taking a powerful R.I.S.C. Counter Hit. See here to learn more.\n\nFurthermore, R.I.S.C. Level affects the Tension Gain of the defending player, conferring an advantaged state to players who manage to survive long blockstrings and take back their turn. The exact amount of Tension Gain is based on the current R.I.S.C. level:\n* 1~50%: +20% Tension Gain.\n* 51~74%: +50% Tension Gain.\n* 76~100%: +100% Tension Gain."
+    },
+    {
+      "name": "Attack Level",
+      "level": 2,
+      "text": "Each attack has an Attack Level. Most attacks in the game deal standardized amounts of hitstun, blockstun, etc. based on their Attack Level. Some moves override these standard values, which will be noted in the frame data.\n\nUse the chart below to determine how much hitstun/blockstun an attack will inflict. The level for each attack can be found in the individual character frame data sections."
+    },
+    {
+      "name": "Counter Hit",
+      "level": 2,
+      "text": "thumb|COUNTER!\nHitting a character before the recovery of their attack will be a Counter Hit (CH).\n\nCounter Hits may alter attack properties, such as enabling a bounce or a tumble, allowing for stronger combos. Depending on the type of Counter Hit, there may also be additional hitstop or slowdown. \"Mid\" and \"Large\" counter hits clear the input register when they occur. These Counter Hit types vary based on the move used.\n\nThrows can not Counter Hit, and will always be considered a punish instead.\n\nSome attacks also have Counter Hit state during their recovery, such as whiffed throws, projectiles, non-attacking specials, or  invincible attacks such as s or invincible Overdrives. Conversely, some attacks cannot be Counter Hit at all, such as most non-invincible Overdrives. Even if you are to hit them out of their start-up, the game won't consider it a Counter Hit."
+    },
+    {
+      "name": "Counter Hit Types",
+      "level": 3,
+      "text": "Every strike and projectile has a Counter Hit type, which determines its properties when it Counter Hits. These types are Very Small, Small, Mid and Large. The larger the Counter Hit type, the more dramatic the visuals and audio, with louder audio cues, longer hitstop, longer slowdown; and in the case of Large Counter Hits, camera zoom-in.\n\nNormals obey the following rules:\n* Very Small: Projectile normals\n* Small:  and  normals\n* Mid:  normals, , , and air  normals\n* Large: Grounded  normals and \n\nCharacter-specific command normals, specials and Overdrives will vary, but strikes are generally Mid or Large, occasionally Very Small, but never Small (with the exception of  ), whereas projectiles are always Very Small. Specials that either have a follow-up or are a follow-up are also always Very Small. Meterless invincible attacks also only inflict Very Small counter hits.\n\nNote: \"Very Small\" is not an official term, and is simply used to distinguish between Small Counter Hits that don't inflict slowdown versus ones that do. For the purposes of in-game R-Code records, landing \"Very Small\" Counter Hits will count towards your Small Counter Hits."
+    },
+    {
+      "name": "Counter Hit Slowdown",
+      "level": 3,
+      "text": "All types of Counter Hit except Very Small Counter Hits inflict slowdown on the opponent, doubling each frame they experience for its duration. Small Counter Hits apply this slowdown immediately, while Mid and Large Counter Hits apply it after hitstop.\n\nMid and Large Counter Hits create a unique, cinematic hitstop for easy confirms, overriding an attack's normal hitstop with a set period. In addition, during Mid and Large Counter Hits, the receiver is frozen for an extra frame after the attacker leaves hitstop due to the odd number of slowdown frames. This slowdown is the only period where one can execute Counter Blitz.\n\nTo determine an attack's base hitstop value, please consult Attack Levels and how they apply to each character's attacks."
+    },
+    {
+      "name": "R.I.S.C. Counter Hits",
+      "level": 3,
+      "text": "Hitting a character when their R.I.S.C. Level is at 100% is a guaranteed Counter Hit ignoring standard rules of Counter Hit state. If the attack is a strike, it automatically becomes a Large Counter Hit (unless the strike locks the opponent's position or leads into a special cinematic state on hit, like a raw, fully charged Dust Attack or a hitgrab like  ). Uncharged Dust Attack also launch the opponent instead of the standard Floating Crumple."
+    },
+    {
+      "name": "Invincibility",
+      "level": 2,
+      "text": ""
+    },
+    {
+      "name": "Attribute Invincibility",
+      "level": 3,
+      "text": "Some attacks are invulnerable only to certain types. \n\nFor example:  becomes airborne partway through the start-up of her  and is thus invincible to ground throws during its first hit, but not against strikes or projectiles. These situations are very simple to describe - the attack is invulnerable to the specified types during the specified times. To beat these attacks, hit them with a type they are vulnerable to, or hit them before/after the invincible period."
+    },
+    {
+      "name": "Hitbox Invincibility",
+      "level": 3,
+      "text": "Some attacks shrink the hurtbox of characters, even when it looks like they occupy that space.\n\nMost anti-air  attacks fall into this category. Because of this, they can lose to air attacks when the opponent is able to get close enough to touch the character's hurtbox. Thus the same 2 attacks can win or lose depending on their spacing and timing. Players need to learn how their attack will behave in different scenarios, decide if the outcome is favorable, then correctly execute.\n\n;Example - Successful Anti Air\n\nFile:GGXRD_antiAir1.png|Sol jumps toward Ky.\nFile:GGXRD_antiAir2.png|Both players attack. Ky's  is upper body invincible during startup, Sol's attack misses.\nFile:GGXRD_antiAir3.png|Ky's  becomes active and above knees invincible. Sol's attack continues to miss as he falls into Ky's attack and gets hit.\n\n;Example - Unsuccessful Anti Air\n\nFile:GGXRD_antiAir1.png|Sol jumps toward Ky.\nFile:GGXRD_antiAir4.png|Both delay attacking, Sol is closer to Ky and the ground compared to the above example.\nFile:GGXRD_antiAir5.png|Sol's  is now low enough to the ground to hit Ky out of the startup of his .\n\n;Example - Low Profile\n\nFile:GGXRD_lowProfile1.png|Sol sweep can low profile under K"
+    },
+    {
+      "name": "Activation Range",
+      "level": 3,
+      "text": "thumb|Unforgiving activation ranges can sometimes make seemingly clean hits not connect, especially on larger characters. The above example is a whiff.\nSome select moves are incapable of hitting an opponent even if the hitbox intersects them, if the attack is a certain distance away. This generally prevents these attacks working on extended hurtboxes from ranges they would otherwise whiff, or to prevent hits from abnormal positions (such as a cross-up attack hitting from same-side).\n\nIt should be noted that distance is based on a character's (or projectile's) center, this means some activation ranges can make moves functionally shorter range than its hitbox would suggest against large characters, such as . Additionally, they can be set to restrict moves hitting behind and below a character.\n\nIf a move is outside its Activation Range on either the X or Y axis, the hitboxes are functionally disabled, meaning it cannot hit, clash, or trigger on-hit cancels."
+    },
+    {
+      "name": "Attack Types",
+      "level": 2,
+      "text": "Attacks come in three broad categories in Guilty Gear that define how they can interact with other attacks."
+    },
+    {
+      "name": "Strike",
+      "level": 3,
+      "text": "Strikes are the most common form of attack in the game like punches, kicks, and sword slashes. \nBasically any standard attack is probably a strike. Strikes can clash with other strikes, but not with projectiles and throws. There are rare attacks that are exceptions to these rules, such as  , which cannot clash with strikes."
+    },
+    {
+      "name": "Strike Clash",
+      "level": 4,
+      "text": "thumb|\nA clash happens when you and your opponent's attacks hit each other in a way that both attacks are nullified.\n:There are two ways strike clashes happen:\n* Disjointed hitboxes hit each other (see here for a more detailed visual example).\n* Two of the following normals hit each other even if the hitboxes are not disjointed: , , jumping  or jumping .  , , and  are exceptions to this rule.\n\nDuring a strike clash, that hit is nullified, characters are in hitstop for 17 frames, gain 10% Tension, and can cancel into:\n*Any attack\n*If the attack is jump cancelable, then jump.\n*Ground clashes can cancel into forward run and air clashes can cancel into forward air dash.\n**Canceling air clashes into air  jumps and air dashes requires that air option be available.\n**For example, you can not cancel an air clash into an air jump if you have already air jumped prior to the clash.\n*Faultless Defense\nWhen clashes happen either the players are unable to react to the clash because it is unexpected, or they understand how the attacks interact well enough to intentionally cause the clash to cancel out the opponent's attack, then retaliate with their own!"
+    },
+    {
+      "name": "Projectile",
+      "level": 3,
+      "text": "Projectiles are attacks that are entities independent of the attacker, like  . Projectiles often have seemingly strange and inconsistent properties. Some moves that would appear to be projectiles, like  , are actually not. Additionally, many moves that you would not expect to be projectiles, like  , in fact are. Lastly, not all moves that are projectiles can clash with other projectiles."
+    },
+    {
+      "name": "Projectile Clash",
+      "level": 4,
+      "text": "Each projectile has a clash level. When two projectiles of equal level clash, each projectile will lose one hit (i.e. a 3 hit projectile will become a 2 hit projectile, and a 1 hit projectile disappears). Higher level projectiles will nullify lower level projectiles without losing any hits.\nThere are two caveats when equal level projectiles clash: Firstly, projectiles travel fast enough that they will only clash a few times before moving past each other, and neither will truly \"win\". Secondly, in rare instances the number of hits a projectile can clash with are not equal to the number of hits that projectile will have on hit or block.   is a good example, as it can have as many as five hits, but can only clash up to three times.\n\nProjectiles that are Clash Level 5 are a bit weird: they can clash and destroy lower level projectiles but cannot clash with other Clash Level 5 projectiles. \n\nSome strikes that are intended to nullify projectiles like   have strike clashboxes that determine their interactions with projectiles. These moves clash with other projectiles in basically the same manner as projectiles would but are not in themselves projectiles."
+    },
+    {
+      "name": "Throw",
+      "level": 3,
+      "text": "Throws are short ranged unblockable attacks that temporarily turn both characters invincible before dealing damage to the opponent.\nThrow interactions are described in more detail here."
+    },
+    {
+      "name": "Other",
+      "level": 3,
+      "text": "Attacks from Eddie ( shadow) and   are in their own unique category as strike attacks that can not clash. \nEddie is also surrounded by a hurtbox, so he can be hit by strikes and projectiles (but not throws)."
+    },
+    {
+      "name": "Taunts and Respects",
+      "level": 2,
+      "text": "for Taunt or  for Respect\nthumb|right|250x250px\n\nBoth Taunts and Respects can be canceled into any action besides movement and proximity guard (Faultless Defense and Instant Faultless Defense are still possible), starting from 1 second into the animation for Respects and 2 seconds into the animation for Taunts. They can be used to give a false sense of vulnerability as your opponent may be lured into attacking.\n\nPerforming a Taunt will raise the opponent's Tension by 10%."
+    },
+    {
+      "name": "Navigation",
+      "level": 2,
+      "text": ""
+    }
+  ],
+  "visual_classes": {
+    "Red RC": "빨간 충격파 (히트 후 로망캔슬)",
+    "Yellow RC": "노란 충격파, 상대 느려짐 (자기 기술 중 발동)",
+    "Purple RC": "보라 충격파 (기술 헛쳤을 때 로망캔슬)",
+    "Blue RC": "파란 충격파 (중립 로망캔슬)",
+    "Gold Burst": "금색 폭발, 중립에서 발동(공격형 버스트)",
+    "Blue Burst": "파란 폭발, 피격/가드 중 탈출(방어형 버스트)",
+    "Counter Blitz": "패링/블리츠 섬광",
+    "Deflect Shield": "가드 중 발동(P/K+D), 공격 쳐내는 방어 섬광/리플렉트",
+    "Counter Hit": "COUNTER 노란 글자 + 슬로모 (카운터히트 성립)",
+    "Overdrive": "초필살기 컷인/암전 연출"
+  }
+}
