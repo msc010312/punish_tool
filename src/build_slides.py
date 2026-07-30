@@ -149,12 +149,13 @@ def build(audio: bool) -> str:
     for i, (jp, ro) in enumerate(lines):
         voices += f'<div class="voice"><div class="jp">{jp}</div><div class="ro">{ro}</div>{_player(A[i])}</div>'
 
-    # 한국어 기반모델 음성(다화자 평균 · Epoch 29) — 발음/G2P 검증용
-    ko_lines = ["안녕하세요, 반갑습니다.", "볼케닉 바이퍼는 육 프레임 발동이야.",
-                "그딴 걸로 날 이길 수 있을 거 같나?", "삼일 전에 배가 고팠다."]
-    ko_voices = ""
-    for i, t in enumerate(ko_lines):
-        ko_voices += f'<div class="voice"><div class="jp">{t}</div>{_player(KO[i])}</div>'
+    # 한국어 솔 음성(파인튜닝 Epoch 30) — 목표 결과물
+    SOLKO = [audio_uri(f"solko{i}.mp3") for i in range(4)] if audio else [None] * 4
+    solko_lines = ["그쪽 근황부터 말해봐. 알고 있다면 말이지.", "볼케닉 바이퍼는 육 프레임 발동이야.",
+                   "그딴 걸로 날 이길 수 있을 거 같나?", "가드하면 불리하니까 조심해."]
+    solko_voices = ""
+    for i, t in enumerate(solko_lines):
+        solko_voices += f'<div class="voice"><div class="jp">{t}</div>{_player(SOLKO[i])}</div>'
 
     S = []
     # 00 타이틀
@@ -287,14 +288,15 @@ def build(audio: bool) -> str:
         '<div class="stat"><div class="v">1024</div><div class="l">KLUE-RoBERTa<br>히든 차원</div></div></div>'
         f'<img class="fig" src="{WARM}" alt="웜스타트 91% 전이" style="max-width:760px;margin-top:.4rem">'))
 
-    # 11B 한국어 기반모델 진행 + 음성 데모
+    # 11B 한국어 솔 음성 — 파인튜닝 결과
     S.append(slide(0,
-        '<div class="shead"><span class="snum">11·</span><h2>한국어 음성 — 기반모델 진행</h2></div>'
-        '<p class="sub">AI Hub 13.2시간으로 웜스타트 학습. <b class="hl">Epoch 29</b> 도달 — 한국어 발음·G2P·억양 검증됨'
-        '(연음·경음화·구개음화 정상). 아래는 <b class="hl">기반모델 다화자 평균 목소리</b>(솔 파인튜닝 전).</p>'
-        f'<div class="voices">{ko_voices}</div>'
-        '<p class="muted" style="margin-top:.8rem">다음 단계: 이 기반모델 위에 한국어 솔 음성 파인튜닝 → 코치 응답 실시간 TTS 배선. '
-        'G2P 예: <code>삼일전 → 사밀전</code>, <code>발동 → 발똥</code>.</p>'))
+        '<div class="shead"><span class="snum">11·</span><h2>한국어 솔 음성 — 파인튜닝</h2></div>'
+        '<p class="sub">AI Hub 기반모델(Epoch 29)에서 <b class="hl">분기</b> → 솔 KO 215대사로 파인튜닝(<b class="hl">Epoch 30</b>). '
+        '화자 임베딩(emb_g)만 새로 초기화, 한국어 지식(발음·G2P·억양)은 전이. 아래는 <b class="hl">실제 합성된 한국어 솔 목소리</b>.</p>'
+        f'<div class="voices">{solko_voices}</div>'
+        '<p class="muted" style="margin-top:.8rem">한국어·일본어 목소리 둘 다 확보(GUI 토글로 전환). '
+        '남은 것: 코치 응답 실시간 TTS 배선 · 기반모델 추가 학습 후 재파인튜닝(품질 향상). '
+        'G2P 예(발음 변환): <code>발동 → 발똥</code>(경음화), <code>삼일전 → 사밀전</code>(연음).</p>'))
 
     # 12 인프라 · 결과
     S.append(slide(12,
@@ -308,7 +310,8 @@ def build(audio: bool) -> str:
         '<tr><td>3D 아바타·언어 토글</td><td><span class="st done">동작</span></td></tr>'
         '<tr><td>JP 솔 음성</td><td><span class="st done">완료</span></td></tr>'
         '<tr><td>KO 기반모델</td><td><span class="st done">Epoch 29</span></td><td class="muted">발음 검증 · 재개 가능</td></tr>'
-        '<tr><td>KO 솔 파인튜닝·코치 TTS</td><td><span class="st plan">예정</span></td></tr>'
+        '<tr><td>KO 솔 음성 (파인튜닝)</td><td><span class="st done">Epoch 30</span></td><td class="muted">한국어 솔 목소리 합성</td></tr>'
+        '<tr><td>코치 응답 실시간 TTS 배선</td><td><span class="st plan">예정</span></td></tr>'
         '<tr><td>통짜 배포</td><td><span class="st done">동작</span></td></tr>'
         '</tbody></table></div></div>'))
 
