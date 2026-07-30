@@ -26,6 +26,7 @@ plt.rcParams["axes.unicode_minus"] = False
 # 보고서 팔레트
 GROUND = "#14100e"; PANEL = "#1d1713"; LINE = "#3a2c22"
 EMBER = "#e8482a"; MOLTEN = "#f2a63d"; ASH = "#9b8b7d"; BONE = "#ece2d3"; JADE = "#63c39a"
+WHITE = "#ffffff"
 
 
 def _style(ax, fig):
@@ -33,8 +34,8 @@ def _style(ax, fig):
     ax.set_facecolor(GROUND)
     for s in ax.spines.values():
         s.set_color(LINE)
-    ax.tick_params(colors=ASH, labelsize=11)
-    ax.title.set_color(BONE)
+    # 눈금 라벨과 축 사이 간격 확보(보기 편하게)
+    ax.tick_params(colors=ASH, labelsize=11, pad=8)
 
 
 def chart_ragas(summary: dict):
@@ -61,9 +62,9 @@ def chart_ragas(summary: dict):
     ax.set_yticks(list(y)); ax.set_yticklabels(labels, fontsize=10.5)
     ax.set_xlim(0, 1.12); ax.set_xticks([0, .25, .5, .75, 1.0])
     ax.set_title("AI 코치 RAGAS 정렬 평가  (n=17, 로컬 qwen3:8b)", fontsize=14,
-                 fontweight="bold", pad=14, loc="left")
+                 fontweight="bold", pad=24, loc="left", color=WHITE)
     ax.grid(axis="x", color=LINE, lw=.6, zorder=0)
-    fig.tight_layout()
+    fig.tight_layout(pad=1.8)
     p = OUT / "eval_ragas.png"
     fig.savefig(p, facecolor=GROUND, bbox_inches="tight"); plt.close(fig)
     print("저장:", p)
@@ -87,12 +88,12 @@ def chart_faith_by_cat(rows: list):
     ax.set_xticks(list(x)); ax.set_xticklabels([names[c] for c in cats], fontsize=11)
     ax.set_ylim(0, max(total) + 1)
     ax.set_title("카테고리별 충실도 — 단위 수치 환각 여부", fontsize=13.5,
-                 fontweight="bold", pad=12, loc="left")
+                 fontweight="bold", pad=24, loc="left", color=WHITE)
     leg = ax.legend(loc="upper right", frameon=False, fontsize=10)
     for t in leg.get_texts():
         t.set_color(BONE)
     ax.grid(axis="y", color=LINE, lw=.6, zorder=0)
-    fig.tight_layout()
+    fig.tight_layout(pad=1.8)
     p = OUT / "eval_faith_by_cat.png"
     fig.savefig(p, facecolor=GROUND, bbox_inches="tight"); plt.close(fig)
     print("저장:", p)
@@ -109,13 +110,13 @@ def chart_warmstart():
     ax.set_xlim(0, 100); ax.set_ylim(-.5, .5); ax.set_yticks([])
     ax.set_xticks([0, 25, 50, 75, 100]); ax.set_xticklabels(["0", "25", "50", "75", "100%"])
     ax.set_title("JP-Extra → 한국어 웜스타트  (73.2M 파라미터 중 66.6M 전이)",
-                 fontsize=13, fontweight="bold", pad=12, loc="left")
+                 fontsize=13, fontweight="bold", pad=24, loc="left", color=WHITE)
     leg = ax.legend(loc="lower center", bbox_to_anchor=(.5, -.55), ncol=2, frameon=False, fontsize=10)
     for t in leg.get_texts():
         t.set_color(BONE)
     for s in ax.spines.values():
         s.set_visible(False)
-    fig.tight_layout()
+    fig.tight_layout(pad=1.8)
     p = OUT / "warmstart.png"
     fig.savefig(p, facecolor=GROUND, bbox_inches="tight"); plt.close(fig)
     print("저장:", p)
@@ -134,9 +135,9 @@ def chart_latency(rows: list):
     ax.set_xlabel("응답 생성 시간 (초)", color=ASH, fontsize=11)
     ax.set_ylabel("문항 수", color=ASH, fontsize=11)
     ax.set_title("응답 지연 분포  (※ 학습 GPU 동시 부하 하 · qwen3 사고형)",
-                 fontsize=12.5, fontweight="bold", pad=12, loc="left")
+                 fontsize=12.5, fontweight="bold", pad=24, loc="left", color=WHITE)
     ax.grid(axis="y", color=LINE, lw=.6, zorder=0)
-    fig.tight_layout()
+    fig.tight_layout(pad=1.8)
     p = OUT / "latency.png"
     fig.savefig(p, facecolor=GROUND, bbox_inches="tight"); plt.close(fig)
     print("저장:", p)

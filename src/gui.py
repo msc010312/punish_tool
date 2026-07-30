@@ -310,13 +310,38 @@ class Main(QMainWindow):
         self.avatar = make_avatar(height=300)
         body = QHBoxLayout(); body.setSpacing(12)
         if self.avatar.active:
-            av_col = QVBoxLayout(); av_col.addStretch(1); av_col.addWidget(self.avatar)
+            av_col = QVBoxLayout(); av_col.addStretch(1)
+            av_col.addLayout(self._voice_lang_toggle())   # 아바타 위 음성 언어 전환
+            av_col.addWidget(self.avatar)
             body.addLayout(av_col)
         body.addLayout(self.chat_stack, 1)
 
         lay = QVBoxLayout(); lay.setContentsMargins(80, 28, 80, 28); lay.setSpacing(16)
         lay.addLayout(body, 1); lay.addWidget(inbar)
         w = QWidget(); w.setLayout(lay); return w
+
+    def _voice_lang_toggle(self):
+        """아바타 위 음성 언어 전환(한국어/일본어). 코치 답변 TTS의 목소리를 결정한다.
+        솔의 일본어는 원본 성우 학습 완료, 한국어는 기반모델 학습 후 연결."""
+        from PySide6.QtWidgets import QButtonGroup
+        self.voice_lang = "KO"                 # 기본: 한국어(대상 사용자)
+        row = QHBoxLayout(); row.setSpacing(0); row.setAlignment(Qt.AlignHCenter)
+        row.addWidget(QLabel("🔊"))
+        self.lang_btns = {}
+        grp = QButtonGroup(self); grp.setExclusive(True)
+        for code, label in (("KO", "한국어"), ("JP", "日本語")):
+            b = QPushButton(label); b.setObjectName("seg"); b.setCheckable(True)
+            b.setChecked(code == self.voice_lang)
+            b.clicked.connect(lambda _=False, c=code: self._set_voice_lang(c))
+            grp.addButton(b); self.lang_btns[code] = b; row.addWidget(b)
+        return row
+
+    def _set_voice_lang(self, code: str):
+        """음성 언어 상태 변경. 코치 응답 TTS가 이 값으로 목소리(솔 JP/KO)를 고른다."""
+        self.voice_lang = code
+        for c, b in self.lang_btns.items():
+            b.setChecked(c == code)
+        self.status.setText(f"코치 음성: {'한국어' if code == 'KO' else '日本語'}")
 
     def _analysis_tab(self):
         # 좌측: 요약 카드 + 주요 이벤트
