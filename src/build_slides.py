@@ -135,15 +135,26 @@ def slide(n, body, cls=""):
 
 def build(audio: bool) -> str:
     A = [audio_uri(f"s{i}.mp3") for i in range(4)] if audio else [None] * 4
+    KO = [audio_uri(f"ko{i}.mp3") for i in range(4)] if audio else [None] * 4
+
+    def _player(uri):
+        return (f'<audio controls preload="none" src="{uri}"></audio>' if audio
+                else '<div class="muted" style="border:1px dashed var(--line);padding:.4rem .6rem">▶ 로컬 발표본에서 재생</div>')
+
     voices = ""
     lines = [("そっちの近況が先だ。", "sotchi no kinkyō ga saki da"),
              ("くたばりやがれ。", "kutabari yagare"),
              ("俺の獲物に手を出すな。", "ore no emono ni te o dasu na"),
              ("まだ終わってねえぞ。", "mada owatte nee zo")]
     for i, (jp, ro) in enumerate(lines):
-        player = (f'<audio controls preload="none" src="{A[i]}"></audio>' if audio
-                  else '<div class="muted" style="border:1px dashed var(--line);padding:.4rem .6rem">▶ 로컬 발표본에서 재생</div>')
-        voices += f'<div class="voice"><div class="jp">{jp}</div><div class="ro">{ro}</div>{player}</div>'
+        voices += f'<div class="voice"><div class="jp">{jp}</div><div class="ro">{ro}</div>{_player(A[i])}</div>'
+
+    # 한국어 기반모델 음성(다화자 평균 · Epoch 29) — 발음/G2P 검증용
+    ko_lines = ["안녕하세요, 반갑습니다.", "볼케닉 바이퍼는 육 프레임 발동이야.",
+                "그딴 걸로 날 이길 수 있을 거 같나?", "삼일 전에 배가 고팠다."]
+    ko_voices = ""
+    for i, t in enumerate(ko_lines):
+        ko_voices += f'<div class="voice"><div class="jp">{t}</div>{_player(KO[i])}</div>'
 
     S = []
     # 00 타이틀
@@ -276,6 +287,15 @@ def build(audio: bool) -> str:
         '<div class="stat"><div class="v">1024</div><div class="l">KLUE-RoBERTa<br>히든 차원</div></div></div>'
         f'<img class="fig" src="{WARM}" alt="웜스타트 91% 전이" style="max-width:760px;margin-top:.4rem">'))
 
+    # 11B 한국어 기반모델 진행 + 음성 데모
+    S.append(slide(0,
+        '<div class="shead"><span class="snum">11·</span><h2>한국어 음성 — 기반모델 진행</h2></div>'
+        '<p class="sub">AI Hub 13.2시간으로 웜스타트 학습. <b class="hl">Epoch 29</b> 도달 — 한국어 발음·G2P·억양 검증됨'
+        '(연음·경음화·구개음화 정상). 아래는 <b class="hl">기반모델 다화자 평균 목소리</b>(솔 파인튜닝 전).</p>'
+        f'<div class="voices">{ko_voices}</div>'
+        '<p class="muted" style="margin-top:.8rem">다음 단계: 이 기반모델 위에 한국어 솔 음성 파인튜닝 → 코치 응답 실시간 TTS 배선. '
+        'G2P 예: <code>삼일전 → 사밀전</code>, <code>발동 → 발똥</code>.</p>'))
+
     # 12 인프라 · 결과
     S.append(slide(12,
         '<div class="shead"><span class="snum">12</span><h2>인프라 · 결과 · 현황</h2></div>'
@@ -287,7 +307,8 @@ def build(audio: bool) -> str:
         '<tr><td>AI 코치 (RAG·가드)</td><td><span class="st done">동작</span></td></tr>'
         '<tr><td>3D 아바타·언어 토글</td><td><span class="st done">동작</span></td></tr>'
         '<tr><td>JP 솔 음성</td><td><span class="st done">완료</span></td></tr>'
-        '<tr><td>KO 기반모델</td><td><span class="st run">학습중</span></td></tr>'
+        '<tr><td>KO 기반모델</td><td><span class="st done">Epoch 29</span></td><td class="muted">발음 검증 · 재개 가능</td></tr>'
+        '<tr><td>KO 솔 파인튜닝·코치 TTS</td><td><span class="st plan">예정</span></td></tr>'
         '<tr><td>통짜 배포</td><td><span class="st done">동작</span></td></tr>'
         '</tbody></table></div></div>'))
 
@@ -340,6 +361,9 @@ def build(audio: bool) -> str:
         '아바타는 게임 모델 추출, 음성은 게임 내 음성 기반 합성(연구·교육용).</p>',
         "title"))
 
+    # 슬라이드 id를 위치(index) 기준으로 재할당 — 표시번호(snum)와 무관하게 dots/nav와 정렬
+    import re as _re
+    S = [_re.sub(r'id="s\d+"', f'id="s{i}"', s, count=1) for i, s in enumerate(S)]
     dots = "".join(f'<a href="#s{i}" data-i="{i}"></a>' for i in range(len(S)))
     body = "".join(S)
     nav = (f'<div class="dots">{dots}</div>'
