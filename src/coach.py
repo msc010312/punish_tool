@@ -34,8 +34,7 @@ PERSONA = (
 # 말투 few-shot — 파인튜닝 없이 톤을 고정하는 예시 대화(시스템에 내장).
 # 규칙 설명보다 예시가 소형 모델 톤 유도에 훨씬 효과적(실측: v1~v4 FT보다 안전).
 STYLE_EXAMPLES = (
-    "말투 예시(아래는 '톤' 참고용. 예시 문장을 그대로 답으로 베끼지 말고 매번 네 말로 "
-    "새로 말해라. 문장은 완결형으로, 끝 마침표는 생략 — 채팅 말투):\n"
+    "말투 예시. 아래 A들의 '톤'만 참고하고, 문장은 매번 네 말로 새로 만들어라:\n"
     "Q: 안녕\n"
     "A: 왔냐. 오늘은 뭘 잡아볼까\n"
     "Q: 나 요즘 실력이 안 늘어\n"
@@ -44,18 +43,16 @@ STYLE_EXAMPLES = (
     "A: 그래, 가서 이기고 와\n"
     "Q: 콤보를 자꾸 떨어뜨려\n"
     "A: 눈이 문제야. 히트 확인하고 넣는 연습부터 천천히 해봐\n"
-    "Q: 솔 5K 발생 몇 프레임이야? (참고 데이터에 '발생 5' 있음)\n"
+    "Q: 솔 5K 발생 몇 프레임이야?\n"
     "A: 5프레임이야. 빠르니까 견제로 써\n"
     "Q: 나 이번에 랭크 올랐다\n"
     "A: 오, 올랐네. 방심하지 말고 다음 것도 따라\n"
-    "Q: 나고리유키 피 게이지 최대치 몇이야? (참고 데이터 없음)\n"
+    "Q: 나고리유키 피 게이지 최대치 몇이야?\n"
     "A: 그 수치는 내 데이터에 없어서 정확히는 몰라\n"
-    "Q: 5K에서 6S가 가끔 안 이어져. 왜? (참고 데이터에 개틀링 규칙·양 기술 정보 있음)\n"
+    "Q: 5K에서 6S가 가끔 안 이어져. 왜?\n"
     "A: 루트 자체는 합법이야 — 5K는 커맨드노말로 개틀링 되니까. 안 이어지는 건 대부분 "
     "거리 문제다. 끝거리에서 맞히면 푸시백 때문에 6S가 닿기 전에 밀려나. 상대가 앉아 "
-    "있으면 타점 때문에 헛치기도 해. 가까이 붙어 맞혔을 때만 이어봐라.\n"
-    "('왜/이유' 질문엔 이렇게 참고 데이터의 근거를 구체적으로 풀어서 2~4문장으로 설명해라. "
-    "뭉뚱그려 '연습해라'로 끝내지 마라.)"
+    "있으면 타점 때문에 헛치기도 해. 가까이 붙어 맞혔을 때만 이어봐라"
 )
 
 # 자기 정체·설정 질문("너 누구야" 등)에 지어내지 않게 하는 공식 설정 근거.
@@ -92,7 +89,10 @@ RULES_CHAT = (
     "⑤ 한 답변은 최대 6문장. 한국어, 반말. 답은 완전한 문장으로 자연스럽게 말하고, "
     "한 단어짜리 마무리 추임새를 덧붙이지 마라. "
     "직전 턴에 했던 말이나 인사를 그대로 되풀이하지 마라 — 매 질문에 그 질문 내용으로 답해라. "
-    "상대가 바로 알아듣게 구체적으로."
+    "상대가 바로 알아듣게 구체적으로. "
+    "⑥ 절대 답변에 '(짧고 굵게)' '(반말로)' 같은 말투 지시나 괄호 주석을 쓰지 마라. "
+    "지시는 속으로 따르되 답에는 오직 코치가 실제로 할 말만 써라. "
+    "⑦ '왜/이유'를 물으면 뭉뚱그려 '연습해라'로 끝내지 말고, 근거를 2~4문장으로 구체적으로 풀어라."
 )
 
 
@@ -302,6 +302,41 @@ def _gather_context(question: str, tl: dict | None, chars: dict | None) -> str:
 _NUM_CLAIM = None   # 지연 컴파일
 
 
+# 답변 끝에 새는 말투 지시 괄호(few-shot 흉내). 규칙 ⑥이 1차 차단, 이게 결정론적 안전망.
+_META_KW = ("짧", "굵게", "반말", "간결", "톤", "말투", "설명해라", "질문엔",
+            "참고 데이터", "예시", "채팅 말투", "완결형", "베끼지")
+_META_PAREN = None
+
+
+def _strip_meta_paren(text: str) -> str:
+    """끝에 붙은 '(짧고 굵게, 반말로…)' 같은 말투 지시 괄호를 제거."""
+    global _META_PAREN
+    import re as _re
+    if _META_PAREN is None:
+        _META_PAREN = _re.compile(r"[\(（]([^()（）]{0,80})[\)）]\s*$")
+    out = text
+    while True:
+        m = _META_PAREN.search(out)
+        if not m or not any(k in m.group(1) for k in _META_KW):
+            break
+        out = out[:m.start()].rstrip()
+    return out
+
+
+def _safe_upto(full: str) -> int:
+    """스트리밍 중 '안전하게 방출 가능한' 길이. 끝의 미완결/의심 괄호는 보류한다."""
+    op = max(full.rfind("("), full.rfind("（"))
+    if op < 0:
+        return len(full)
+    tail = full[op:]
+    # 괄호가 아직 안 닫혔으면 보류(말투 지시일 수 있음)
+    if ")" not in tail and "）" not in tail:
+        return op
+    # 닫힌 괄호: 말투 지시면 잘라내고(op까지), 아니면 전체 방출
+    stripped = _strip_meta_paren(full)
+    return len(stripped) if len(stripped) < len(full) else len(full)
+
+
 def _unverified_numbers(answer: str, ctx: str, question: str) -> list[str]:
     """답변 속 '단위 붙은 수치 주장'(N프레임/N뎀/N데미지/NF) 중 근거·질문에 없는 것.
     기술표기(5K, 236S 등)는 단위가 아니므로 안 걸린다 — 오탐 방지를 위해
@@ -349,10 +384,18 @@ def chat_stream(history: list[dict], tl: dict | None, chars: dict | None,
     msgs.append({"role": "user", "content": user_msg})
     try:
         parts = []
+        sent = 0                     # 이미 방출한 문자 수(꼬리 보류용)
         for piece in _stream_chat(msgs, temperature=0.75):  # 다양성(동일답 반복 방지)
             parts.append(piece)
-            yield piece
-        bad = _unverified_numbers("".join(parts), ctx, question)
+            full = "".join(parts)
+            safe = _safe_upto(full)  # 말투 지시 괄호는 확정 전까지 보류
+            if safe > sent:
+                yield full[sent:safe]
+                sent = safe
+        full = _strip_meta_paren("".join(parts))
+        if len(full) > sent:         # 남은 꼬리(괄호 제거 반영) 방출
+            yield full[sent:]
+        bad = _unverified_numbers(full, ctx, question)
         if bad:
             # LLM이 근거 밖 수치를 말함 -> 결정론적 정정(모델 신뢰 안 함, 코드가 보증)
             yield ("\n\n⚠ 위에 나온 " + ", ".join(dict.fromkeys(bad)) +
