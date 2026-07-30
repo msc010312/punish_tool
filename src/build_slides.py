@@ -389,7 +389,12 @@ def build(audio: bool) -> str:
     return HEAD + nav + body + js
 
 
-for fn, aud in (("프로젝트_최종보고서.html", True), ("프로젝트_최종보고서_공개용.html", False)):
-    html = build(aud)
-    io.open(ROOT / "제출물" / fn, "w", encoding="utf-8").write(html)
-    print(f"{fn}: {round(len(html)/1024,1)}KB")
+# 전체본(음성 포함) → 제출물/ : 과제 제출용 정본. .gitignore로 저장소 제외(합성음성).
+full = build(True)
+io.open(ROOT / "제출물" / "프로젝트_최종보고서.html", "w", encoding="utf-8").write(full)
+print(f"제출물/프로젝트_최종보고서.html(음성포함): {round(len(full)/1024,1)}KB")
+
+# 공개본(음성 제외) → 저장소 루트 : GitHub에서 브라우저로 보는 발표자료 미리보기.
+pub = build(False)
+io.open(ROOT / "프로젝트_발표자료.html", "w", encoding="utf-8").write(pub)
+print(f"프로젝트_발표자료.html(공개·저장소용): {round(len(pub)/1024,1)}KB")
