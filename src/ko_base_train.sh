@@ -12,6 +12,9 @@
 cd "$(dirname "$0")/.."
 SBV2="tts/sbv2"
 export PYTHONIOENCODING=utf-8 PYTHONUTF8=1
+# 12GB GPU에서 가변 길이 배치가 카싱 할당자를 단편화시켜 수십 스텝 후 near-OOM 스래싱을
+# 일으킨다(GPU 99%인데 60W대·무진행). expandable_segments가 이 단편화를 해소한다.
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 mkdir -p tts/logs
 echo "[$(date '+%F %T')] KO 기반모델 학습 시작/재개"
 LATEST=$(ls -1 "$SBV2/Data/base_ko/models/"G_*.pth 2>/dev/null | tail -1)
@@ -19,5 +22,5 @@ LATEST=$(ls -1 "$SBV2/Data/base_ko/models/"G_*.pth 2>/dev/null | tail -1)
 ( cd "$SBV2" && ../sbv2_env/Scripts/python.exe _run_noworker.py train_ms_jp_extra.py \
     --config Data/base_ko/config.json --model Data/base_ko \
     --assets_root model_assets --not_use_custom_batch_sampler ) \
-    >> tts/logs/phase2_ko_base_train.log 2>&1
+    > tts/logs/phase2_ko_base_train.log 2>&1
 echo "[$(date '+%F %T')] 학습 종료 (exit $?)"

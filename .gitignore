@@ -87,3 +87,6 @@ avatar3d/GLTFLoader.js
 *.png
 *.jpg
 !app.ico
+# 제출물 차트 이미지는 포함(게임 텍스처 아님)
+!제출물/이미지/
+!제출물/이미지/*.png
