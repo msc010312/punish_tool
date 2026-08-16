@@ -88,6 +88,19 @@ def main() -> int:
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--speaker-id", type=int, default=0)
     ap.add_argument("--noise", type=float, default=0.6)
+    ap.add_argument("--noise-w", type=float, default=0.5,
+                    help="SDP 노이즈(음소 길이 흔들림). 낮추면 마찰음/자음이 덜 번짐. "
+                         "솔 KO 확정값 0.5(ㅆ 번짐 완화)")
+    ap.add_argument("--sdp-ratio", type=float, default=0.2,
+                    help="DP↔SDP 혼합비. 낮추면 템포가 균일(덜 흔들림)")
+    ap.add_argument("--intonation-scale", type=float, default=1.0,
+                    help="억양 폭. >1 억양 강조(덜 밋밋), <1 평탄")
+    ap.add_argument("--pitch-scale", type=float, default=1.0,
+                    help="피치 배율(음높이). 1.0 유지 권장")
+    ap.add_argument("--style", default="Neutral",
+                    help="감정 스타일(Neutral/Battle/Story 등 config style2id)")
+    ap.add_argument("--style-weight", type=float, default=1.0,
+                    help="감정 강도. 클수록 스타일 평균에서 더 벌어짐(1~5)")
     ap.add_argument("--length", type=float, default=1.0)
     args = ap.parse_args()
 
@@ -120,7 +133,11 @@ def main() -> int:
     lang = Languages[args.lang]
     for i, text in enumerate(args.texts):
         sr, audio = model.infer(text=text, language=lang, speaker_id=args.speaker_id,
-                                noise=args.noise, length=args.length)
+                                noise=args.noise, noise_w=args.noise_w,
+                                sdp_ratio=args.sdp_ratio, length=args.length,
+                                intonation_scale=args.intonation_scale,
+                                pitch_scale=args.pitch_scale,
+                                style=args.style, style_weight=args.style_weight)
         out = out_dir / f"sample_{i:02d}.wav"
         sf.write(str(out), audio, sr)
         print(f"  [{i}] {out.name}  ({len(audio) / sr:.2f}s)  <- {text}")

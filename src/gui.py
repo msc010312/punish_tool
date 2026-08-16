@@ -11,7 +11,9 @@ gui.py  —  격투게임 프레임 분석기 GUI (PySide6)
 """
 
 from __future__ import annotations
+import itertools
 import sys
+import tempfile
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QThread, QObject, Signal, QUrl, QTimer
@@ -115,6 +117,24 @@ class CoachWorker(QObject):
         except Exception as e:
             self.chunk.emit(f"(코치 오류: {e})")
         self.done.emit("".join(buf))
+
+
+# ─────────────────────────────────────────────── 음성 합성 워커
+class VoiceWorker(QObject):
+    """tts_server에 합성을 요청(블로킹 HTTP)해 wav bytes를 돌려준다. UI 스레드 밖에서."""
+    done = Signal(bytes)                          # done(wav bytes; 실패 시 빈 bytes)
+
+    def __init__(self, text, emotion, lang):
+        super().__init__(); self.text, self.emotion, self.lang = text, emotion, lang
+
+    def run(self):
+        data = b""
+        try:
+            import tts_client
+            data = tts_client.synth(self.text, self.emotion, self.lang) or b""
+        except Exception:
+            data = b""
+        self.done.emit(data)
 
 
 # ─────────────────────────────────────────────── 분석 워커
@@ -233,14 +253,28 @@ class Main(QMainWindow):
                 llm_server.ensure()
         except Exception:
             pass
+        # 솔 음성 합성 서버(sbv2_env) 예열 — 첫 코칭 때 로딩이 끝나 있게. 없으면 무음 폴백.
+        try:
+            import tts_client
+            if tts_client.available():
+                tts_client.ensure()
+        except Exception:
+            pass
 
         self.player = QMediaPlayer(); self.audio = QAudioOutput(); self.player.setAudioOutput(self.audio)
-        self.audio.setMuted(True)   # 기본 음소거 (스피커 버튼으로 토글)
+        self.audio.setMuted(True)   # 분석 영상은 항상 음소거(요구사항). 코치 목소리는 별도 출력.
         self.video_w = QVideoWidget(); self.player.setVideoOutput(self.video_w)
         self.player.positionChanged.connect(self.on_position)
         self.player.durationChanged.connect(self.on_duration)
         self.player.mediaStatusChanged.connect(self._on_media)
         self._primed = False
+
+        # 코치 목소리 전용 플레이어(분석 영상과 분리). 이게 실제로 솔 목소리를 낸다.
+        self.voice_player = QMediaPlayer(); self.voice_audio = QAudioOutput()
+        self.voice_player.setAudioOutput(self.voice_audio)
+        self.voice_player.mediaStatusChanged.connect(self._on_voice_media)
+        self._voice_seq = itertools.count()   # 임시 wav 파일명 회전(윈도 파일락 회피)
+        self._pending_emote = None
 
         self.setCentralWidget(self._build())
         self.setStyleSheet(QSS)
@@ -546,8 +580,9 @@ class Main(QMainWindow):
 
     # ---------- 재생 ----------
     def toggle_mute(self):
-        m = not self.audio.isMuted()
-        self.audio.setMuted(m)
+        # 분석 영상은 항상 음소거(요구사항). 이 버튼은 코치 목소리를 켜고 끈다.
+        m = not self.voice_audio.isMuted()
+        self.voice_audio.setMuted(m)
         self.mute_btn.setIcon(self.style().standardIcon(
             QStyle.SP_MediaVolumeMuted if m else QStyle.SP_MediaVolume))
 
@@ -673,6 +708,8 @@ class Main(QMainWindow):
         """코치 스트리밍 시작. mode='opening'(분석직후) | 'chat'(자유대화)."""
         if getattr(self, "_coach_thr", None) and self._coach_thr.isRunning():
             return                         # 코치 응답 중엔 새 요청 무시
+        if getattr(self, "voice_player", None):
+            self.voice_player.stop()       # 이전 발화 중단
         self._chat("코치", "…")
         self._coach_buf = ""
         self.avatar.set_state("think")     # 첫 토큰 대기 = 생각 포즈
@@ -718,24 +755,71 @@ class Main(QMainWindow):
         return None
 
     def _coach_done(self, full):
-        """응답 완료 -> 답변 길이만큼 말하기 유지 -> 감정 제스처 -> 대기."""
+        """응답 완료 -> 감정 감지 -> (가능하면)솔 목소리로 발화 + 립싱크 -> 감정 제스처.
+        음성 서버가 없거나 실패하면 글자수 기반 talk 유지로 무음 폴백."""
         if not hasattr(self, "_chat_history"):
             self._chat_history = []
         if full.strip():
             self._chat_history.append({"role": "assistant", "content": full})
-        # 말하기 지속시간: 글자수 비례(읽는 속도 느낌), 1.2~7초
-        hold_ms = int(max(1.2, min(7.0, len(full) * 0.045)) * 1000)
         emote = self._pick_emote(full)
+        self._pending_emote = emote
+        if not self._speak(full, emote or "neutral"):
+            # 무음 폴백: 말하기 지속시간 = 글자수 비례(1.2~7초)
+            hold_ms = int(max(1.2, min(7.0, len(full) * 0.045)) * 1000)
+            QTimer.singleShot(hold_ms, lambda: self._finish_talk(emote))
 
-        def finish():
-            self.avatar.set_state("idle")
-            if emote:
-                if hasattr(self.avatar, "play_emote"):        # 시퀀스 아바타
-                    self.avatar.play_emote(emote)
-                elif hasattr(self.avatar, "page"):            # (구)3D 아바타
-                    self.avatar.page().runJavaScript(
-                        f"window.emote && window.emote('{emote}')")
-        QTimer.singleShot(hold_ms, finish)
+    # ---------- 솔 목소리 발화 ----------
+    def _speak(self, text, emotion) -> bool:
+        """코치 답변을 솔 목소리로 합성·재생 시작. 서버 준비 안됐으면 False(폴백)."""
+        text = (text or "").strip()
+        if not text:
+            return False
+        try:
+            import tts_client
+            if not tts_client.ready():
+                return False
+        except Exception:
+            return False
+        self.voice_player.stop()
+        lang = getattr(self, "voice_lang", "KO")
+        self._voice_thr = QThread()
+        self._voice_wk = VoiceWorker(text, emotion, lang)
+        self._voice_wk.moveToThread(self._voice_thr)
+        self._voice_thr.started.connect(self._voice_wk.run)
+        self._voice_wk.done.connect(self._on_voice_ready)
+        self._voice_wk.done.connect(self._voice_thr.quit)
+        self._voice_thr.start()
+        return True
+
+    def _on_voice_ready(self, data: bytes):
+        """합성 완료 -> 임시 wav 재생 시작. 재생 동안 아바타가 말한다."""
+        if not data:                              # 합성 실패 -> 무음 폴백(짧은 talk)
+            self.avatar.set_state("talk")
+            QTimer.singleShot(1200, lambda: self._finish_talk(self._pending_emote))
+            return
+        p = Path(tempfile.gettempdir()) / f"punish_coach_voice_{next(self._voice_seq)}.wav"
+        try:
+            p.write_bytes(data)
+        except Exception:
+            self._finish_talk(self._pending_emote); return
+        self._voice_wav = p
+        self.avatar.set_state("talk")
+        self.voice_player.setSource(QUrl.fromLocalFile(str(p)))
+        self.voice_player.play()
+
+    def _on_voice_media(self, st):
+        """음성 재생 끝 -> 대기 포즈 + 감정 제스처."""
+        if st == QMediaPlayer.MediaStatus.EndOfMedia:
+            self._finish_talk(self._pending_emote)
+
+    def _finish_talk(self, emote):
+        self.avatar.set_state("idle")
+        if emote:
+            if hasattr(self.avatar, "play_emote"):            # 시퀀스 아바타
+                self.avatar.play_emote(emote)
+            elif hasattr(self.avatar, "page"):                # (구)3D 아바타
+                self.avatar.page().runJavaScript(
+                    f"window.emote && window.emote('{emote}')")
 
     def on_chat_send(self):
         msg = self.chat_in.text().strip()

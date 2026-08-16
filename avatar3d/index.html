@@ -28,6 +28,15 @@ let talkT = 0, talkNext = 0, talkTarget = 0, talkAmp = 0;
 let blinkT = 0, nextBlink = 2.5, blinkDur = 0.14;
 let lidCtl = [], jawCtl = [], eyeCtl = [], eyeDownCtl = [];
 let browInCtl = [], browMidCtl = [], cornerLCtl = [], cornerRCtl = [];
+let lowLidCtl = [], cheekCtl = [], noseCtl = [], upLipCtl = [];   // 아랫눈꺼풀·볼·코·윗입술(공식 표정용)
+let holdMode = false;                                             // 미리보기: 표정 peak 고정
+let armB = {};                                                    // 팔 본(몸동작용): uparm/elbow/wrist + base 회전
+let armLive = null;                                              // 미리보기 슬라이더로 실시간 팔 회전(라디안)
+let thinkBlend = 0;                                             // think 포즈 이징(0=대기 ↔ 1=생각포즈)
+// think(생각) 포즈: 턱에 주먹 + 고개 대각선 갸웃. 스크린샷 보며 보정하는 값.
+let THINK_POSE = { uX:0.61, uY:1.11, uZ:0.17, eX:0.21, eY:1.86, eZ:0.05,
+                   wX:0.0, wY:0.0, wZ:0.0, fist:1.2, thumb:0.8, fAxis:"z",
+                   headPitch:0.08, headYaw:0.13, headRoll:0.14 };
 let chestBone = null, chestBaseRot = null;
 let headBone = null, headBaseQuat = null, headParentWorldQ = null;
 let emoteName = null, emoteT = 0, emoteDur = 0;
@@ -257,6 +266,33 @@ function init() {
     browMidCtl = ctl(["G_mayu_Lmid","G_mayu_Rmid","G_mayu_Lout","G_mayu_Rout"], DOWN);
     cornerLCtl = ctl(["G_mouthside_up_L"], DOWN);
     cornerRCtl = ctl(["G_mouthside_up_R"], DOWN);
+    // 아랫눈꺼풀: 위로 = 올림(미소의 Duchenne·찡그림·깜빡임 시 만남)
+    const UP = new THREE.Vector3(0, 1, 0);
+    const lowLidNames = Object.keys(bones).filter((n) => {
+      const nl = n.toLowerCase();
+      return (nl.includes("eyelid") && nl.includes("low")) ||
+             (n.includes("eyelashShade") && nl.includes("low"));
+    });
+    lowLidCtl = ctl(lowLidNames, UP);
+    cheekCtl  = ctl(["G_cheek_L","G_cheek_R","G_cheekLine_L","G_cheekLine_R"], UP);  // 볼 올림(진짜 미소)
+    noseCtl   = ctl(["G_nose_kobana"], UP);                                          // 콧방울 벌름(분노·기합)
+    upLipCtl  = ctl(["G_mouth_Mup","G_mouth_Lupin","G_mouth_Rupin",
+                     "G_mouth_Lupout","G_mouth_Rupout"], UP);                        // 윗입술(비웃음·놀람)
+    // 팔 본(몸동작용) — 오른팔. 계층: G_hand_R ← G_lowarm_R ← G_uparm_R.
+    //   상완=uparm(팔 전체 듦), 전완굽힘=lowarm(손이 자식이라 같이 옴), 손방향=hand.
+    const armMap = { uparm: "G_uparm_R", elbow: "G_lowarm_R", wrist: "G_hand_R" };
+    Object.entries(armMap).forEach(([k, bn]) => {
+      const b = bones[bn];
+      if (b) { armB[k] = b; armB[k + "Base"] = b.quaternion.clone(); }
+    });
+    // 손가락 본(주먹/따봉): a=엄지, b·c·d·e=네 손가락, 각 2마디(1·2).
+    armB.fingers = [];
+    ["a","b","c","d","e"].forEach((f) => {
+      ["1","2"].forEach((seg) => {
+        const b = bones["G_fng_R_" + f + seg + "_"];
+        if (b) armB.fingers.push({ bone: b, base: b.quaternion.clone(), thumb: (f === "a") });
+      });
+    });
 
     const chestName = Object.keys(bones).find((n) => n.toLowerCase().includes("spine_03"))
                    || Object.keys(bones).find((n) => n.toLowerCase().includes("spine"));
@@ -310,15 +346,22 @@ function headRotWorld(axis, angle) {
 const AX = new THREE.Vector3(1,0,0), AY = new THREE.Vector3(0,1,0);
 
 window.setState = function(s) { state = s; };
+const EMOTE_DUR = {nod:0.9, shake:1.0, sigh:1.8, angry:2.2, surprised:1.4, smirk:2.2, joy:2.2, sad:2.2};
 window.emote = function(name, dur) {
+  holdMode = false;
   emoteName = name;
   emoteT = 0;
-  emoteDur = dur || {nod:0.9, shake:1.0, sigh:1.8, angry:2.2, surprised:1.4, smirk:2.2, joy:2.2, sad:2.2}[name] || 1.5;
+  emoteDur = dur || EMOTE_DUR[name] || 1.5;
 };
+// 미리보기: 표정을 peak에 고정(개발용). release()로 해제.
+window.holdEmote = function(name) { emoteName = name; emoteT = 0; emoteDur = EMOTE_DUR[name] || 1.5; holdMode = true; };
+window.releaseHold = function() { holdMode = false; emoteName = null; };
 
 function animate() {
   requestAnimationFrame(animate);
   const dt = clock.getDelta();
+  // think 포즈 부드러운 전환(약 0.35초)
+  thinkBlend += (((state === "think") ? 1 : 0) - thinkBlend) * Math.min(1, dt * 6);
 
   // 숨쉬기 + 아주 느린 좌우 흔들림(살아있는 대기)
   breathePhase += dt; swayPhase += dt;
@@ -332,16 +375,21 @@ function animate() {
   let lidAmt = 0.06, eyeSideAmt = 0;
   let headPitch = 0, headYaw = 0;
 
-  // 깜빡임(자연스러운 랜덤 주기)
+  // 깜빡임: 펄스 값만 계산(적용은 표정 반영 후 조건부 — 감은 눈 위에서 깜빡이는 버그 방지)
+  let blinkPulse = 0;
   blinkT += dt;
   if (blinkT > nextBlink) {
     const t = (blinkT - nextBlink) / blinkDur;
-    if (t < 1) lidAmt = Math.max(lidAmt, Math.sin(Math.PI * Math.min(t, 1)));
+    if (t < 1) blinkPulse = Math.sin(Math.PI * Math.min(t, 1));
     else { blinkT = 0; nextBlink = 2.0 + Math.random() * 3.0; }
   }
 
   // 상태별
-  if (state === "think") { lidAmt = Math.max(lidAmt, 0.45); eyeSideAmt = 1; }
+  // think(생각): 눈 반쯤·곁눈질·고개 갸웃 — thinkBlend로 부드럽게.
+  lidAmt = Math.max(lidAmt, 0.5 * thinkBlend);
+  eyeSideAmt = Math.max(eyeSideAmt, thinkBlend);
+  headPitch += THINK_POSE.headPitch * thinkBlend;
+  headYaw += THINK_POSE.headYaw * thinkBlend;
   if (state === "talk") {
     talkT += dt;
     if (talkT > talkNext) {                     // 음절 단위 목표 진폭 갱신
@@ -361,27 +409,41 @@ function animate() {
   //   채널: browIn(+찌푸림/-걱정), browMid(+내림/-올림), cornerL/R(+올림/-내림),
   //         lid(감음), jawHold(입벌림 유지), headPitch/Yaw
   // 기본: 눈썹 살짝 올림(편안) + 입꼬리 살짝 올림(은은한 미소); 감정 시 override
-  let ex = { browIn:-0.14, browMid:-0.28, cornerL:0.60, cornerR:0.60, lid:0, jawHold:0 };
+  // 기본은 거의 무표정(입꼬리 살짝만) — 기본 미소가 크면 모든 표정이 이상해짐.
+  let ex = { browIn:-0.10, browMid:-0.18, cornerL:0.12, cornerR:0.12,
+             lid:0, jawHold:0, cheek:0, lowLid:0, nose:0, upLip:0, eyeDown:0 };
   if (emoteName) {
-    emoteT += dt;
-    const t = emoteT / emoteDur;
-    if (t >= 1) { emoteName = null; }
+    if (!holdMode) emoteT += dt;
+    const t = holdMode ? 0.5 : emoteT / emoteDur;
+    if (!holdMode && t >= 1) { emoteName = null; }
     else {
-      // attack 15% / hold / release 20%
-      const env = t < 0.15 ? t/0.15 : (t > 0.8 ? (1-t)/0.2 : 1.0);
+      // attack 15% / hold / release 20% (미리보기 hold 시엔 peak 고정)
+      const env = holdMode ? 1 : (t < 0.15 ? t/0.15 : (t > 0.8 ? (1-t)/0.2 : 1.0));
       const g = Math.sin(Math.PI * Math.min(t*1.0,1));   // 제스처용 부드러운 산
       switch (emoteName) {
-        case "joy":        ex.cornerL = ex.cornerR = env; ex.lid = 0.42*env;
+        // 기쁨: 입꼬리↑ + 볼↑ + 아랫눈꺼풀↑(Duchenne 진짜 미소) + 눈살짝좁힘 + 눈썹 편안
+        // 긍정(joy 통합): 과한 그린은 어색해서 뺌. 눈은 건드리지 않고(안 이상하게)
+        //   눈썹 살짝↑ + 입꼬리 살짝↑ + 볼 살짝 — 은은한 긍정.
+        case "joy":        ex.cornerL = ex.cornerR = 0.33*env; ex.cheek = 0.4*env;
                            ex.browMid = -0.5*env; break;
-        case "smirk":      ex.cornerL = env; ex.lid = 0.22*env; break;
-        case "angry":      ex.browIn = env; ex.browMid = 0.5*env;
-                           ex.cornerL = ex.cornerR = -0.5*env;
+        // 비웃음: 한쪽 입꼬리 살짝 + 한쪽 볼 + 아랫눈꺼풀
+        case "smirk":      ex.cornerL = 0.55*env; ex.cheek = 0.5*env; ex.lowLid = 0.45*env;
+                           ex.lid = 0.08*env; ex.browMid = -0.15*env; break;
+        // 분노: 눈썹 안쪽 내려찌푸림 + 콧방울 벌름 + 아랫눈꺼풀 긴장(눈은 뜬 채) + 입꼬리 내림
+        case "angry":      ex.browIn = env; ex.browMid = 0.55*env; ex.nose = env;
+                           ex.lowLid = 0.4*env; ex.cornerL = ex.cornerR = -0.5*env;
                            headPitch -= 0.05 * env; break;
-        case "sad":        ex.browIn = -env; ex.lid = 0.5*env;
-                           ex.cornerL = ex.cornerR = -0.6*env;
-                           headPitch += 0.09 * env; break;
-        case "sigh":       ex.lid = env; headPitch += 0.10 * env; break;
-        case "surprised":  ex.lid = -0.6*env; ex.browMid = -env;
+        // 슬픔: 팔자눈썹(안쪽↑·바깥↓) + 윗눈꺼풀 처짐 + 입꼬리 확실히↓ + 고개 숙임
+        //   앞머리가 눈썹을 가리므로 입·눈·고개에 더 실어 슬픔이 읽히게.
+        case "sad":        ex.browIn = -1.2*env; ex.browMid = 0.45*env;
+                           ex.lid = 0.4*env; ex.lowLid = 0.15*env;
+                           ex.cornerL = ex.cornerR = -1.05*env; headPitch += 0.13 * env; break;
+        // 한숨: 눈 반쯤(완전히 감지 않게) + 입꼬리 살짝 내림 + 고개 숙임
+        case "sigh":       ex.lid = 0.4*env; ex.cornerL = ex.cornerR = -0.2*env;
+                           headPitch += 0.10 * env; break;
+        // 놀람: 눈 크게(위꺼풀↑·아랫꺼풀↓) + 홍채 아래로(중앙 유지) + 눈썹↑ + 윗입술↑ + 입벌림
+        case "surprised":  ex.lid = -0.42*env; ex.lowLid = -0.25*env; ex.eyeDown = 0.8*env;
+                           ex.browMid = -env; ex.cornerL = ex.cornerR = 0; ex.upLip = 0.3*env;
                            ex.jawHold = 0.5*env; headPitch -= 0.05*env; break;
         case "nod":        headPitch += 0.14 * Math.sin(2*Math.PI*t*2) * g; break;
         case "shake":      headYaw   += 0.16 * Math.sin(2*Math.PI*t*2.5) * g; break;
@@ -393,13 +455,20 @@ function animate() {
   applyCtl(browMidCtl, ex.browMid, 0.0035);
   applyCtl(cornerLCtl, -ex.cornerL, 0.006);
   applyCtl(cornerRCtl, -ex.cornerR, 0.006);
+  applyCtl(cheekCtl, ex.cheek, 0.006);       // 볼 올림(미소)
+  applyCtl(noseCtl, ex.nose, 0.004);         // 콧방울 벌름(분노)
+  applyCtl(upLipCtl, ex.upLip, 0.004);       // 윗입술(놀람)
   if (ex.lid > 0) lidAmt = Math.max(lidAmt, ex.lid);
   else if (ex.lid < 0) lidAmt = ex.lid;               // 음수 = 눈 크게
+  // 깜빡임은 눈이 충분히 열려 있을 때만 적용(표정이 눈을 감긴 상태엔 겹치지 않음)
+  if (lidAmt < 0.35) lidAmt = Math.max(lidAmt, blinkPulse);
   if (ex.jawHold > 0 && state !== "talk") applyCtl(jawCtl, ex.jawHold, 0.0075);
 
   applyCtl(lidCtl, lidAmt, 0.011);
+  // 아랫눈꺼풀: 깜빡임 시 살짝 올라와 위꺼풀과 만남 + 표정(미소 Duchenne·놀람)
+  applyCtl(lowLidCtl, Math.max(lidAmt * 0.4, 0) + ex.lowLid, 0.007);
   applyCtl(eyeCtl, eyeSideAmt, 0.006);
-  applyCtl(eyeDownCtl, 1.0, 0.0026);   // 홍채 아래로(위 보던 것 교정, 정면 응시)
+  applyCtl(eyeDownCtl, 1.0 + ex.eyeDown, 0.0026);   // 홍채 아래로(기본 교정 + 놀람 시 추가)
   if (headBone) {
     headRotWorld(AX, headPitch);
     if (headYaw !== 0) {
@@ -407,6 +476,37 @@ function animate() {
       _qi.copy(headParentWorldQ).invert();
       const qL = _qi.clone().multiply(_qw).multiply(headParentWorldQ);
       headBone.quaternion.premultiply(qL);
+    }
+    if (thinkBlend > 0.001) {                        // 대각선 갸웃(roll) — 이징
+      _qw.setFromAxisAngle(new THREE.Vector3(0, 0, 1), THINK_POSE.headRoll * thinkBlend);
+      _qi.copy(headParentWorldQ).invert();
+      const qL = _qi.clone().multiply(_qw).multiply(headParentWorldQ);
+      headBone.quaternion.premultiply(qL);
+    }
+  }
+
+  // 팔 포즈(미리보기 슬라이더로 실시간 로컬 회전) — 값 확정 후 think 등에 baked.
+  // 팔 포즈: 디버그 슬라이더(즉시) 또는 think 포즈(thinkBlend 이징으로 스르륵).
+  const useSlider = armLive && state !== "think";
+  const pose = useSlider ? armLive : THINK_POSE;
+  const w = useSlider ? 1 : thinkBlend;
+  if (armB.uparm && (useSlider || w > 0.001)) {
+    const eu = new THREE.Euler(), tq = new THREE.Quaternion();
+    const set = (k, x, y, z) => {
+      if (!armB[k]) return;
+      tq.copy(armB[k + "Base"]).multiply(new THREE.Quaternion().setFromEuler(eu.set(x, y, z)));
+      armB[k].quaternion.copy(armB[k + "Base"]).slerp(tq, w);   // base→목표 슬러프(부드럽게)
+    };
+    set("uparm", pose.uX, pose.uY, pose.uZ);
+    set("elbow", pose.eX, pose.eY, pose.eZ);
+    set("wrist", pose.wX, pose.wY, pose.wZ);
+    if (armB.fingers) {
+      const ax = pose.fAxis || "x";
+      armB.fingers.forEach((f) => {
+        const amt = (f.thumb ? (pose.thumb || 0) : (pose.fist || 0)) * w;
+        eu.set(ax === "x" ? amt : 0, ax === "y" ? amt : 0, ax === "z" ? amt : 0);
+        f.bone.quaternion.copy(f.base).multiply(new THREE.Quaternion().setFromEuler(eu));
+      });
     }
   }
 
@@ -420,7 +520,74 @@ function animate() {
     glintR.position.copy(_gv);
   }
 
+  // 진단(디버그): 팔 본 캡처 여부 + 손 월드 Y(think 시 턱 y≈1.55로 올라가야 함)
+  if (window._armDiag) {
+    let s = "본[" + ["uparm","elbow","wrist"].filter((k) => armB[k]).join(",") + "]"
+          + " 손가락" + (armB.fingers ? armB.fingers.length : 0) + " state=" + state;
+    if (armB.wrist) { armB.wrist.getWorldPosition(_gv); s += " 손Y=" + _gv.y.toFixed(2); }
+    window._armDiag.textContent = s;
+  }
+
   renderer.render(scene, camera);
+}
+
+// ── 미리보기 패널(개발용): index.html?debug 로 열면 표정을 하나씩 멈춰 볼 수 있다.
+if (location.search.includes("debug")) {
+  const bar = document.createElement("div");
+  bar.style.cssText = "position:absolute;left:8px;top:8px;z-index:20;display:flex;"
+    + "flex-wrap:wrap;gap:4px;max-width:260px;font:12px sans-serif;";
+  const mk = (label, fn) => {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.style.cssText = "padding:4px 7px;background:#1d1713;color:#f2a63d;border:1px solid #3a2e26;"
+      + "border-radius:4px;cursor:pointer;";
+    b.onclick = fn; bar.appendChild(b);
+  };
+  ["joy","smirk","angry","sad","sigh","surprised","nod","shake"].forEach(
+    (e) => mk(e, () => window.holdEmote(e)));
+  mk("▶재생", () => window.emote(emoteName || "joy"));
+  mk("해제", () => window.releaseHold());
+  ["idle","think","talk"].forEach((s) => mk(s, () => window.setState(s)));
+  document.body.appendChild(bar);
+
+  // 팔 포즈 슬라이더(손→턱 등 몸동작 각도를 직접 맞추는 도구)
+  armLive = {uX:0,uY:0,uZ:0, eX:0,eY:0,eZ:0, wX:0,wY:0,wZ:0, fist:0, thumb:0, fAxis:"x"};
+  const arm = document.createElement("div");
+  arm.style.cssText = "position:absolute;left:8px;top:120px;z-index:20;background:rgba(20,16,14,.92);"
+    + "padding:10px;border-radius:6px;font:11px sans-serif;color:#ece2d6;width:236px;";
+  arm.innerHTML = "<b style='color:#f2a63d'>팔 포즈 (오른팔 → 턱/이마)</b>"
+    + "<div style='color:#9b8b7d;font-size:10px;margin:3px 0 6px'>슬라이더로 손 위치 맞춘 뒤 값을 알려주세요</div>";
+  const out = document.createElement("div");
+  out.style.cssText = "margin:6px 0;color:#f2a63d;white-space:pre-wrap;font-size:10px;user-select:all;";
+  const upd = () => { out.textContent = "uparm("+armLive.uX.toFixed(2)+","+armLive.uY.toFixed(2)+","+armLive.uZ.toFixed(2)
+    +") elbow("+armLive.eX.toFixed(2)+","+armLive.eY.toFixed(2)+","+armLive.eZ.toFixed(2)
+    +") wrist("+armLive.wX.toFixed(2)+","+armLive.wY.toFixed(2)+","+armLive.wZ.toFixed(2)+")"
+    +" fist="+armLive.fist.toFixed(2)+" thumb="+armLive.thumb.toFixed(2)+" 축="+armLive.fAxis; };
+  [["상완 X","uX"],["상완 Y","uY"],["상완 Z","uZ"],
+   ["팔꿈 X","eX"],["팔꿈 Y","eY"],["팔꿈 Z","eZ"],
+   ["손목 X","wX"],["손목 Y","wY"],["손목 Z","wZ"],
+   ["주먹","fist"],["엄지","thumb"]].forEach(([label,key]) => {
+    const row = document.createElement("div"); row.style.cssText = "display:flex;align-items:center;gap:5px;margin:1px 0;";
+    const l = document.createElement("span"); l.textContent = label; l.style.cssText = "width:44px;color:#9b8b7d;";
+    const s = document.createElement("input"); s.type = "range"; s.min = "-3.14"; s.max = "3.14"; s.step = "0.02"; s.value = "0"; s.style.flex = "1";
+    s.oninput = () => { armLive[key] = parseFloat(s.value); upd(); };
+    row.appendChild(l); row.appendChild(s); arm.appendChild(row);
+  });
+  arm.appendChild(out); upd();
+  const reset = document.createElement("button"); reset.textContent = "리셋";
+  reset.style.cssText = "margin-top:5px;padding:3px 8px;background:#1d1713;color:#f2a63d;border:1px solid #3a2e26;border-radius:4px;cursor:pointer;";
+  reset.onclick = () => { const ax=armLive.fAxis; armLive = {uX:0,uY:0,uZ:0,eX:0,eY:0,eZ:0,wX:0,wY:0,wZ:0,fist:0,thumb:0,fAxis:ax}; arm.querySelectorAll("input").forEach(i=>i.value=0); upd(); };
+  arm.appendChild(reset);
+  const axBtn = document.createElement("button"); axBtn.textContent = "손가락축:X";
+  axBtn.style.cssText = "margin:5px 0 0 5px;padding:3px 8px;background:#1d1713;color:#f2a63d;border:1px solid #3a2e26;border-radius:4px;cursor:pointer;";
+  axBtn.onclick = () => { armLive.fAxis = {x:"y",y:"z",z:"x"}[armLive.fAxis]; axBtn.textContent = "손가락축:"+armLive.fAxis.toUpperCase(); upd(); };
+  arm.appendChild(axBtn);
+  const diag = document.createElement("div");
+  diag.style.cssText = "margin-top:6px;padding:4px;background:#000;color:#7fff7f;font-size:10px;border-radius:3px;";
+  diag.textContent = "진단 로딩중…";
+  arm.appendChild(diag);
+  window._armDiag = diag;
+  document.body.appendChild(arm);
 }
 
 window.addEventListener("resize", () => {
