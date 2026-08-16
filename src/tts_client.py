@@ -10,6 +10,8 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -89,8 +91,9 @@ def _launch() -> subprocess.Popen | None:
     global _job
     if not available():
         return None
+    # TTS는 CPU로 — GPU는 LLM(llama-server) 전용으로 두어 메모리 경합/다운을 막는다.
     args = [str(VENV_PY), str(SERVER), "--port", str(PORT),
-            "--device", "cuda", "--preload", "KO"]
+            "--device", "cpu", "--preload", "KO"]
     flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
     try:
         p = subprocess.Popen(args, cwd=str(ROOT), creationflags=flags,
@@ -120,17 +123,25 @@ def ensure() -> str | None:
 
 
 def synth(text: str, emotion: str = "neutral", lang: str = "KO",
-          timeout: float = 30.0) -> bytes | None:
-    """텍스트+감정 -> wav bytes. 실패 시 None(무음 폴백)."""
+          timeout: float = 30.0, warmup_wait: float = 55.0) -> bytes | None:
+    """텍스트+감정 -> wav bytes. 실패 시 None(무음 폴백).
+
+    서버가 아직 모델 로딩 중이면(첫 실행 ~24초) 연결이 거부된다. 그동안
+    warmup_wait 초까지 재시도해서, 준비되는 즉시 소리가 나오게 한다."""
     if not text.strip():
         return None
+    ensure()                                     # 서버 없으면 띄우기(idempotent)
     body = json.dumps({"text": text, "emotion": emotion, "lang": lang}).encode("utf-8")
-    req = urllib.request.Request(base_url() + "/synth", data=body,
-                                 headers={"Content-Type": "application/json"})
-    try:
-        r = urllib.request.urlopen(req, timeout=timeout)
-        if r.status == 200:
-            return r.read()
-    except Exception:
-        pass
-    return None
+    deadline = time.time() + warmup_wait
+    while True:
+        req = urllib.request.Request(base_url() + "/synth", data=body,
+                                     headers={"Content-Type": "application/json"})
+        try:
+            r = urllib.request.urlopen(req, timeout=timeout)
+            return r.read() if r.status == 200 else None
+        except urllib.error.URLError:            # 서버 로딩 중(연결 거부) — 잠깐 뒤 재시도
+            if time.time() >= deadline:
+                return None
+            time.sleep(1.5)
+        except Exception:
+            return None

@@ -59,7 +59,7 @@ QPushButton:hover {{ background:#323855; }}
 QPushButton#accent {{ background:{ACCENT}; border:none; color:#0d0f17; font-weight:700; }}
 QPushButton#accent:hover {{ background:#809bff; }}
 QPushButton:disabled {{ color:#5a5d6b; background:#1f212b; }}
-QPushButton#seg {{ padding:5px 0; min-width:54px; }}
+QPushButton#seg {{ padding:7px 16px; min-width:64px; }}
 QPushButton#seg:checked {{ background:{ACCENT}; border:none; color:#0d0f17; font-weight:800; }}
 QLineEdit, QComboBox {{ background:#1d1f29; border:1px solid #2f3346; border-radius:8px; padding:6px 12px; }}
 QComboBox:hover {{ border:1px solid {ACCENT}; }}
@@ -357,18 +357,35 @@ class Main(QMainWindow):
     def _voice_lang_toggle(self):
         """아바타 위 음성 언어 전환(한국어/일본어). 코치 답변 TTS의 목소리를 결정한다.
         솔의 일본어는 원본 성우 학습 완료, 한국어는 기반모델 학습 후 연결."""
-        from PySide6.QtWidgets import QButtonGroup
+        from PySide6.QtWidgets import QButtonGroup, QSlider
         self.voice_lang = "KO"                 # 기본: 한국어(대상 사용자)
-        row = QHBoxLayout(); row.setSpacing(0); row.setAlignment(Qt.AlignHCenter)
-        row.addWidget(QLabel("🔊"))
+        col = QVBoxLayout(); col.setSpacing(6)
+        # 언어 전환(한국어/日本語) — 각 50%, 사이에 간격
+        row = QHBoxLayout(); row.setSpacing(8)
         self.lang_btns = {}
         grp = QButtonGroup(self); grp.setExclusive(True)
         for code, label in (("KO", "한국어"), ("JP", "日本語")):
             b = QPushButton(label); b.setObjectName("seg"); b.setCheckable(True)
             b.setChecked(code == self.voice_lang)
             b.clicked.connect(lambda _=False, c=code: self._set_voice_lang(c))
-            grp.addButton(b); self.lang_btns[code] = b; row.addWidget(b)
-        return row
+            grp.addButton(b); self.lang_btns[code] = b; row.addWidget(b, 1)
+        col.addLayout(row)
+        # 볼륨 조절 (바로 밑)
+        vrow = QHBoxLayout(); vrow.setSpacing(8)
+        vlab = QLabel("음량"); vlab.setStyleSheet("color:#9b8b7d; font-size:12px;")
+        self.vol_slider = QSlider(Qt.Horizontal)
+        self.vol_slider.setRange(0, 100); self.vol_slider.setValue(90)
+        self.vol_slider.valueChanged.connect(self._set_volume)
+        if getattr(self, "voice_audio", None):
+            self.voice_audio.setVolume(0.9)
+        vrow.addWidget(vlab); vrow.addWidget(self.vol_slider, 1)
+        col.addLayout(vrow)
+        return col
+
+    def _set_volume(self, v: int):
+        """코치 목소리 볼륨(0~100 → 0.0~1.0)."""
+        if getattr(self, "voice_audio", None):
+            self.voice_audio.setVolume(max(0.0, min(1.0, v / 100.0)))
 
     def _set_voice_lang(self, code: str):
         """음성 언어 상태 변경. 코치 응답 TTS가 이 값으로 목소리(솔 JP/KO)를 고른다."""
@@ -764,9 +781,11 @@ class Main(QMainWindow):
         emote = self._pick_emote(full)
         self._pending_emote = emote
         if not self._speak(full, emote or "neutral"):
-            # 무음 폴백: 말하기 지속시간 = 글자수 비례(1.2~7초)
+            # 무음 폴백: talk 유지하며 제스처를 바로 재생, 글자수만큼 뒤 대기 복귀
+            self.avatar.set_state("talk")
+            self._play_emote(emote)
             hold_ms = int(max(1.2, min(7.0, len(full) * 0.045)) * 1000)
-            QTimer.singleShot(hold_ms, lambda: self._finish_talk(emote))
+            QTimer.singleShot(hold_ms, lambda: self.avatar.set_state("idle"))
 
     # ---------- 솔 목소리 발화 ----------
     def _speak(self, text, emotion) -> bool:
@@ -776,50 +795,64 @@ class Main(QMainWindow):
             return False
         try:
             import tts_client
-            if not tts_client.ready():
+            if not tts_client.available():        # SBV2 환경 자체가 없으면 무음 폴백
                 return False
         except Exception:
             return False
         self.voice_player.stop()
         lang = getattr(self, "voice_lang", "KO")
-        self._voice_thr = QThread()
-        self._voice_wk = VoiceWorker(text, emotion, lang)
-        self._voice_wk.moveToThread(self._voice_thr)
-        self._voice_thr.started.connect(self._voice_wk.run)
-        self._voice_wk.done.connect(self._on_voice_ready)
-        self._voice_wk.done.connect(self._voice_thr.quit)
-        self._voice_thr.start()
+        # 세대 토큰: 새 발화가 시작되면 앞선(느리게 도착한) 합성 결과는 버린다.
+        self._voice_gen = getattr(self, "_voice_gen", 0) + 1
+        gen = self._voice_gen
+        if not hasattr(self, "_voice_threads"):
+            self._voice_threads = []
+        thr = QThread()
+        wk = VoiceWorker(text, emotion, lang)
+        wk.moveToThread(thr)
+        thr.started.connect(wk.run)
+        wk.done.connect(lambda data, g=gen: self._on_voice_ready(data, g))
+        wk.done.connect(thr.quit)
+        thr.finished.connect(lambda pair=(thr, wk): self._voice_threads.remove(pair)
+                             if pair in self._voice_threads else None)
+        self._voice_threads.append((thr, wk))       # 실행 중 참조 유지(GC 방지)
+        thr.start()
         return True
 
-    def _on_voice_ready(self, data: bytes):
-        """합성 완료 -> 임시 wav 재생 시작. 재생 동안 아바타가 말한다."""
-        if not data:                              # 합성 실패 -> 무음 폴백(짧은 talk)
+    def _on_voice_ready(self, data: bytes, gen: int = 0):
+        """합성 완료 -> wav 재생 시작. 재생과 '동시에' 감정 제스처(고개 끄덕임/젓기 등).
+        gen이 최신이 아니면(더 새 발화가 있으면) 이 결과는 버린다."""
+        if gen and gen != getattr(self, "_voice_gen", 0):
+            return
+        if not data:                              # 합성 실패 -> 무음 폴백(짧은 talk + 제스처)
             self.avatar.set_state("talk")
-            QTimer.singleShot(1200, lambda: self._finish_talk(self._pending_emote))
+            self._play_emote(self._pending_emote)
+            QTimer.singleShot(1200, lambda: self.avatar.set_state("idle"))
             return
         p = Path(tempfile.gettempdir()) / f"punish_coach_voice_{next(self._voice_seq)}.wav"
         try:
             p.write_bytes(data)
         except Exception:
-            self._finish_talk(self._pending_emote); return
+            self.avatar.set_state("idle"); return
         self._voice_wav = p
         self.avatar.set_state("talk")
         self.voice_player.setSource(QUrl.fromLocalFile(str(p)))
         self.voice_player.play()
+        self._play_emote(self._pending_emote)     # 음성이 나오는 동안 제스처가 함께 진행
 
     def _on_voice_media(self, st):
-        """음성 재생 끝 -> 대기 포즈 + 감정 제스처."""
+        """음성 재생 끝 -> 대기 포즈로 복귀."""
         if st == QMediaPlayer.MediaStatus.EndOfMedia:
-            self._finish_talk(self._pending_emote)
+            self.avatar.set_state("idle")
 
-    def _finish_talk(self, emote):
-        self.avatar.set_state("idle")
-        if emote:
-            if hasattr(self.avatar, "play_emote"):            # 시퀀스 아바타
-                self.avatar.play_emote(emote)
-            elif hasattr(self.avatar, "page"):                # (구)3D 아바타
-                self.avatar.page().runJavaScript(
-                    f"window.emote && window.emote('{emote}')")
+    def _play_emote(self, emote):
+        """감정 제스처를 아바타에 전달(표정 프리셋 + 고개 끄덕임/젓기)."""
+        if not emote:
+            return
+        if hasattr(self.avatar, "play_emote"):            # 시퀀스 아바타
+            self.avatar.play_emote(emote)
+        elif hasattr(self.avatar, "page"):                # 3D 아바타
+            self.avatar.page().runJavaScript(
+                f"window.emote && window.emote('{emote}')")
 
     def on_chat_send(self):
         msg = self.chat_in.text().strip()
