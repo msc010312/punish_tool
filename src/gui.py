@@ -23,7 +23,7 @@ from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
     QApplication, QComboBox, QFileDialog, QFrame, QGraphicsDropShadowEffect, QHBoxLayout,
     QLabel, QLineEdit, QListWidget, QListWidgetItem, QMainWindow, QProgressBar, QPushButton,
-    QSlider, QStyle, QTabWidget, QTextEdit, QVBoxLayout, QWidget,
+    QScrollArea, QSlider, QStyle, QTabWidget, QTextEdit, QVBoxLayout, QWidget,
 )
 
 import games
@@ -43,42 +43,49 @@ KIND_LABEL = {"counter": "COUNTER", "punish": "PUNISH", "just_defense": "JUST",
               "reversal_wake": "REVERSAL(기상)", "reversal_guard": "REVERSAL(가드경직)",
               "burst": "버스트"}
 
-ACCENT = "#6c8cff"
+# 길티기어/솔 테마 — 붉은 엠버(주) + 주황 골드(보조), 따뜻한 다크 배경
+ACCENT = "#e8482a"          # 엠버(솔의 붉은색)
+GOLD = "#f2a63d"            # 몰튼 골드(버클·강조)
 HINT = "ℹ  영상을 열면 트레이닝/대전 영상을 자동 판별한 뒤 분석할 수 있어요."
-HINT_STYLE = "color:#8a8d9c; font-size:12px; background:transparent;"
+HINT_STYLE = "color:#9b8b7d; font-size:12px; background:transparent;"
 QSS = f"""
-QWidget {{ background:#15161c; color:#e6e7ee; font-size:13px; }}
+QWidget {{ background:#14100e; color:#ece2d6; font-size:13px; }}
 QLabel {{ background:transparent; }}
 QLabel#title {{ color:#fff; letter-spacing:1px; font-size:30px; }}
-QLabel#h {{ color:{ACCENT}; font-weight:700; font-size:12px; }}
-QLabel#greet {{ font-size:22px; color:#cfd2e0; }}
-QFrame#card {{ background:#1d1f29; border:1px solid #2a2d3c; border-radius:12px; }}
-QFrame#bar {{ background:#1a1b22; border-bottom:1px solid #2a2d3c; }}
-QPushButton {{ background:#262a3a; border:1px solid #343a4f; border-radius:8px; padding:7px 14px; }}
-QPushButton:hover {{ background:#323855; }}
-QPushButton#accent {{ background:{ACCENT}; border:none; color:#0d0f17; font-weight:700; }}
-QPushButton#accent:hover {{ background:#809bff; }}
-QPushButton:disabled {{ color:#5a5d6b; background:#1f212b; }}
+QLabel#h {{ color:{GOLD}; font-weight:700; font-size:12px; letter-spacing:0.5px; }}
+QLabel#greet {{ font-size:22px; color:#e6d8c8; }}
+QFrame#card {{ background:#201712; border:1px solid #4a3628; border-radius:12px; }}
+QFrame#bar {{ background:#1a1310; border-bottom:2px solid #4a3628; }}
+QPushButton {{ background:#2a1e17; border:1px solid #47342a; border-radius:8px; padding:7px 14px; }}
+QPushButton:hover {{ background:#3a281e; border:1px solid #5a4132; }}
+QPushButton#accent {{ background:{ACCENT}; border:none; color:#14100e; font-weight:700; }}
+QPushButton#accent:hover {{ background:#ff5c3d; }}
+QPushButton:disabled {{ color:#6b5c50; background:#1d1712; border:1px solid #2e221a; }}
 QPushButton#seg {{ padding:7px 16px; min-width:64px; }}
-QPushButton#seg:checked {{ background:{ACCENT}; border:none; color:#0d0f17; font-weight:800; }}
-QLineEdit, QComboBox {{ background:#1d1f29; border:1px solid #2f3346; border-radius:8px; padding:6px 12px; }}
-QComboBox:hover {{ border:1px solid {ACCENT}; }}
+QPushButton#seg:checked {{ background:{ACCENT}; border:none; color:#14100e; font-weight:800; }}
+QLineEdit, QComboBox {{ background:#201712; border:1px solid #3a2a20; border-radius:8px; padding:6px 12px; }}
+QLineEdit:focus {{ border:1px solid {ACCENT}; }}
+QComboBox:hover {{ border:1px solid {GOLD}; }}
 QComboBox::drop-down {{ border:none; width:24px; }}
 QComboBox::down-arrow {{ image:none; width:0; height:0;
-  border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #9aa0b8; margin-right:10px; }}
-QComboBox QAbstractItemView {{ background:#1d1f29; border:1px solid #2f3346; border-radius:8px;
-  selection-background-color:#323855; outline:none; padding:4px; }}
-QTextEdit, QListWidget {{ background:#1a1b22; border:1px solid #2a2d3c; border-radius:10px; }}
+  border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #9b8b7d; margin-right:10px; }}
+QComboBox QAbstractItemView {{ background:#201712; border:1px solid #3a2a20; border-radius:8px;
+  selection-background-color:#3a281e; outline:none; padding:4px; }}
+QTextEdit, QListWidget {{ background:#1a1310; border:1px solid #3a2a20; border-radius:10px; }}
 QListWidget::item {{ padding:6px 8px; border-radius:6px; }}
-QListWidget::item:selected {{ background:#2c3category; }}
+QListWidget::item:selected {{ background:#3a281e; }}
 QTabWidget::pane {{ border:none; }}
-QTabBar::tab {{ background:transparent; padding:9px 20px; color:#9a9db0; font-weight:600; border-bottom:2px solid transparent; }}
+QTabBar::tab {{ background:transparent; padding:9px 20px; color:#9b8b7d; font-weight:600; border-bottom:2px solid transparent; }}
 QTabBar::tab:selected {{ color:#fff; border-bottom:2px solid {ACCENT}; }}
-QProgressBar {{ background:#1d1f29; border:none; border-radius:7px; height:8px; text-align:center; }}
-QProgressBar::chunk {{ background:{ACCENT}; border-radius:7px; }}
+QProgressBar {{ background:#201712; border:none; border-radius:7px; height:8px; text-align:center; }}
+QProgressBar::chunk {{ background:qlineargradient(x1:0,y1:0,x2:1,y2:0, stop:0 {ACCENT}, stop:1 {GOLD}); border-radius:7px; }}
 QScrollBar:vertical {{ background:transparent; width:10px; }}
-QScrollBar::handle:vertical {{ background:#343a4f; border-radius:5px; }}
-""".replace("#2c3category", "#2c3350")
+QScrollBar::handle:vertical {{ background:#47342a; border-radius:5px; }}
+QScrollBar::handle:vertical:hover {{ background:#5a4132; }}
+QScrollArea {{ background:transparent; border:none; }}
+QLabel#bub_ai {{ background:#241a14; border:1px solid #43301f; border-radius:14px; padding:10px 14px; }}
+QLabel#bub_me {{ background:{ACCENT}; color:#14100e; border-radius:14px; padding:10px 14px; }}
+"""
 
 STRIVE = None  # Strive 폰트 패밀리명 (main 에서 로드)
 
@@ -209,7 +216,7 @@ class EventStrip(QWidget):
     def set_position(self, ms): self.position_ms = ms; self.update()
 
     def paintEvent(self, _):
-        p = QPainter(self); p.fillRect(self.rect(), QColor(26, 27, 34)); h = self.height()
+        p = QPainter(self); p.fillRect(self.rect(), QColor(26, 19, 16)); h = self.height()
         for e in self.events:
             x = int(e["t"] * 1000 / self.duration_ms * self.width())
             p.setPen(QPen(KIND_COLOR[e["kind"]], 2)); p.drawLine(x, 4, x, h - 4)
@@ -286,6 +293,11 @@ class Main(QMainWindow):
         self.tabs.tabBar().setCursor(Qt.PointingHandCursor)
         self.clear_results()
         self._greet()
+        # 초기 로딩(코치 음성 서버) 준비 상태를 상단에 표시 — 언제 쓸 수 있는지 알림
+        self._ready_timer = QTimer(self)
+        self._ready_timer.timeout.connect(self._poll_ready)
+        self._ready_timer.start(1000)
+        self._poll_ready()
 
     # ---------- 구성 ----------
     # ┌─ 레이아웃 조작 가이드 (#5) ─────────────────────────────────────────┐
@@ -308,11 +320,13 @@ class Main(QMainWindow):
         self.game_combo.setMaximumWidth(180)
         self.status = QLabel("영상을 올려 분석을 시작하세요.")
         self.progress = QProgressBar(); self.progress.setMaximumWidth(200); self.progress.setVisible(False)
+        self.ready_lbl = QLabel("● 코치 음성 준비 중…")   # 초기 로딩 상태 표시
+        self.ready_lbl.setStyleSheet(f"color:{GOLD}; font-size:12px; font-weight:600; background:transparent;")
         bar = QFrame(); bar.setObjectName("bar")
         bl = QHBoxLayout(bar); bl.setContentsMargins(32, 14, 32, 14); bl.setSpacing(14)
         bl.addWidget(title); bl.addSpacing(24)
         bl.addWidget(QLabel("게임")); bl.addWidget(self.game_combo)
-        bl.addWidget(self.status, 1); bl.addWidget(self.progress)
+        bl.addWidget(self.status, 1); bl.addWidget(self.ready_lbl); bl.addWidget(self.progress)
 
         self.tabs = QTabWidget()
         self.tabs.addTab(self._chat_tab(), "  AI 코치  ")
@@ -325,12 +339,19 @@ class Main(QMainWindow):
     def _chat_tab(self):
         self.greet_lbl = QLabel(); self.greet_lbl.setObjectName("greet")
         self.greet_lbl.setAlignment(Qt.AlignCenter); self.greet_lbl.setWordWrap(True)
-        self.chat_log = QTextEdit(); self.chat_log.setReadOnly(True)
-        self.chat_log.setFrameShape(QFrame.NoFrame)
+        # 채팅: 라운드 말풍선(위젯 기반). QTextEdit는 border-radius 미지원이라 스크롤+버블로 구성.
+        self.chat_scroll = QScrollArea(); self.chat_scroll.setWidgetResizable(True)
+        self.chat_scroll.setFrameShape(QFrame.NoFrame)
+        self.chat_inner = QWidget()
+        self.chat_box = QVBoxLayout(self.chat_inner)
+        self.chat_box.setContentsMargins(18, 16, 18, 16); self.chat_box.setSpacing(12)
+        self.chat_box.addStretch(1)                 # 말풍선은 위에서부터, 이 스트레치 앞에 삽입
+        self.chat_scroll.setWidget(self.chat_inner)
+        self._bubbles = []
         self.chat_stack = QVBoxLayout()
         self.chat_stack.addWidget(self.greet_lbl, 1)
-        self.chat_stack.addWidget(self.chat_log, 1)
-        self.chat_log.hide()
+        self.chat_stack.addWidget(self.chat_scroll, 1)
+        self.chat_scroll.hide()
 
         up = QPushButton("＋ 영상"); up.clicked.connect(self.pick_and_analyze)
         self.chat_in = QLineEdit(); self.chat_in.setPlaceholderText("코치에게 질문…  (영상은 ＋영상 으로 올리세요)")
@@ -342,15 +363,19 @@ class Main(QMainWindow):
         # 코치 아바타: 실시간 3D(avatar3d/) 우선, 불가 시 스프라이트(avatar/) 폴백
         from avatar3d import make_avatar
         self.avatar = make_avatar(height=300)
-        body = QHBoxLayout(); body.setSpacing(12)
+        body = QHBoxLayout(); body.setSpacing(16)
         if self.avatar.active:
-            av_col = QVBoxLayout(); av_col.addStretch(1)
-            av_col.addLayout(self._voice_lang_toggle())   # 아바타 위 음성 언어 전환
-            av_col.addWidget(self.avatar)
+            av_col = QVBoxLayout()                         # 아바타쪽은 경계선 없이
+            av_col.addLayout(self._voice_lang_toggle())   # 상단: 음성 언어·볼륨
+            av_col.addStretch(1)
+            av_col.addWidget(self.avatar)                 # 하단으로
             body.addLayout(av_col)
-        body.addLayout(self.chat_stack, 1)
+        chat_frame = QFrame(); chat_frame.setObjectName("card")   # 채팅창 경계
+        cl = QVBoxLayout(chat_frame); cl.setContentsMargins(14, 14, 14, 14)
+        cl.addLayout(self.chat_stack)
+        body.addWidget(chat_frame, 1)
 
-        lay = QVBoxLayout(); lay.setContentsMargins(80, 28, 80, 28); lay.setSpacing(16)
+        lay = QVBoxLayout(); lay.setContentsMargins(46, 26, 46, 30); lay.setSpacing(22)
         lay.addLayout(body, 1); lay.addWidget(inbar)
         w = QWidget(); w.setLayout(lay); return w
 
@@ -416,7 +441,7 @@ class Main(QMainWindow):
                         "· 배너(카운터 등) 감지율 약 95% — 실측 기준,\n"
                         "  일부 놓칠 수 있으나 없는 것을 만들지는 않습니다")
         notice.setWordWrap(True)
-        notice.setStyleSheet("color:#8a8d9c; font-size:11px;")
+        notice.setStyleSheet("color:#9b8b7d; font-size:11px;")
         ncard = QFrame(); ncard.setObjectName("card")
         ncl = QVBoxLayout(ncard); ncl.addWidget(self._h("안내")); ncl.addWidget(notice)
 
@@ -480,9 +505,23 @@ class Main(QMainWindow):
 
     def _greet(self):
         self.greet_lbl.setText("격투게임 프레임 분석기<br><br>"
-                               "<span style='font-size:15px;color:#9a9db0'>＋영상 으로 매치를 올리면 "
+                               "<span style='font-size:15px;color:#9b8b7d'>＋영상 으로 매치를 올리면 "
                                "카운터·확정반격을 분석해주고,<br>"
                                "아래 칸에 길티기어 뭐든 물어보면 코치가 대답해줘요.</span>")
+
+    def _poll_ready(self):
+        """코치 음성 서버가 준비되면 상단 표시를 '준비 완료'로 바꾸고 잠시 뒤 감춘다."""
+        try:
+            import tts_client
+            if not tts_client.available():          # 음성 환경 자체가 없으면 표시 제거
+                self._ready_timer.stop(); self.ready_lbl.hide(); return
+            if tts_client.ready():
+                self.ready_lbl.setText("● 준비 완료")
+                self.ready_lbl.setStyleSheet("color:#7ad17a; font-size:12px; font-weight:600; background:transparent;")
+                self._ready_timer.stop()
+                QTimer.singleShot(3500, self.ready_lbl.hide)
+        except Exception:
+            self._ready_timer.stop(); self.ready_lbl.hide()
 
     # ---------- 데이터/게임 ----------
     def _load_framedata(self):
@@ -698,24 +737,56 @@ class Main(QMainWindow):
             sb.setValue(sb.value() + self.report.cursorRect().top() - 12)
 
     # ---------- 채팅 ----------
+    def _add_bubble(self, who, text):
+        me = who == "나"
+        lbl = QLabel(text.replace("\n", "<br>")); lbl.setWordWrap(True)
+        lbl.setTextFormat(Qt.RichText); lbl.setObjectName("bub_me" if me else "bub_ai")
+        self._size_bubble(lbl)                       # 내용에 맞추되 채팅폭 50%에서 줄바꿈
+        row = QHBoxLayout(); row.setContentsMargins(0, 0, 0, 0)
+        if me:
+            row.addStretch(1); row.addWidget(lbl)
+        else:
+            row.addWidget(lbl); row.addStretch(1)
+        rw = QWidget(); rw.setLayout(row)
+        self.chat_box.insertWidget(self.chat_box.count() - 1, rw)   # 마지막 stretch 앞
+        self._bubbles.append(lbl)
+
     def _render_chat(self):
-        html = []
-        for who, text in getattr(self, "_messages", []):
-            me = who == "나"
-            col = ACCENT if me else "#262a3a"
-            align = "right" if me else "left"
-            fg = "#0d0f17" if me else "#e6e7ee"
-            body = text.replace("\n", "<br>")
-            html.append(
-                f"<table width='100%'><tr><td align='{align}'>"
-                f"<table><tr><td style='background:{col};color:{fg};padding:8px 12px;'>"
-                f"{body}</td></tr></table></td></tr></table>")
-        self.chat_log.setHtml("".join(html))
-        self.chat_log.verticalScrollBar().setValue(self.chat_log.verticalScrollBar().maximum())
+        msgs = getattr(self, "_messages", [])
+        while len(self._bubbles) < len(msgs):                       # 새 말풍선만 추가(스트리밍 무깜빡)
+            who, text = msgs[len(self._bubbles)]
+            self._add_bubble(who, text)
+        for lbl, (who, text) in zip(self._bubbles, msgs):
+            lbl.setText(text.replace("\n", "<br>"))
+            self._size_bubble(lbl)
+        QTimer.singleShot(0, lambda: self.chat_scroll.verticalScrollBar().setValue(
+            self.chat_scroll.verticalScrollBar().maximum()))
+
+    def _bubble_max(self) -> int:
+        """말풍선 최대폭 = 채팅 영역 폭의 50%(그 이상만 줄바꿈)."""
+        w = self.chat_scroll.viewport().width() if hasattr(self, "chat_scroll") else 0
+        return max(200, int(w * 0.5)) if w > 0 else 400
+
+    def _size_bubble(self, lbl):
+        """말풍선 폭 = min(내용 자연폭, 채팅폭 50%). 짧으면 내용에 딱 맞고, 길면 50%에서 줄바꿈."""
+        import re
+        plain = re.sub(r"<[^>]+>", "", lbl.text().replace("<br>", "\n"))
+        fm = lbl.fontMetrics()
+        natural = max((fm.horizontalAdvance(ln) for ln in plain.split("\n")), default=0)
+        natural += 34                                 # 패딩·테두리 여유
+        lbl.setFixedWidth(max(60, min(natural, self._bubble_max())))
+
+    def _update_bubble_widths(self):
+        for lbl in getattr(self, "_bubbles", []):
+            self._size_bubble(lbl)
+
+    def resizeEvent(self, e):
+        super().resizeEvent(e)
+        self._update_bubble_widths()
 
     def _chat(self, who, text):
         if self.greet_lbl.isVisible():
-            self.greet_lbl.hide(); self.chat_log.show()
+            self.greet_lbl.hide(); self.chat_scroll.show()
         if not hasattr(self, "_messages"):
             self._messages = []
         self._messages.append([who, text])
@@ -727,6 +798,17 @@ class Main(QMainWindow):
             return                         # 코치 응답 중엔 새 요청 무시
         if getattr(self, "voice_player", None):
             self.voice_player.stop()       # 이전 발화 중단
+        # 문장 단위 음성 스트리밍 상태 초기화(새 발화 = 세대 증가로 이전 큐 취소)
+        self._voice_gen = getattr(self, "_voice_gen", 0) + 1
+        self._sent_pos = 0
+        self._sent_q, self._wav_q = [], []
+        self._synth_busy = self._playing = False
+        self._gesture_done = self._voice_text_done = False
+        try:
+            import tts_client
+            self._voice_on = tts_client.available()
+        except Exception:
+            self._voice_on = False
         self._chat("코치", "…")
         self._coach_buf = ""
         self.avatar.set_state("think")     # 첫 토큰 대기 = 생각 포즈
@@ -752,6 +834,8 @@ class Main(QMainWindow):
         if self._messages:
             self._messages[-1][1] = self._coach_buf
             self._render_chat()
+        if getattr(self, "_voice_on", False):
+            self._pump_sentences()         # 완성된 문장부터 바로 합성·재생(체감 지연↓)
 
     # 답변 내용 -> 감정 제스처(결정론적 키워드 매핑; 3D 아바타의 emote 지원 시)
     _EMOTES = [
@@ -772,77 +856,116 @@ class Main(QMainWindow):
         return None
 
     def _coach_done(self, full):
-        """응답 완료 -> 감정 감지 -> (가능하면)솔 목소리로 발화 + 립싱크 -> 감정 제스처.
-        음성 서버가 없거나 실패하면 글자수 기반 talk 유지로 무음 폴백."""
+        """응답 완료 -> 마지막 문장 flush. 문장 단위 스트리밍이 재생·복귀를 처리한다.
+        음성 서버가 없으면 글자수 기반 talk 유지로 무음 폴백."""
         if not hasattr(self, "_chat_history"):
             self._chat_history = []
         if full.strip():
             self._chat_history.append({"role": "assistant", "content": full})
-        emote = self._pick_emote(full)
-        self._pending_emote = emote
-        if not self._speak(full, emote or "neutral"):
-            # 무음 폴백: talk 유지하며 제스처를 바로 재생, 글자수만큼 뒤 대기 복귀
-            self.avatar.set_state("talk")
-            self._play_emote(emote)
-            hold_ms = int(max(1.2, min(7.0, len(full) * 0.045)) * 1000)
-            QTimer.singleShot(hold_ms, lambda: self.avatar.set_state("idle"))
+        self._pending_emote = self._pick_emote(full)
+        if getattr(self, "_voice_on", False):
+            self._voice_text_done = True
+            self._pump_sentences(final=True)      # 남은 문장 밀어넣기
+            self._maybe_idle()                    # 재생할 게 전혀 없으면(합성 실패) 복귀
+        else:
+            self._fallback_talk(full)
 
-    # ---------- 솔 목소리 발화 ----------
-    def _speak(self, text, emotion) -> bool:
-        """코치 답변을 솔 목소리로 합성·재생 시작. 서버 준비 안됐으면 False(폴백)."""
-        text = (text or "").strip()
-        if not text:
-            return False
-        try:
-            import tts_client
-            if not tts_client.available():        # SBV2 환경 자체가 없으면 무음 폴백
-                return False
-        except Exception:
-            return False
-        self.voice_player.stop()
-        lang = getattr(self, "voice_lang", "KO")
-        # 세대 토큰: 새 발화가 시작되면 앞선(느리게 도착한) 합성 결과는 버린다.
-        self._voice_gen = getattr(self, "_voice_gen", 0) + 1
+    def _fallback_talk(self, full):
+        """음성 없이 talk 유지 + 제스처, 글자수만큼 뒤 대기 복귀."""
+        self.avatar.set_state("talk")
+        self._play_emote(self._pending_emote)
+        hold_ms = int(max(1.2, min(7.0, len(full) * 0.045)) * 1000)
+        QTimer.singleShot(hold_ms, lambda: self.avatar.set_state("idle"))
+
+    # ---------- 솔 목소리: 문장 단위 스트리밍 ----------
+    def _pump_sentences(self, final=False):
+        """_coach_buf에서 완성된 문장을 잘라 합성 큐에 넣는다. final=True면 남은 것도."""
+        import re
+        buf = getattr(self, "_coach_buf", "")
+        while True:
+            rest = buf[self._sent_pos:]
+            if not rest.strip():
+                if final:
+                    self._sent_pos = len(buf)
+                break
+            m = re.search(r"[.!?…\n]", rest)
+            if m:
+                end = self._sent_pos + m.end()
+                sent = buf[self._sent_pos:end].strip()
+                self._sent_pos = end
+                if sent:
+                    self._enqueue_sentence(sent)
+            elif final:
+                sent = rest.strip()
+                self._sent_pos = len(buf)
+                if sent:
+                    self._enqueue_sentence(sent)
+                break
+            else:
+                break                             # 아직 문장이 안 끝남 -> 다음 조각 대기
+
+    def _enqueue_sentence(self, sent):
+        self._sent_q.append((sent, self._pick_emote(sent) or "neutral"))
+        self._pump_synth()
+
+    def _pump_synth(self):
+        """한 번에 한 문장씩 순차 합성(순서 보장 + CPU 과부하 방지)."""
+        if self._synth_busy or not self._sent_q:
+            return
+        self._synth_busy = True
+        sent, emotion = self._sent_q.pop(0)
         gen = self._voice_gen
+        lang = getattr(self, "voice_lang", "KO")
         if not hasattr(self, "_voice_threads"):
             self._voice_threads = []
-        thr = QThread()
-        wk = VoiceWorker(text, emotion, lang)
+        thr = QThread(); wk = VoiceWorker(sent, emotion, lang)
         wk.moveToThread(thr)
         thr.started.connect(wk.run)
-        wk.done.connect(lambda data, g=gen: self._on_voice_ready(data, g))
+        wk.done.connect(lambda data, g=gen, e=emotion: self._on_sent_synth(data, g, e))
         wk.done.connect(thr.quit)
         thr.finished.connect(lambda pair=(thr, wk): self._voice_threads.remove(pair)
                              if pair in self._voice_threads else None)
-        self._voice_threads.append((thr, wk))       # 실행 중 참조 유지(GC 방지)
+        self._voice_threads.append((thr, wk))
         thr.start()
-        return True
 
-    def _on_voice_ready(self, data: bytes, gen: int = 0):
-        """합성 완료 -> wav 재생 시작. 재생과 '동시에' 감정 제스처(고개 끄덕임/젓기 등).
-        gen이 최신이 아니면(더 새 발화가 있으면) 이 결과는 버린다."""
-        if gen and gen != getattr(self, "_voice_gen", 0):
+    def _on_sent_synth(self, data: bytes, gen: int, emotion: str):
+        self._synth_busy = False
+        if gen != getattr(self, "_voice_gen", 0):
+            return                                # 새 질문으로 취소됨
+        if data:
+            p = Path(tempfile.gettempdir()) / f"punish_coach_voice_{next(self._voice_seq)}.wav"
+            try:
+                p.write_bytes(data); self._wav_q.append((p, emotion))
+            except Exception:
+                pass
+        self._pump_synth()                        # 다음 문장 합성
+        self._play_next_wav()                     # 준비된 것 재생
+        self._maybe_idle()
+
+    def _play_next_wav(self):
+        if self._playing or not self._wav_q:
             return
-        if not data:                              # 합성 실패 -> 무음 폴백(짧은 talk + 제스처)
-            self.avatar.set_state("talk")
-            self._play_emote(self._pending_emote)
-            QTimer.singleShot(1200, lambda: self.avatar.set_state("idle"))
-            return
-        p = Path(tempfile.gettempdir()) / f"punish_coach_voice_{next(self._voice_seq)}.wav"
-        try:
-            p.write_bytes(data)
-        except Exception:
-            self.avatar.set_state("idle"); return
-        self._voice_wav = p
+        p, emotion = self._wav_q.pop(0)
+        self._playing = True
         self.avatar.set_state("talk")
+        if not self._gesture_done:                # 제스처는 첫 발화에만(매 문장 끄덕임 방지)
+            self._play_emote(self._pending_emote or emotion)
+            self._gesture_done = True
         self.voice_player.setSource(QUrl.fromLocalFile(str(p)))
         self.voice_player.play()
-        self._play_emote(self._pending_emote)     # 음성이 나오는 동안 제스처가 함께 진행
+
+    def _maybe_idle(self):
+        """텍스트 완료 + 합성/재생 큐가 모두 비면 대기 포즈로."""
+        if (getattr(self, "_voice_text_done", False) and not self._sent_q
+                and not self._synth_busy and not self._wav_q and not self._playing):
+            self.avatar.set_state("idle")
 
     def _on_voice_media(self, st):
-        """음성 재생 끝 -> 대기 포즈로 복귀."""
+        """문장 하나 재생 끝 -> 다음 문장 재생, 없으면 대기 복귀."""
         if st == QMediaPlayer.MediaStatus.EndOfMedia:
-            self.avatar.set_state("idle")
+            self._playing = False
+            self._play_next_wav()
+            self._maybe_idle()
 
     def _play_emote(self, emote):
         """감정 제스처를 아바타에 전달(표정 프리셋 + 고개 끄덕임/젓기)."""

@@ -108,8 +108,34 @@ def ready() -> bool:
     return _health()
 
 
+def _gpu_free_mb() -> int | None:
+    """여유 VRAM(MB). nvidia-smi 없으면 None."""
+    try:
+        r = subprocess.run(["nvidia-smi", "--query-gpu=memory.free",
+                            "--format=csv,noheader,nounits"],
+                           capture_output=True, text=True, timeout=3)
+        return int(r.stdout.strip().splitlines()[0])
+    except Exception:
+        return None
+
+
+def _pick_ngl() -> int:
+    """여유 VRAM에 맞춰 GPU에 올릴 레이어 수. 넉넉하면 전부, 부족하면 들어갈 만큼만
+    (순수 CPU보다 훨씬 빠름). 레이어당 ~150MB, KV·컨텍스트용 ~1.2GB 확보."""
+    free = _gpu_free_mb()
+    if free is None:
+        return 99
+    if free >= 6500:
+        return 99
+    return max(0, min(99, int((free - 1200) / 150)))
+
+
+_ngl_last = 99                          # 마지막으로 시도한 -ngl(재시도 단계 축소용)
+
+
 def _launch(ngl: int) -> subprocess.Popen | None:
-    global _job
+    global _job, _ngl_last
+    _ngl_last = ngl
     exe, gguf = _paths()
     if exe is None:
         return None
@@ -140,22 +166,26 @@ def ensure() -> str | None:
         return base_url()
     if _proc is not None and _proc.poll() is None:
         return base_url()                      # 실행 중(로딩 중일 수 있음)
-    _proc = _launch(0 if _gpu_failed else 99)
+    _proc = _launch(0 if _gpu_failed else _pick_ngl())
     return base_url() if _proc else None
 
 
 def wait_ready(timeout: float = 120.0) -> bool:
-    """로딩 완료까지 대기. GPU 시도가 죽으면 CPU 로 1회 재시도."""
-    global _proc, _gpu_failed
+    """로딩 완료까지 대기. 죽으면 GPU 레이어를 단계적으로 줄여 재시도(마지막엔 CPU)."""
+    global _proc, _gpu_failed, _ngl_last
     if ensure() is None:
         return False
     t0 = time.time()
     while time.time() - t0 < timeout:
         if _health():
             return True
-        if _proc is not None and _proc.poll() is not None and not _gpu_failed:
-            _gpu_failed = True                 # GPU(-ngl 99) 실패 -> CPU 재시도
-            _proc = _launch(0)
+        if _proc is not None and _proc.poll() is not None:
+            if _ngl_last <= 0:                 # 이미 CPU인데도 죽음 -> 포기
+                return False
+            nxt = 0 if _ngl_last <= 8 else _ngl_last // 2   # 절반씩 줄이다 CPU
+            if nxt == 0:
+                _gpu_failed = True
+            _proc = _launch(nxt)
             if _proc is None:
                 return False
         time.sleep(1.0)
